@@ -24,27 +24,51 @@ export function useHeroTransition({
   const transitionRef = useRef<gsap.core.Tween | null>(null);
 
   const navigateTo = useCallback(
-    (targetProgress: number, sectionId?: string) => {
-      if (isTransitioning || videoDuration === 0) return;
+    (sectionId: string, targetProgress?: number) => {
+      if (isTransitioning) return;
 
       const video = videoRef.current;
-      if (!video) return;
+
+      /* Fallback : si la vidéo n'est pas prête, scroll direct */
+      if (!video || videoDuration === 0) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const lenis = (
+            window as Window & {
+              __lenis?: {
+                scrollTo: (target: string | HTMLElement, options?: object) => void;
+              };
+            }
+          ).__lenis;
+          if (lenis) {
+            lenis.scrollTo(el, { offset: 0 });
+          } else {
+            el.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+        return;
+      }
 
       setIsTransitioning(true);
 
-      const targetTime = Math.max(
-        0,
-        Math.min(videoDuration, targetProgress * videoDuration)
-      );
       const currentTime = video.currentTime;
+      const isDirectScrub = targetProgress !== undefined;
+
+      const targetTime = isDirectScrub
+        ? Math.max(0, Math.min(videoDuration, targetProgress * videoDuration))
+        : videoDuration;
+
+      const scrubDuration = isDirectScrub
+        ? 0.6
+        : videoDuration > 0
+          ? videoDuration * 0.5
+          : 3;
 
       /* Mode réduit : transition instantanée */
       if (isReducedMotion) {
         video.currentTime = targetTime;
-        if (sectionId) {
-          const el = document.getElementById(sectionId);
-          if (el) el.scrollIntoView({ behavior: "auto" });
-        }
+        const el = document.getElementById(sectionId);
+        if (el) el.scrollIntoView({ behavior: "auto" });
         setIsTransitioning(false);
         return;
       }
@@ -53,27 +77,25 @@ export function useHeroTransition({
       const scrubObj = { t: currentTime };
       transitionRef.current = gsap.to(scrubObj, {
         t: targetTime,
-        duration: 0.6,
-        ease: "power2.inOut",
+        duration: scrubDuration,
+        ease: "power1.inOut",
         onUpdate: () => {
           video.currentTime = scrubObj.t;
         },
         onComplete: () => {
-          if (sectionId) {
-            const el = document.getElementById(sectionId);
-            if (el) {
-              const lenis = (
-                window as Window & {
-                  __lenis?: {
-                    scrollTo: (target: string | HTMLElement, options?: object) => void;
-                  };
-                }
-              ).__lenis;
-              if (lenis) {
-                lenis.scrollTo(el, { offset: 0 });
-              } else {
-                el.scrollIntoView({ behavior: "smooth" });
+          const el = document.getElementById(sectionId);
+          if (el) {
+            const lenis = (
+              window as Window & {
+                __lenis?: {
+                  scrollTo: (target: string | HTMLElement, options?: object) => void;
+                };
               }
+            ).__lenis;
+            if (lenis) {
+              lenis.scrollTo(el, { offset: 0 });
+            } else {
+              el.scrollIntoView({ behavior: "smooth" });
             }
           }
           setTimeout(() => {

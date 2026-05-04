@@ -11,8 +11,7 @@ interface MenuItem {
 }
 
 const MENU_ITEMS: MenuItem[] = [
-  { id: "continue", label: "> CONTINUER", isPrimary: true },
-  { id: "identity", label: "IDENTITÉ" },
+  { id: "identity", label: "> INSÉRER PIÈCE", isPrimary: true },
   { id: "experience", label: "EXPÉRIENCE" },
   { id: "tech-arsenal", label: "TECH ARSENAL" },
   { id: "missions", label: "MISSIONS" },

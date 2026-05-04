@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState, forwardRef, useImperativeHandle } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
 
 /* ============================================================
@@ -9,26 +9,22 @@ import { useReducedMotion } from "../providers/ReducedMotionProvider";
    terminée. Quand la vidéo atteint la fin, le scroll natif
    reprend. Quand on remonte en haut de page, le pin scroll
    se réactive automatiquement.
+
+   Expose la vidéo et sa durée au parent via onVideoReady.
    ============================================================ */
 
 const VIDEO_SRC = "/assets/videos/hero-video.mp4";
 const SCROLL_FOR_FULL_VIDEO = 5000;
 
-export interface HeroBackgroundHandle {
-  getVideoElement: () => HTMLVideoElement | null;
-  getDuration: () => number;
+interface HeroBackgroundProps {
+  onVideoReady?: (video: HTMLVideoElement, duration: number) => void;
 }
 
-export const HeroBackground = forwardRef<HeroBackgroundHandle>(function HeroBackground(_, ref) {
+export function HeroBackground({ onVideoReady }: HeroBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { isReducedMotion } = useReducedMotion();
   const [videoDuration, setVideoDuration] = useState(0);
   const [isReady, setIsReady] = useState(false);
-
-  useImperativeHandle(ref, () => ({
-    getVideoElement: () => videoRef.current,
-    getDuration: () => videoDuration,
-  }), [videoDuration]);
 
   /* Chargement de la durée vidéo */
   useEffect(() => {
@@ -36,8 +32,10 @@ export const HeroBackground = forwardRef<HeroBackgroundHandle>(function HeroBack
     if (!video) return;
 
     const handleLoadedMetadata = () => {
-      setVideoDuration(video.duration);
+      const duration = video.duration;
+      setVideoDuration(duration);
       setIsReady(true);
+      onVideoReady?.(video, duration);
     };
 
     if (video.readyState >= 1) {
@@ -49,7 +47,7 @@ export const HeroBackground = forwardRef<HeroBackgroundHandle>(function HeroBack
     return () => {
       video.removeEventListener("loadedmetadata", handleLoadedMetadata);
     };
-  }, []);
+  }, [onVideoReady]);
 
   /* Pin scroll — capture le scroll pour la vidéo */
   useEffect(() => {
@@ -179,4 +177,4 @@ export const HeroBackground = forwardRef<HeroBackgroundHandle>(function HeroBack
       />
     </div>
   );
-});
+}

@@ -1,0 +1,735 @@
+- generic [active] [ref=e1]:
+  - link "Aller au contenu principal" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - navigation [ref=e4]:
+      - button "JOH TANDOU" [ref=e5]
+      - list [ref=e6]:
+        - listitem [ref=e7]:
+          - button "IDENTITÉ" [ref=e8]: IDENTITÉ
+        - listitem [ref=e9]:
+          - button "EXPÉRIENCE" [ref=e10]: EXPÉRIENCE
+        - listitem [ref=e11]:
+          - button "TECH" [ref=e12]: TECH
+        - listitem [ref=e13]:
+          - button "MISSIONS" [ref=e14]: MISSIONS
+        - listitem [ref=e15]:
+          - button "CONTACT" [ref=e16]: CONTACT
+        - listitem [ref=e17]:
+          - link "CV" [ref=e18] [cursor=pointer]:
+            - /url: /cv_joh_tandou_2026.pdf
+            - text: CV
+      - generic [ref=e19]:
+        - button "REDUCE EFFECTS" [ref=e20]
+        - button "Activer le son" [ref=e21]: MUTE
+  - main [ref=e22]:
+    - generic [ref=e30]:
+      - navigation "Menu principal":
+        - generic [ref=e31]:
+          - button "> CONTINUER" [disabled] [ref=e32]: "> CONTINUER"
+          - button "IDENTITÉ" [disabled] [ref=e33]: IDENTITÉ
+          - button "EXPÉRIENCE" [disabled] [ref=e34]: EXPÉRIENCE
+          - button "TECH ARSENAL" [disabled] [ref=e37]: TECH ARSENAL
+          - button "MISSIONS" [disabled] [ref=e38]: MISSIONS
+          - button "CONTACT" [disabled] [ref=e39]: CONTACT
+          - button "Activer le son" [ref=e41]:
+            - img [ref=e42]
+            - generic [ref=e46]: MUET
+    - generic [ref=e47]:
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic [ref=e48]:
+        - generic:
+          - img
+        - generic:
+          - img
+        - generic:
+          - img
+        - generic:
+          - img
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - img [ref=e52]
+            - generic [ref=e57]:
+              - paragraph [ref=e58]: JOH
+              - paragraph [ref=e59]: TANDOU
+          - generic [ref=e61]:
+            - heading "IDENTITÉ" [level=2] [ref=e62]
+            - generic [ref=e63]:
+              - generic [ref=e64]:
+                - generic [ref=e65]: Localisation
+                - generic [ref=e66]: Fosses, IDF
+              - generic [ref=e67]:
+                - generic [ref=e68]: Statut
+                - generic [ref=e69]: OPERATIONAL
+              - generic [ref=e70]:
+                - generic [ref=e71]: Spécialité
+                - generic [ref=e72]: Full-Stack
+              - generic [ref=e73]:
+                - generic [ref=e74]: Années actif
+                - generic [ref=e75]: "02"
+            - paragraph [ref=e77]: Développeur spécialisé en architectures micro-services, passionné par l'optimisation et la manipulation de datasets complexes.
+            - generic [ref=e79]:
+              - generic [ref=e80]:
+                - generic [ref=e81]: DATASETS_HANDLED
+                - generic [ref=e82]:
+                  - generic [ref=e83]: 1M+
+                  - generic [ref=e84]: lignes
+              - generic [ref=e85]:
+                - generic [ref=e86]: APPS_DEPLOYED
+                - generic [ref=e87]:
+                  - generic [ref=e88]: 5+
+                  - generic [ref=e89]: applications
+              - generic [ref=e90]:
+                - generic [ref=e91]: USERS_SUPPORTED
+                - generic [ref=e92]:
+                  - generic [ref=e93]: 20+
+                  - generic [ref=e94]: utilisateurs
+              - generic [ref=e95]:
+                - generic [ref=e96]: COFFEES_PER_DAY
+                - generic [ref=e97]:
+                  - generic [ref=e98]: "4"
+                  - generic [ref=e99]: cafés
+    - generic [ref=e101]:
+      - generic [ref=e102]:
+        - heading "EXPERIENCE_LOG" [level=2] [ref=e103]
+        - paragraph [ref=e104]: Parcours professionnel, missions et projets marquants.
+      - generic [ref=e105]:
+        - generic [ref=e106]:
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic [ref=e107]:
+            - generic [ref=e108]: TA
+            - generic [ref=e109]:
+              - heading "Ingénieur Logiciel Java/Swing" [level=3] [ref=e110]
+              - generic [ref=e111]: "[06/2024 → NOW] · Paris"
+          - generic [ref=e113]:
+            - generic [ref=e114]: Mission
+            - paragraph [ref=e115]: Conception et déploiement d'une application desktop de gestion RH/matériel pour le fret ferroviaire SNCF.
+          - generic [ref=e116]:
+            - generic [ref=e117]: Impact
+            - list [ref=e118]:
+              - listitem [ref=e119]: › 10+ écrans implémentés en Java/Swing
+              - listitem [ref=e120]: › Validateurs et modèles fiabilisés
+              - listitem [ref=e121]: › Export Excel optimisé pour le service RH
+              - listitem [ref=e122]: › Scripts SQL et tests JUnit
+              - listitem [ref=e123]: › Recette, mise en production et support utilisateur
+          - generic [ref=e124]:
+            - generic [ref=e125]: Stack
+            - generic [ref=e126]:
+              - generic [ref=e127]: Java
+              - generic [ref=e128]: Swing
+              - generic [ref=e129]: SQL
+              - generic [ref=e130]: JUnit
+              - generic [ref=e131]: Maven
+        - generic [ref=e132]:
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic [ref=e133]:
+            - generic [ref=e134]: TA
+            - generic [ref=e135]:
+              - heading "Développeur Front-End" [level=3] [ref=e136]
+              - generic [ref=e137]: "[04/2024 → 06/2024] · Paris"
+          - generic [ref=e139]:
+            - generic [ref=e140]: Mission
+            - paragraph [ref=e141]: Participation à un projet de recherche et développement interne.
+          - generic [ref=e142]:
+            - generic [ref=e143]: Impact
+            - list [ref=e144]:
+              - listitem [ref=e145]: › Développement de composants Angular réutilisables
+              - listitem [ref=e146]: › Intégration d'API REST
+              - listitem [ref=e147]: › Optimisation des performances front-end
+          - generic [ref=e148]:
+            - generic [ref=e149]: Stack
+            - generic [ref=e150]:
+              - generic [ref=e151]: Angular
+              - generic [ref=e152]: TypeScript
+              - generic [ref=e153]: RxJS
+              - generic [ref=e154]: REST API
+        - generic [ref=e155]:
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic [ref=e156]:
+            - generic [ref=e157]: HA
+            - generic [ref=e158]:
+              - heading "Développeur Full-Stack (Stage)" [level=3] [ref=e159]
+              - generic [ref=e160]: "[04/2023 → 09/2023] · Paris"
+          - generic [ref=e162]:
+            - generic [ref=e163]: Mission
+            - paragraph [ref=e164]: Développement d'une application web de gestion de commandes avec React et Python.
+          - generic [ref=e165]:
+            - generic [ref=e166]: Impact
+            - list [ref=e167]:
+              - listitem [ref=e168]: › Couverture de tests JUnit +7%
+              - listitem [ref=e169]: › Architecture front en React avec hooks personnalisés
+              - listitem [ref=e170]: › API REST en Python/FastAPI
+              - listitem [ref=e171]: › Base de données PostgreSQL avec SQLAlchemy
+              - listitem [ref=e172]: › Support direct de 20 utilisateurs finaux
+          - generic [ref=e173]:
+            - generic [ref=e174]: Stack
+            - generic [ref=e175]:
+              - generic [ref=e176]: React
+              - generic [ref=e177]: TypeScript
+              - generic [ref=e178]: Python
+              - generic [ref=e179]: FastAPI
+              - generic [ref=e180]: PostgreSQL
+        - generic [ref=e181]:
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic [ref=e182]:
+            - generic [ref=e183]: HA
+            - generic [ref=e184]:
+              - heading "Développeur Mobile (Stage)" [level=3] [ref=e185]
+              - generic [ref=e186]: "[12/2021 → 04/2022] · Paris"
+          - generic [ref=e188]:
+            - generic [ref=e189]: Mission
+            - paragraph [ref=e190]: Développement d'une application mobile Android pour les techniciens de maintenance terrain.
+          - generic [ref=e191]:
+            - generic [ref=e192]: Impact
+            - list [ref=e193]:
+              - listitem [ref=e194]: › Développement natif Java Android
+              - listitem [ref=e195]: › Gestion offline-first
+              - listitem [ref=e196]: › Synchronisation des données avec le backend
+              - listitem [ref=e197]: › Conception UX mobile pour utilisation en gants
+          - generic [ref=e198]:
+            - generic [ref=e199]: Stack
+            - generic [ref=e200]:
+              - generic [ref=e201]: Java
+              - generic [ref=e202]: Android SDK
+              - generic [ref=e203]: SQLite
+              - generic [ref=e204]: SOAP
+              - generic [ref=e205]: XML
+        - generic [ref=e206]:
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic:
+            - img
+          - generic [ref=e207]:
+            - generic [ref=e208]: DI
+            - generic [ref=e209]:
+              - heading "Développeur Mobile (Stage)" [level=3] [ref=e210]
+              - generic [ref=e211]: "[06/2021 → 08/2021] · Paris"
+          - generic [ref=e213]:
+            - generic [ref=e214]: Mission
+            - paragraph [ref=e215]: Contribution au développement d'une application cross-platform de gestion commerciale.
+          - generic [ref=e216]:
+            - generic [ref=e217]: Impact
+            - list [ref=e218]:
+              - listitem [ref=e219]: › Développement de pages Xamarin.Forms avec MVVM
+              - listitem [ref=e220]: › Intégration de cartes interactives
+              - listitem [ref=e221]: › Mise en place de notifications push
+              - listitem [ref=e222]: › Participation aux daily scrums
+          - generic [ref=e223]:
+            - generic [ref=e224]: Stack
+            - generic [ref=e225]:
+              - generic [ref=e226]: Xamarin
+              - generic [ref=e227]: C#
+              - generic [ref=e228]: .NET
+              - generic [ref=e229]: XAML
+              - generic [ref=e230]: MVVM
+      - generic [ref=e232]: "[01/05]"
+    - generic [ref=e239]:
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic [ref=e241]:
+        - generic [ref=e242]:
+          - heading "ARSENAL TECH" [level=2] [ref=e243]
+          - paragraph [ref=e244]: Stack, outils et compétences techniques
+        - generic [ref=e245]:
+          - generic [ref=e246]:
+            - generic [ref=e248]: LANGAGES
+            - generic [ref=e250]:
+              - generic [ref=e253]:
+                - generic [ref=e254]: ▸
+                - text: JavaScript
+              - generic [ref=e257]:
+                - generic [ref=e258]: ▸
+                - text: TypeScript
+              - generic [ref=e261]:
+                - generic [ref=e262]: ▸
+                - text: Java
+              - generic [ref=e265]:
+                - generic [ref=e266]: ▸
+                - text: Python
+              - generic [ref=e269]:
+                - generic [ref=e270]: ▸
+                - text: HTML
+              - generic [ref=e273]:
+                - generic [ref=e274]: ▸
+                - text: CSS
+          - generic [ref=e275]:
+            - generic [ref=e277]: FRAMEWORKS / RUNTIMES
+            - generic [ref=e279]:
+              - generic [ref=e282]:
+                - generic [ref=e283]: ▸
+                - text: React
+              - generic [ref=e286]:
+                - generic [ref=e287]: ▸
+                - text: Angular
+              - generic [ref=e290]:
+                - generic [ref=e291]: ▸
+                - text: Next.js
+              - generic [ref=e294]:
+                - generic [ref=e295]: ▸
+                - text: Spring
+              - generic [ref=e298]:
+                - generic [ref=e299]: ▸
+                - text: JEE
+              - generic [ref=e302]:
+                - generic [ref=e303]: ▸
+                - text: FastAPI
+              - generic [ref=e306]:
+                - generic [ref=e307]: ▸
+                - text: Bootstrap
+          - generic [ref=e308]:
+            - generic [ref=e310]: LIBS & TOOLING
+            - generic [ref=e312]:
+              - generic [ref=e315]:
+                - generic [ref=e316]: ▸
+                - text: Lombok
+              - generic [ref=e319]:
+                - generic [ref=e320]: ▸
+                - text: MyBatis
+              - generic [ref=e323]:
+                - generic [ref=e324]: ▸
+                - text: Maven
+              - generic [ref=e327]:
+                - generic [ref=e328]: ▸
+                - text: Postman
+              - generic [ref=e331]:
+                - generic [ref=e332]: ▸
+                - text: Git
+              - generic [ref=e335]:
+                - generic [ref=e336]: ▸
+                - text: VS Code
+              - generic [ref=e339]:
+                - generic [ref=e340]: ▸
+                - text: IntelliJ
+          - generic [ref=e341]:
+            - generic [ref=e343]: DATA
+            - generic [ref=e345]:
+              - generic [ref=e348]:
+                - generic [ref=e349]: ▸
+                - text: SQL
+              - generic [ref=e352]:
+                - generic [ref=e353]: ▸
+                - text: Firestore
+              - generic [ref=e356]:
+                - generic [ref=e357]: ▸
+                - text: Supabase
+              - generic [ref=e360]:
+                - generic [ref=e361]: ▸
+                - text: SQL Developer
+              - generic [ref=e364]:
+                - generic [ref=e365]: ▸
+                - text: phpMyAdmin
+          - generic [ref=e366]:
+            - generic [ref=e368]: CLOUD & DEPLOY
+            - generic [ref=e370]:
+              - generic [ref=e373]:
+                - generic [ref=e374]: ▸
+                - text: GCP
+              - generic [ref=e377]:
+                - generic [ref=e378]: ▸
+                - text: Cloud Run
+              - generic [ref=e381]:
+                - generic [ref=e382]: ▸
+                - text: Firebase
+              - generic [ref=e385]:
+                - generic [ref=e386]: ▸
+                - text: Vercel
+              - generic [ref=e389]:
+                - generic [ref=e390]: ▸
+                - text: Render
+              - generic [ref=e393]:
+                - generic [ref=e394]: ▸
+                - text: Stripe
+          - generic [ref=e395]:
+            - generic [ref=e397]: METHODS
+            - generic [ref=e399]:
+              - generic [ref=e402]:
+                - generic [ref=e403]: ▸
+                - text: Agile
+              - generic [ref=e406]:
+                - generic [ref=e407]: ▸
+                - text: Scrum
+              - generic [ref=e410]:
+                - generic [ref=e411]: ▸
+                - text: Kanban
+              - generic [ref=e414]:
+                - generic [ref=e415]: ▸
+                - text: Jira
+              - generic [ref=e418]:
+                - generic [ref=e419]: ▸
+                - text: Planning Poker
+          - generic [ref=e420]:
+            - generic [ref=e422]: AI & AUTOMATION
+            - generic [ref=e424]:
+              - generic [ref=e427]:
+                - generic [ref=e428]: ▸
+                - text: Claude Code
+              - generic [ref=e431]:
+                - generic [ref=e432]: ▸
+                - text: OpenCode
+              - generic [ref=e435]:
+                - generic [ref=e436]: ▸
+                - text: OpenClaw
+              - generic [ref=e439]:
+                - generic [ref=e440]: ▸
+                - text: Docker Agent
+    - generic [ref=e441]:
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic [ref=e443]:
+        - generic [ref=e444]:
+          - heading "PROTOCOLES HUMAINS" [level=2] [ref=e445]
+          - paragraph [ref=e446]: Soft skills et méthodologies de travail
+        - generic [ref=e447]:
+          - generic [ref=e448]:
+            - generic [ref=e449]:
+              - generic [ref=e450]: ▸
+              - generic [ref=e451]: "01"
+              - generic [ref=e452]: ADAPTABILITY
+            - paragraph [ref=e453]: "Passé en 3 ans de Xamarin VTC à Swing SNCF puis Angular R&D : 4 stacks majeures, 4 contextes métier."
+          - generic [ref=e455]:
+            - generic [ref=e456]:
+              - generic [ref=e457]: ▸
+              - generic [ref=e458]: "02"
+              - generic [ref=e459]: COMMUNICATION
+            - paragraph [ref=e460]: Support direct de 20 utilisateurs finaux Hardis, recettes et go-live en autonomie chez SNCF.
+          - generic [ref=e462]:
+            - generic [ref=e463]:
+              - generic [ref=e464]: ▸
+              - generic [ref=e465]: "03"
+              - generic [ref=e466]: RIGUEUR
+            - paragraph [ref=e467]: Couverture de tests JUnit +7% sur Hardis, scripts SQL et validateurs renforcés sur SNCF.
+          - generic [ref=e469]:
+            - generic [ref=e470]:
+              - generic [ref=e471]: ▸
+              - generic [ref=e472]: "04"
+              - generic [ref=e473]: AUTONOMIE PRODUIT
+            - paragraph [ref=e474]: "TopSeeker : conception → paiement Stripe → monitoring, full ownership d'un produit en prod."
+          - generic [ref=e476]:
+            - generic [ref=e477]:
+              - generic [ref=e478]: ▸
+              - generic [ref=e479]: "05"
+              - generic [ref=e480]: CURIOSITÉ TECH
+            - paragraph [ref=e481]: "Veille active IA appliquée : intégration Gemini 3 Flash, prompts multi-étapes anti-hallucination, agents Claude."
+    - generic [ref=e483]:
+      - generic [ref=e484]:
+        - heading "MISSIONS_ARCHIVE" [level=2] [ref=e485]
+        - paragraph [ref=e486]: Projets réalisés, études de cas et démonstrations.
+      - generic [ref=e487]:
+        - button "Mission précédente" [ref=e488]: <
+        - button "Mission suivante" [ref=e489]: ">"
+        - region "Carrousel de missions" [ref=e490]:
+          - generic [ref=e492]:
+            - generic:
+              - img
+            - generic:
+              - img
+            - generic:
+              - img
+            - generic:
+              - img
+            - generic [ref=e493]:
+              - generic [ref=e494]: "MISSION_ID : #001"
+              - generic [ref=e495]: "STATUS: SHIPPED"
+            - generic [ref=e496]:
+              - generic [ref=e497]: Codename
+              - heading "TOPSEEKER" [level=3] [ref=e498]
+            - generic [ref=e499]:
+              - generic [ref=e500]: SAAS · CAREER COACHING
+              - generic [ref=e501]: 02/2025 → ONGOING
+            - generic [ref=e502]: ──── BRIEFING ────
+            - paragraph [ref=e503]: Plateforme de coaching carrière assistée par IA. Analyse CV, lettres, simulations d'entretiens, coaching vocal. Production-grade.
+            - generic [ref=e504]: ──── OBJECTIVES COMPLETED ────
+            - list [ref=e505]:
+              - listitem [ref=e506]:
+                - generic [ref=e507]: "[01]"
+                - text: Intégration Gemini 3 Flash multi-étapes
+              - listitem [ref=e508]:
+                - generic [ref=e509]: "[02]"
+                - text: Anti-hallucination via prompts en chaîne
+              - listitem [ref=e510]:
+                - generic [ref=e511]: "[03]"
+                - text: Paiements Stripe + 2FA Supabase
+              - listitem [ref=e512]:
+                - generic [ref=e513]: "[04]"
+                - text: Storage Cloudflare R2 + rate limiting
+              - listitem [ref=e514]:
+                - generic [ref=e515]: "[05]"
+                - text: Monitoring + déploiement Render/Vercel
+            - generic [ref=e516]: ──── ARSENAL DEPLOYED ────
+            - generic [ref=e517]:
+              - generic [ref=e518]: "[Next.js]"
+              - generic [ref=e519]: "[FastAPI]"
+              - generic [ref=e520]: "[Postgres]"
+              - generic [ref=e521]: "[Supabase]"
+              - generic [ref=e522]: "[Gemini]"
+              - generic [ref=e523]: "[Stripe]"
+            - generic [ref=e524]: ──── ACCESS ────
+            - generic [ref=e525]:
+              - link "> LIVE_DEMO" [ref=e526] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e527]: "> LIVE_DEMO"
+              - link "> GITHUB" [ref=e528] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e529]: "> GITHUB"
+          - generic [ref=e531]:
+            - generic [ref=e532]:
+              - generic [ref=e533]: "MISSION_ID : #002"
+              - generic [ref=e534]: "STATUS: IN PROGRESS"
+            - generic [ref=e535]:
+              - generic [ref=e536]: Codename
+              - heading "BIBLE_AI" [level=3] [ref=e537]
+            - generic [ref=e538]:
+              - generic [ref=e539]: PERSONAL · APP D'ÉTUDE IA
+              - generic [ref=e540]: 2025 → EN COURS
+            - generic [ref=e541]: ──── BRIEFING ────
+            - paragraph [ref=e542]: Application d'étude et de méditation assistée par IA. Exploration spirituelle augmentée par la technologie.
+            - generic [ref=e543]: ──── OBJECTIVES COMPLETED ────
+            - list [ref=e544]:
+              - listitem [ref=e545]:
+                - generic [ref=e546]: "[01]"
+                - text: Moteur de recherche sémantique
+              - listitem [ref=e547]:
+                - generic [ref=e548]: "[02]"
+                - text: Génération de plans de lecture personnalisés
+              - listitem [ref=e549]:
+                - generic [ref=e550]: "[03]"
+                - text: Chatbot théologique avec sources vérifiables
+              - listitem [ref=e551]:
+                - generic [ref=e552]: "[04]"
+                - text: Synchronisation cross-device
+              - listitem [ref=e553]:
+                - generic [ref=e554]: "[05]"
+                - text: Mode focus avec lecture immersive
+            - generic [ref=e555]: ──── ARSENAL DEPLOYED ────
+            - generic [ref=e556]:
+              - generic [ref=e557]: "[React Native]"
+              - generic [ref=e558]: "[Expo]"
+              - generic [ref=e559]: "[Supabase]"
+              - generic [ref=e560]: "[Claude API]"
+              - generic [ref=e561]: "[TypeScript]"
+            - generic [ref=e562]: ──── ACCESS ────
+            - link "> GITHUB" [ref=e564] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e565]: "> GITHUB"
+          - generic [ref=e567]:
+            - generic [ref=e568]:
+              - generic [ref=e569]: "MISSION_ID : #003"
+              - generic [ref=e570]: "STATUS: ARCHIVED"
+            - generic [ref=e571]:
+              - generic [ref=e572]: Codename
+              - heading "ACADEMIC_1" [level=3] [ref=e573]
+            - generic [ref=e574]:
+              - generic [ref=e575]: ACADEMIC · EFREI
+              - generic [ref=e576]: 2022 — EFREI
+            - generic [ref=e577]: ──── BRIEFING ────
+            - paragraph [ref=e578]: Projet académique réalisé dans le cadre du cursus ingénieur à l'EFREI Paris.
+            - generic [ref=e579]: ──── OBJECTIVES COMPLETED ────
+            - list [ref=e580]:
+              - listitem [ref=e581]:
+                - generic [ref=e582]: "[01]"
+                - text: Conception d'une architecture logicielle distribuée
+              - listitem [ref=e583]:
+                - generic [ref=e584]: "[02]"
+                - text: Implémentation de patterns de conception avancés
+              - listitem [ref=e585]:
+                - generic [ref=e586]: "[03]"
+                - text: Rapport technique et soutenance devant jury
+            - generic [ref=e587]: ──── ARSENAL DEPLOYED ────
+            - generic [ref=e588]:
+              - generic [ref=e589]: "[Java]"
+              - generic [ref=e590]: "[Spring Boot]"
+              - generic [ref=e591]: "[MySQL]"
+              - generic [ref=e592]: "[Docker]"
+            - generic [ref=e593]: ──── ACCESS ────
+            - generic [ref=e595]: "> CLASSIFIED"
+          - generic [ref=e597]:
+            - generic [ref=e598]:
+              - generic [ref=e599]: "MISSION_ID : #004"
+              - generic [ref=e600]: "STATUS: ARCHIVED"
+            - generic [ref=e601]:
+              - generic [ref=e602]: Codename
+              - heading "ACADEMIC_2" [level=3] [ref=e603]
+            - generic [ref=e604]:
+              - generic [ref=e605]: ACADEMIC · EFREI
+              - generic [ref=e606]: 2023 — EFREI
+            - generic [ref=e607]: ──── BRIEFING ────
+            - paragraph [ref=e608]: Projet de fin d'études traitant d'un sujet innovant en ingénierie logicielle.
+            - generic [ref=e609]: ──── OBJECTIVES COMPLETED ────
+            - list [ref=e610]:
+              - listitem [ref=e611]:
+                - generic [ref=e612]: "[01]"
+                - text: Recherche et état de l'art approfondi
+              - listitem [ref=e613]:
+                - generic [ref=e614]: "[02]"
+                - text: Prototypage fonctionnel avec itérations agiles
+              - listitem [ref=e615]:
+                - generic [ref=e616]: "[03]"
+                - text: Documentation technique complète
+            - generic [ref=e617]: ──── ARSENAL DEPLOYED ────
+            - generic [ref=e618]:
+              - generic [ref=e619]: "[Python]"
+              - generic [ref=e620]: "[TensorFlow]"
+              - generic [ref=e621]: "[React]"
+              - generic [ref=e622]: "[FastAPI]"
+            - generic [ref=e623]: ──── ACCESS ────
+            - generic [ref=e625]: "> CLASSIFIED"
+      - generic [ref=e626]:
+        - button "Aller à la mission 1" [ref=e627]
+        - button "Aller à la mission 2" [ref=e628]
+        - button "Aller à la mission 3" [ref=e629]
+        - button "Aller à la mission 4" [ref=e630]
+    - generic [ref=e631]:
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic [ref=e633]:
+        - heading "MODULES LINGUISTIQUES" [level=2] [ref=e634]
+        - generic [ref=e635]:
+          - generic [ref=e636]:
+            - generic [ref=e637]: FR
+            - generic [ref=e638]: FRANÇAIS — NATIVE
+            - generic [ref=e641]:
+              - generic [ref=e642]: 100% FLUENCY
+              - generic [ref=e643]: "Origin : France"
+              - generic [ref=e644]: "Status : INSTALLED · v1.0 · CORE"
+          - generic [ref=e645]:
+            - generic [ref=e646]: EN
+            - generic [ref=e647]: ANGLAIS — C1
+            - generic [ref=e650]:
+              - generic [ref=e651]: 85% FLUENCY
+              - generic [ref=e652]: "Certif #1 : TOEIC 840/990"
+              - generic [ref=e653]: "Certif #2 : ILSC Montréal · C1 Advanced"
+              - generic [ref=e654]: "Field test : 3 mois immersion · Canada · 2023"
+              - generic [ref=e655]: "Status : INSTALLED · v2.4 · ADVANCED"
+          - generic [ref=e656]:
+            - generic [ref=e657]: ES
+            - generic [ref=e658]: ESPAGNOL — B1
+            - generic [ref=e661]:
+              - generic [ref=e662]: 45% FLUENCY
+              - generic [ref=e663]: "Use case : Travel · Casual conversation"
+              - generic [ref=e664]: "Status : INSTALLED · v1.0 · INTERMEDIATE"
+    - generic [ref=e665]:
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic:
+        - img
+      - generic [ref=e667]:
+        - generic [ref=e668]:
+          - heading "FLUX D'INTÉRÊTS" [level=2] [ref=e669]
+          - paragraph [ref=e670]: Passions, veille et centres d'intérêt
+        - generic [ref=e671]:
+          - generic [ref=e672]:
+            - heading "TENNIS / PADEL" [level=3] [ref=e673]
+            - paragraph [ref=e674]: Reflexes calibrés pour basse latence.
+          - generic [ref=e675]:
+            - heading "BEATMAKING · MAO" [level=3] [ref=e676]
+            - paragraph [ref=e677]: "Compositeur en chambre. Mêmes patterns de pensée qu'en code : structure et boucle."
+          - generic [ref=e678]:
+            - heading "PHOTOGRAPHIE · VIDÉOGRAPHIE · MONTAGE" [level=3] [ref=e679]
+            - paragraph [ref=e680]: Cadrer le réel, le couper, le ré-assembler. Comme refactorer une codebase.
+    - generic [ref=e681]:
+      - generic [ref=e682]:
+        - heading "FUTURE_ROADMAP" [level=2] [ref=e683]
+        - paragraph [ref=e684]: Objectifs professionnels et aspirations futures.
+      - generic [ref=e685]:
+        - img [ref=e686]
+        - generic [ref=e687]:
+          - generic:
+            - 'button "NOW: Consultant @ Talan. Side projects en orbite."':
+              - generic: NOW
+              - heading "Consultant @ Talan. Side projects en orbite." [level=3]
+              - paragraph: CDI chez Talan + side projects en parallèle
+          - generic:
+            - 'button "NEXT MISSION: Rejoindre un grand groupe non-ESN en Île-de-France."':
+              - generic: NEXT MISSION
+              - heading "Rejoindre un grand groupe non-ESN en Île-de-France." [level=3]
+              - paragraph: CDI dans un grand groupe non-ESN en Île-de-France
+          - generic:
+            - 'button "MID-TERM: Faire émerger mes projets personnels en produits viables."':
+              - generic: MID-TERM
+              - heading "Faire émerger mes projets personnels en produits viables." [level=3]
+              - paragraph: Passage à l'échelle des projets personnels
+          - generic:
+            - 'button "LONG HORIZON: Nouvelle base : Suisse. Nouveau terrain de jeu, mêmes ambitions amplifiées."':
+              - generic: LONG HORIZON
+              - 'heading "Nouvelle base : Suisse. Nouveau terrain de jeu, mêmes ambitions amplifiées." [level=3]'
+              - paragraph: Relocation en Suisse (CH)
+    - generic [ref=e688]:
+      - generic [ref=e689]:
+        - paragraph [ref=e690]: JOH TANDOU
+        - paragraph [ref=e691]: © 2026 — Conçu et développé par Joh Tandou
+        - generic [ref=e692]:
+          - link "EMAIL" [ref=e693] [cursor=pointer]:
+            - /url: mailto:joh@tandou.dev
+            - text: EMAIL
+          - link "LINKEDIN" [ref=e694] [cursor=pointer]:
+            - /url: "#"
+            - text: LINKEDIN
+          - link "GITHUB" [ref=e695] [cursor=pointer]:
+            - /url: "#"
+            - text: GITHUB
+          - link "MALT" [ref=e696] [cursor=pointer]:
+            - /url: "#"
+            - text: MALT
+        - paragraph [ref=e697]: v2.0.0 · BUILD 2026.05.01
+      - button "Easter egg" [ref=e698]
