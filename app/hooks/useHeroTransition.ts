@@ -9,7 +9,6 @@ import { useState, useCallback, useRef } from "react";
    ============================================================ */
 
 const FPS = 30;
-const SPEED_FACTOR = 2.0;
 
 interface UseHeroTransitionOptions {
   videoRef: React.RefObject<HTMLVideoElement | null>;
@@ -35,18 +34,7 @@ export function useHeroTransition({
       if (!video || videoDuration === 0) {
         const el = document.getElementById(sectionId);
         if (el) {
-          const lenis = (
-            window as Window & {
-              __lenis?: {
-                scrollTo: (target: string | HTMLElement, options?: object) => void;
-              };
-            }
-          ).__lenis;
-          if (lenis) {
-            lenis.scrollTo(el, { offset: 0 });
-          } else {
-            el.scrollIntoView({ behavior: "smooth" });
-          }
+          window.scrollTo({ top: el.offsetTop, behavior: "smooth" });
         }
         return;
       }
@@ -58,25 +46,14 @@ export function useHeroTransition({
         video.currentTime = videoDuration;
         const el = document.getElementById(sectionId);
         if (el) {
-          const lenis = (
-            window as Window & {
-              __lenis?: {
-                scrollTo: (target: string | HTMLElement, options?: object) => void;
-              };
-            }
-          ).__lenis;
-          if (lenis) {
-            lenis.scrollTo(el, { offset: 0 });
-          } else {
-            el.scrollIntoView({ behavior: "auto" });
-          }
+          window.scrollTo({ top: el.offsetTop, behavior: "auto" });
         }
         setIsTransitioning(false);
         return;
       }
 
       const totalFrames = Math.round(videoDuration * FPS);
-      const scrubDurationMs = (totalFrames / FPS) * 1000 / SPEED_FACTOR;
+      const scrubDurationMs = (totalFrames / FPS) * 1000;
       const startTime = performance.now();
       const startFrame = Math.round(video.currentTime * FPS);
 
@@ -94,18 +71,7 @@ export function useHeroTransition({
         } else {
           const el = document.getElementById(sectionId);
           if (el) {
-            const lenis = (
-              window as Window & {
-                __lenis?: {
-                  scrollTo: (target: string | HTMLElement, options?: object) => void;
-                };
-              }
-            ).__lenis;
-            if (lenis) {
-              lenis.scrollTo(el, { offset: 0 });
-            } else {
-              el.scrollIntoView({ behavior: "smooth" });
-            }
+            window.scrollTo({ top: el.offsetTop, behavior: "smooth" });
           }
           setTimeout(() => {
             setIsTransitioning(false);
