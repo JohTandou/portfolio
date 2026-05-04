@@ -1,0 +1,235 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette cyberpunk */
+  --color-primary: #FCEE0A;
+  --color-accent-1: #00F0FF;
+  --color-accent-2: #FF003C;
+  --color-accent-3: #BD00FF;
+  --color-bg-deep: #0A0E14;
+  --color-bg-elevated: #14191F;
+  --color-text-high: #E6E6E6;
+  --color-text-mid: #8A8F98;
+  --color-text-dim: #4A4F58;
+
+  /* Familles typographiques */
+  --font-display: var(--font-rajdhani), sans-serif;
+  --font-body: 'Satoshi', sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+  --font-terminal: var(--font-vt323), monospace;
+}
+
+:root {
+  /* Variables CSS custom properties pour utilisation hors Tailwind */
+  --color-primary: #FCEE0A;
+  --color-accent-1: #00F0FF;
+  --color-accent-2: #FF003C;
+  --color-accent-3: #BD00FF;
+  --color-bg-deep: #0A0E14;
+  --color-bg-elevated: #14191F;
+  --color-text-high: #E6E6E6;
+  --color-text-mid: #8A8F98;
+  --color-text-dim: #4A4F58;
+}
+
+/* Reset box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Styles de base — scroll-behavior géré par Lenis, pas par CSS
+   pour éviter les conflits avec le scrub vidéo */
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--color-bg-deep);
+  color: var(--color-text-high);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Classes utilitaires typographiques explicites */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-terminal {
+  font-family: var(--font-terminal);
+}
+
+/* Keyframes pour l'animation de dessin des coins HUD */
+@keyframes hudCornerDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Keyframes pour le pulse du mesh gradient */
+@keyframes meshPulse {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Keyframes pour le pulse d'opacité du CTA */
+@keyframes pulseOpacity {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Effet chromatic aberration temporaire */
+.chromatic-aberration {
+  text-shadow: -2px 0 var(--color-accent-2), 2px 0 var(--color-accent-1);
+}
+
+/* Keyframes pour le clignotement du curseur typewriter */
+@keyframes blink {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Keyframes pour l'effet de scan horizontal (boot scan) */
+@keyframes scanSweep {
+  0% {
+    left: 0;
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* Keyframes pour la rotation des anneaux de l'avatar */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Réduction de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Masquer la scrollbar pour le carrousel horizontal */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Grain noise overlay — texture subtile sur toute la page */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Chromatic aberration au hover sur les images */
+.chromatic-hover {
+  transition: filter 0.3s ease;
+}
+.chromatic-hover:hover {
+  filter: drop-shadow(-2px 0 var(--color-accent-2)) drop-shadow(2px 0 var(--color-accent-1));
+}
+
+/* Hover states premium — scale + ombre + luminosité */
+.hover-premium {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.3s ease;
+}
+.hover-premium:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+  filter: brightness(1.1);
+}
+.hover-premium:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
+}
+
+/* Bordures lumineuses dégradées sur cartes importantes */
+.glow-border {
+  position: relative;
+}
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-accent-1), transparent, var(--color-accent-3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.glow-border:hover::before {
+  opacity: 1;
+}
+
+/* Styles de focus visibles pour l'accessibilité clavier */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-bg-deep), 0 0 0 4px var(--color-accent-1);
+}
+
+/* Réduction du motion pour les animations de focus */
+@media (prefers-reduced-motion: reduce) {
+  *:focus-visible {
+    transition: none;
+  }
+}

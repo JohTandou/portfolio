@@ -1,0 +1,31 @@
+{
+  "metrics": [
+    {
+      "run_id": "sprint0-2026-05-01",
+      "route": "FULL",
+      "task_type": "scaffold",
+      "iterations": 1,
+      "agents_used": ["search", "front", "general"],
+      "retry_reasons": ["npm peer dependency conflict : Next.js 15.0.0 incompatible avec React 19 → bump Next.js 15.1.0 + @types/react 19 + @tailwindcss/postcss"],
+      "status": "completed"
+    },
+    {
+      "run_id": "sprint6-2026-05-02",
+      "route": "MEDIUM",
+      "task_type": "polish_perf_qa_deploy",
+      "iterations": 2,
+      "agents_used": ["search", "planner", "front", "general", "reviewer"],
+      "retry_reasons": ["FooterSection avait des placeholders [URL] → remplacés par # avec preventDefault"],
+      "status": "completed"
+    },
+    {
+      "run_id": "sprint7-2026-05-04",
+      "route": "MEDIUM",
+      "task_type": "frontend_hero_cp2077_redesign",
+      "iterations": 2,
+      "agents_used": ["front", "general", "reviewer"],
+      "retry_reasons": ["lucide-react manquait du package.json → installé via --legacy-peer-deps"],
+      "status": "completed"
+    }
+  ]
+}

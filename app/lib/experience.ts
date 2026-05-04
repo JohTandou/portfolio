@@ -1,0 +1,100 @@
+import { ExperienceEntry } from "../types";
+
+export const EXPERIENCE_DATA: ExperienceEntry[] = [
+  {
+    id: "talan-sncf",
+    company: "TALAN",
+    role: "Ingénieur Logiciel Java/Swing",
+    client: "SNCF",
+    location: "Paris",
+    startDate: "06/2024",
+    endDate: null,
+    status: "active",
+    mission:
+      "Conception et déploiement d'une application desktop de gestion RH/matériel pour le fret ferroviaire SNCF.",
+    impact: [
+      "10+ écrans implémentés en Java/Swing",
+      "Validateurs et modèles fiabilisés",
+      "Export Excel optimisé pour le service RH",
+      "Scripts SQL et tests JUnit",
+      "Recette, mise en production et support utilisateur",
+    ],
+    stack: ["Java", "Swing", "SQL", "JUnit", "Maven"],
+  },
+  {
+    id: "talan-rd",
+    company: "TALAN",
+    role: "Développeur Front-End",
+    client: "R&D",
+    location: "Paris",
+    startDate: "04/2024",
+    endDate: "06/2024",
+    status: "completed",
+    mission:
+      "Participation à un projet de recherche et développement interne.",
+    impact: [
+      "Développement de composants Angular réutilisables",
+      "Intégration d'API REST",
+      "Optimisation des performances front-end",
+    ],
+    stack: ["Angular", "TypeScript", "RxJS", "REST API"],
+  },
+  {
+    id: "hardis-react",
+    company: "HARDIS GROUP",
+    role: "Développeur Full-Stack (Stage)",
+    client: "Plateforme interne",
+    location: "Paris",
+    startDate: "04/2023",
+    endDate: "09/2023",
+    status: "internship",
+    mission:
+      "Développement d'une application web de gestion de commandes avec React et Python.",
+    impact: [
+      "Couverture de tests JUnit +7%",
+      "Architecture front en React avec hooks personnalisés",
+      "API REST en Python/FastAPI",
+      "Base de données PostgreSQL avec SQLAlchemy",
+      "Support direct de 20 utilisateurs finaux",
+    ],
+    stack: ["React", "TypeScript", "Python", "FastAPI", "PostgreSQL"],
+  },
+  {
+    id: "hardis-java",
+    company: "HARDIS GROUP",
+    role: "Développeur Mobile (Stage)",
+    client: "Application terrain",
+    location: "Paris",
+    startDate: "12/2021",
+    endDate: "04/2022",
+    status: "internship",
+    mission:
+      "Développement d'une application mobile Android pour les techniciens de maintenance terrain.",
+    impact: [
+      "Développement natif Java Android",
+      "Gestion offline-first",
+      "Synchronisation des données avec le backend",
+      "Conception UX mobile pour utilisation en gants",
+    ],
+    stack: ["Java", "Android SDK", "SQLite", "SOAP", "XML"],
+  },
+  {
+    id: "digit-xamarin",
+    company: "DIGIT-R",
+    role: "Développeur Mobile (Stage)",
+    client: "Application VTC",
+    location: "Paris",
+    startDate: "06/2021",
+    endDate: "08/2021",
+    status: "internship",
+    mission:
+      "Contribution au développement d'une application cross-platform de gestion commerciale.",
+    impact: [
+      "Développement de pages Xamarin.Forms avec MVVM",
+      "Intégration de cartes interactives",
+      "Mise en place de notifications push",
+      "Participation aux daily scrums",
+    ],
+    stack: ["Xamarin", "C#", ".NET", "XAML", "MVVM"],
+  },
+];
