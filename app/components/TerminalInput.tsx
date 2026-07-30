@@ -32,7 +32,7 @@ export const TerminalInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, 
           {...props}
         />
         {error && (
-          <p id={errorId} className="font-mono text-xs text-[var(--color-accent-2)]" role="alert">
+          <p id={errorId} className="font-mono text-xs text-[var(--color-accent-2)] break-words" role="alert">
             [ERREUR] {error}
           </p>
         )}

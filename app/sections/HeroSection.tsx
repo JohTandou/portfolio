@@ -61,14 +61,14 @@ export function HeroSection() {
         {/* Badge disponibilité */}
         <motion.div variants={itemVariants}>
           <span
-            className="glass-badge inline-flex items-center gap-2"
+            className="glass-badge inline-flex items-center gap-2 whitespace-nowrap"
             style={{
               color: "var(--color-accent-1)",
               borderColor: "rgba(232, 168, 56, 0.25)",
               background: "rgba(232, 168, 56, 0.08)",
             }}
           >
-            <span className="relative flex h-2 w-2">
+            <span className="relative flex h-2 w-2 overflow-hidden">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style={{ backgroundColor: "var(--color-accent-1)" }} />
               <span className="relative inline-flex h-2 w-2 rounded-full" style={{ backgroundColor: "var(--color-accent-1)" }} />
             </span>

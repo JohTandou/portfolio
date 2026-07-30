@@ -176,33 +176,42 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
-/* === GLASSMORPHISM iOS 26 === */
+/* === GLASSMORPHISM iOS 26 Enhanced === */
 
-/* Panel de base — utilitaire pour fonds vitrés */
+/* Panel de base — utilitaire pour fonds vitrés ultra premium */
 .glass-panel {
-  background: rgba(17, 24, 32, 0.7);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(17, 24, 32, 0.65);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 20px;
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 
+    0 4px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* Card glass — pour les cartes de contenu */
+/* Card glass — pour les cartes de contenu ultra premium */
 .glass-card {
-  background: rgba(17, 24, 32, 0.65);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(17, 24, 32, 0.6);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(62, 207, 178, 0.25);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(62, 207, 178, 0.08);
-  transform: translateY(-1px);
+  border-color: rgba(62, 207, 178, 0.2);
+  box-shadow: 
+    0 8px 40px rgba(0, 0, 0, 0.45),
+    0 0 20px rgba(62, 207, 178, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
 }
 
 .glass-card:active {
@@ -210,16 +219,16 @@ body {
   transition-duration: 0.1s;
 }
 
-/* Bouton glass — pour les CTA et actions */
+/* Bouton glass — pour les CTA et actions ultra premium */
 .glass-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(62, 207, 178, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(62, 207, 178, 0.08);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(62, 207, 178, 0.2);
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 0.75rem 1.75rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -228,27 +237,28 @@ body {
   color: var(--color-primary);
   transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: pointer;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .glass-btn:hover {
-  background: rgba(62, 207, 178, 0.2);
-  border-color: rgba(62, 207, 178, 0.4);
-  box-shadow: 0 0 28px rgba(62, 207, 178, 0.12);
-  transform: scale(1.03);
+  background: rgba(62, 207, 178, 0.15);
+  border-color: rgba(62, 207, 178, 0.35);
+  box-shadow: 0 4px 24px rgba(62, 207, 178, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transform: scale(1.02);
 }
 
 .glass-btn:active {
-  transform: scale(0.96);
+  transform: scale(0.97);
   transition-duration: 0.08s;
 }
 
-/* Badge/tag glass */
+/* Badge/tag glass ultra premium */
 .glass-badge {
   display: inline-block;
-  background: rgba(62, 207, 178, 0.08);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(62, 207, 178, 0.15);
+  background: rgba(62, 207, 178, 0.06);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(62, 207, 178, 0.12);
   border-radius: 8px;
   padding: 0.25rem 0.75rem;
   font-family: var(--font-mono);
@@ -256,14 +266,15 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-primary);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-/* Input glass */
+/* Input glass ultra premium */
 .glass-input {
-  background: rgba(17, 24, 32, 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(17, 24, 32, 0.55);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 12px;
   padding: 0.75rem 1rem;
   color: var(--color-text-high);
@@ -271,6 +282,7 @@ body {
   font-size: 0.875rem;
   transition: all 0.3s ease;
   outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .glass-input::placeholder {
@@ -279,7 +291,7 @@ body {
 
 .glass-input:focus {
   border-color: rgba(62, 207, 178, 0.4);
-  box-shadow: 0 0 20px rgba(62, 207, 178, 0.08);
+  box-shadow: 0 0 20px rgba(62, 207, 178, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 /* Chromatic aberration au hover sur les images */

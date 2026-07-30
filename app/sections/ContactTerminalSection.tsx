@@ -72,8 +72,8 @@ export function ContactTerminalSection() {
   return (
     <BackgroundSection id="contact" backgroundImage="/backgrounds/contact.jpg" contentPosition="right">
     <div className="relative w-full px-6 py-24 md:px-12 lg:px-20">
-      <div className="glass-panel p-8 mx-auto max-w-2xl">
-        <h2 className="mb-12 font-terminal text-3xl tracking-widest text-[var(--color-primary)] md:text-4xl">
+      <div className="glass-panel p-8 mx-auto max-w-2xl overflow-hidden">
+        <h2 className="mb-12 font-terminal text-xl tracking-wider md:text-3xl md:tracking-widest text-[var(--color-primary)]">
           ÉTABLIR_UNE_CONNEXION
         </h2>
 
@@ -162,7 +162,7 @@ export function ContactTerminalSection() {
           )}
 
           {status === "error" && (
-            <p className="font-mono text-sm text-[var(--color-accent-2)]" role="alert">
+            <p className="font-mono text-sm text-[var(--color-accent-2)] break-words" role="alert">
               [ÉCHEC] {serverMessage}
             </p>
           )}
