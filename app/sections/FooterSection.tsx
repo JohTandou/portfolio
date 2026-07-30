@@ -16,12 +16,12 @@ export function FooterSection() {
     >
       <div className="glass-panel p-8 md:p-12 flex w-full max-w-5xl flex-col items-center gap-8">
         {/* Ligne supérieure : nom */}
-        <p className="font-display text-4xl font-bold tracking-tighter text-[var(--color-text-dim)] sm:text-5xl md:text-6xl">
+        <p className="font-display text-4xl font-bold tracking-tighter text-[var(--color-text-high)] sm:text-5xl md:text-6xl">
           JOH TANDOU
         </p>
 
         {/* Ligne du milieu : crédits */}
-        <p className="font-mono text-xs text-[var(--color-text-dim)]">
+        <p className="font-mono text-xs text-[var(--color-text-mid)]">
           © 2026 — Conçu et développé par Joh Tandou
         </p>
 
@@ -55,7 +55,7 @@ export function FooterSection() {
         </div>
 
         {/* Ligne du bas : version du site */}
-        <p className="font-terminal text-sm text-[var(--color-text-dim)]">
+        <p className="font-terminal text-sm text-[var(--color-text-mid)]">
           v2.0.0 · BUILD 2026.05.01
         </p>
       </div>

@@ -11,6 +11,8 @@ interface BackgroundSectionProps {
   backgroundImage: string;
   /** Côté où le texte se place — correspond à la zone sombre de l'image */
   contentPosition: "left" | "right";
+  /** Use full-width container (max-w-7xl) instead of max-w-2xl. For grids and wide layouts. */
+  wideContent?: boolean;
   children: React.ReactNode;
 }
 
@@ -18,6 +20,7 @@ export function BackgroundSection({
   id,
   backgroundImage,
   contentPosition,
+  wideContent = false,
   children,
 }: BackgroundSectionProps) {
   return (
@@ -53,7 +56,7 @@ export function BackgroundSection({
           contentPosition === "right" ? "justify-end" : "justify-start"
         } px-6 py-24 md:px-12 lg:px-20`}
       >
-        <div className="w-full max-w-2xl">
+        <div className={`w-full ${wideContent ? "max-w-7xl" : "max-w-2xl"}`}>
           <div>
             {children}
           </div>

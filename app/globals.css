@@ -9,8 +9,8 @@
   --color-bg-deep: #0A0E14;
   --color-bg-elevated: #111820;
   --color-text-high: #E6E6E6;
-  --color-text-mid: #8A8F98;
-  --color-text-dim: #4A4F58;
+  --color-text-mid: #9CA3AF;
+  --color-text-dim: #6B7280;
 
   /* Familles typographiques */
   --font-display: var(--font-rajdhani), sans-serif;
@@ -28,8 +28,8 @@
   --color-bg-deep: #0A0E14;
   --color-bg-elevated: #111820;
   --color-text-high: #E6E6E6;
-  --color-text-mid: #8A8F98;
-  --color-text-dim: #4A4F58;
+  --color-text-mid: #9CA3AF;
+  --color-text-dim: #6B7280;
 }
 
 /* Reset box-sizing */
@@ -180,7 +180,7 @@ body {
 
 /* Panel de base — utilitaire pour fonds vitrés */
 .glass-panel {
-  background: rgba(17, 24, 32, 0.5);
+  background: rgba(17, 24, 32, 0.7);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -190,7 +190,7 @@ body {
 
 /* Card glass — pour les cartes de contenu */
 .glass-card {
-  background: rgba(17, 24, 32, 0.45);
+  background: rgba(17, 24, 32, 0.65);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.05);

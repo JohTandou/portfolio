@@ -48,9 +48,9 @@ export function LanguageModulesSection() {
       <div ref={ref} className="flex w-full flex-col gap-12">
         {/* Titre */}
         <motion.h2
-          className="font-display font-bold tracking-tighter"
+          className="font-display font-bold tracking-tighter whitespace-nowrap"
           style={{
-            fontSize: "clamp(2.5rem, 5vw, 4rem)",
+            fontSize: "clamp(2rem, 4.5vw, 4rem)",
             color: "var(--color-text-high)",
           }}
           initial={{ opacity: 0, y: 30 }}
@@ -58,7 +58,7 @@ export function LanguageModulesSection() {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          MODULES&shy;LINGUISTIQUES
+          MODULES LINGUISTIQUES
         </motion.h2>
 
         {/* Liste des modules */}

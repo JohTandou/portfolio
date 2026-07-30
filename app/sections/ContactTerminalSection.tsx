@@ -72,14 +72,14 @@ export function ContactTerminalSection() {
   return (
     <BackgroundSection id="contact" backgroundImage="/backgrounds/contact.jpg" contentPosition="right">
     <div className="relative w-full px-6 py-24 md:px-12 lg:px-20">
-      <div className="glass-panel p-8 mx-auto max-w-3xl">
+      <div className="glass-panel p-8 mx-auto max-w-2xl">
         <h2 className="mb-12 font-terminal text-3xl tracking-widest text-[var(--color-primary)] md:text-4xl">
           ÉTABLIR_UNE_CONNEXION
         </h2>
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-8"
+          className="flex flex-col gap-8 pt-8"
           aria-live="polite"
           aria-busy={status === "sending"}
           noValidate

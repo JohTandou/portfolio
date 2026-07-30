@@ -76,7 +76,7 @@ export function FutureRoadmapSection() {
 
   return (
     <>
-      <BackgroundSection id="roadmap" backgroundImage="/backgrounds/goals.jpg" contentPosition="left">
+      <BackgroundSection id="roadmap" backgroundImage="/backgrounds/goals.jpg" contentPosition="left" wideContent>
       <div
         ref={sectionRef}
         className="relative py-24"
@@ -141,7 +141,7 @@ export function FutureRoadmapSection() {
               {ROADMAP_DATA.map((checkpoint, index) => (
                 <motion.div
                   key={checkpoint.id}
-                  className="max-w-[280px] mx-auto flex flex-col items-center gap-3"
+                  className="flex flex-col items-center gap-3"
                   initial={isReducedMotion ? undefined : { opacity: 0, scale: 0 }}
                   whileInView={
                     isReducedMotion ? undefined : { opacity: 1, scale: 1 }
