@@ -77,8 +77,8 @@ export function MissionsArchiveSection() {
   }, [cardWidth, gap]);
 
   return (
-    <BackgroundSection id="missions" backgroundImage="/backgrounds/achievements.jpg" contentPosition="left">
-      <div className="relative overflow-hidden py-24">
+    <BackgroundSection id="missions" backgroundImage="/backgrounds/achievements.jpg" contentPosition="left" wideContent>
+      <div className="relative py-24 overflow-visible">
       {/* Titre et sous-titre */}
       <div className="mb-16 px-6 text-center md:px-12">
         <motion.h2

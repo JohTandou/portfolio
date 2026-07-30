@@ -41,7 +41,7 @@ export function TechArsenalSection() {
   let globalIndex = 0;
 
   return (
-    <BackgroundSection id="tech-arsenal" backgroundImage="/backgrounds/technical-skills.jpg" contentPosition="left">
+    <BackgroundSection id="tech-arsenal" backgroundImage="/backgrounds/technical-skills.jpg" contentPosition="left" wideContent>
       <SectionWrapper>
         <div className="flex w-full flex-col gap-12">
         {/* Titre et sous-titre */}
@@ -75,10 +75,10 @@ export function TechArsenalSection() {
           </motion.p>
         </div>
 
-        {/* Grille de catégories */}
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        {/* Grille de catégories — 4 colonnes max pour éviter le débordement */}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
           {CATEGORIES.map((category) => (
-            <div key={category.name} className="glass-card p-4 flex flex-col gap-3">
+            <div key={category.name} className="glass-card overflow-hidden p-4 flex flex-col gap-3">
               {/* Label de catégorie */}
               <div className="flex flex-col gap-2">
                 <span

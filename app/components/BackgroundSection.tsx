@@ -28,17 +28,23 @@ export function BackgroundSection({
       id={id}
       className="relative min-h-screen w-full overflow-hidden"
     >
-      {/* Fond — image plein écran avec overlay directionnel */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={backgroundImage}
-          fill
-          className="object-cover object-center"
-          priority
-          quality={85}
-          alt=""
-        />
-        {/* Overlay gradient — plus sombre côté texte, transparent côté image */}
+      {/* Background image — constrained to 16:9, centered, with directional overlay */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* 16:9 image wrapper — flex container centers the image, overlay fills the rest */}
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
+            <Image
+              src={backgroundImage}
+              fill
+              className="object-cover object-center"
+              priority
+              quality={85}
+              alt=""
+              sizes="100vw"
+            />
+          </div>
+        </div>
+        {/* Overlay gradient — darker on the text side, transparent on the image side */}
         <div
           className="absolute inset-0 z-10"
           style={{

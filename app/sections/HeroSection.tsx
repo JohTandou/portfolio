@@ -61,7 +61,7 @@ export function HeroSection() {
         {/* Badge disponibilité */}
         <motion.div variants={itemVariants}>
           <span
-            className="glass-badge inline-flex items-center gap-2 whitespace-nowrap"
+            className="glass-badge !inline-flex items-center gap-2 whitespace-nowrap"
             style={{
               color: "var(--color-accent-1)",
               borderColor: "rgba(232, 168, 56, 0.25)",

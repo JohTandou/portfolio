@@ -71,15 +71,15 @@ export function ContactTerminalSection() {
 
   return (
     <BackgroundSection id="contact" backgroundImage="/backgrounds/contact.jpg" contentPosition="right">
-    <div className="relative w-full px-6 py-24 md:px-12 lg:px-20">
+    <div className="relative w-full px-6 py-12 md:py-24 md:px-12 lg:px-20">
       <div className="glass-panel p-8 mx-auto max-w-2xl overflow-hidden">
-        <h2 className="mb-12 font-terminal text-xl tracking-wider md:text-3xl md:tracking-widest text-[var(--color-primary)]">
+        <h2 className="mb-6 md:mb-12 font-terminal text-xl tracking-wider md:text-3xl md:tracking-widest text-[var(--color-primary)]">
           ÉTABLIR_UNE_CONNEXION
         </h2>
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-8 pt-8"
+          className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-8"
           aria-live="polite"
           aria-busy={status === "sending"}
           noValidate
