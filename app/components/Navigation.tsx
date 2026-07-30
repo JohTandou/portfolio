@@ -13,6 +13,7 @@ export function Navigation() {
   const { isReducedMotion, toggleReducedMotion } = useReducedMotion();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("hero");
 
   /* Détection du scroll pour ajuster l'opacité/bordure */
   useEffect(() => {
@@ -26,9 +27,34 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* IntersectionObserver pour détecter la section visible */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        }
+      },
+      { threshold: 0.3, rootMargin: "-80px 0px 0px 0px" },
+    );
+
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
   const handleScrollTo = (id: string) => {
     const element = document.getElementById(id);
-    if (element) {
+    if (!element) return;
+
+    const lenis = (window as Window & { __lenis?: { scrollTo: (target: HTMLElement, options?: { offset?: number }) => void } }).__lenis;
+
+    if (lenis?.scrollTo) {
+      lenis.scrollTo(element, { offset: -80 });
+    } else {
       element.scrollIntoView({ behavior: "smooth" });
     }
     setIsMobileMenuOpen(false);
@@ -66,17 +92,28 @@ export function Navigation() {
 
           {/* Liens d'ancrage desktop */}
           <ul className="hidden items-center gap-2 md:flex">
-            {navLinks.map((link) => (
-              <li key={link.target}>
-                <button
-                  onClick={() => handleScrollTo(link.target)}
-                  className="glass-badge group relative flex min-h-[44px] items-center px-3 py-2 font-mono text-xs tracking-widest text-[var(--color-text-mid)] hover:text-[var(--color-text-high)] transition-colors duration-300"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-accent-1)] transition-transform duration-300 group-hover:scale-x-100" />
-                </button>
-              </li>
-            ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.target;
+                return (
+                  <li key={link.target}>
+                    <button
+                      onClick={() => handleScrollTo(link.target)}
+                      className={`glass-badge group relative flex min-h-[44px] items-center px-3 py-2 font-mono text-xs tracking-widest transition-colors duration-300 ${
+                        isActive
+                          ? "text-[var(--color-primary)]"
+                          : "text-[var(--color-text-mid)] hover:text-[var(--color-text-high)]"
+                      }`}
+                    >
+                      {link.label}
+                      <span
+                        className={`absolute -bottom-1 left-0 h-px w-full bg-[var(--color-primary)] transition-transform duration-300 ${
+                          isActive ? "scale-x-100" : "scale-x-0 origin-left group-hover:scale-x-100"
+                        }`}
+                      />
+                    </button>
+                  </li>
+                );
+              })}
 
           </ul>
 
@@ -136,22 +173,29 @@ export function Navigation() {
             </button>
 
             <nav className="flex flex-col items-center gap-6">
-              {navLinks.map((link, index) => (
-                <motion.button
-                  key={link.target}
-                  onClick={() => handleScrollTo(link.target)}
-                  className="flex min-h-[44px] items-center px-4 py-2 font-display text-2xl tracking-widest text-[var(--color-text-high)] hover:text-[var(--color-accent-1)] transition-colors duration-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: index * 0.08,
-                    duration: 0.4,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  {link.label}
-                </motion.button>
-              ))}
+              {navLinks.map((link, index) => {
+                const isActive = activeSection === link.target;
+                return (
+                  <motion.button
+                    key={link.target}
+                    onClick={() => handleScrollTo(link.target)}
+                    className={`flex min-h-[44px] items-center px-4 py-2 font-display text-2xl tracking-widest transition-colors duration-300 ${
+                      isActive
+                        ? "text-[var(--color-primary)]"
+                        : "text-[var(--color-text-high)] hover:text-[var(--color-accent-1)]"
+                    }`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: index * 0.08,
+                      duration: 0.4,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    {link.label}
+                  </motion.button>
+                );
+              })}
 
               <motion.div
                 className="mt-8 flex items-center gap-2"
