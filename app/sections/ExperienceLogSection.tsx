@@ -6,10 +6,12 @@ import { ExperienceCard } from "../components/ExperienceCard";
 import { SectionWrapper } from "../components/SectionWrapper";
 import { EXPERIENCE_DATA } from "../lib/experience";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
+import { useAnimationFallback } from "../hooks/useAnimationFallback";
 
 /* Journal d'expérience — cartes empilées verticalement dans un fond vitré fixe */
 export function ExperienceLogSection() {
   const { isReducedMotion } = useReducedMotion();
+  const fallbackRef = useAnimationFallback(3000);
 
   return (
     <BackgroundSection
@@ -18,6 +20,7 @@ export function ExperienceLogSection() {
       contentPosition="right"
     >
       <SectionWrapper>
+        <div ref={fallbackRef}>
         {/* Titre et sous-titre */}
         <div className="mb-12">
           <motion.h2
@@ -59,6 +62,7 @@ export function ExperienceLogSection() {
               isActive={true}
             />
           ))}
+        </div>
         </div>
       </SectionWrapper>
     </BackgroundSection>

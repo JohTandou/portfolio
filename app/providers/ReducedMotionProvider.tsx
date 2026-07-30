@@ -52,6 +52,15 @@ export function ReducedMotionProvider({
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
+  /* Synchronisation de la classe CSS .reduced-motion sur <html> */
+  useEffect(() => {
+    if (isReducedMotion) {
+      document.documentElement.classList.add("reduced-motion");
+    } else {
+      document.documentElement.classList.remove("reduced-motion");
+    }
+  }, [isReducedMotion]);
+
   const toggleReducedMotion = useCallback(() => {
     setIsReducedMotion((prev) => {
       const next = !prev;

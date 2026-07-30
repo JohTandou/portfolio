@@ -340,3 +340,27 @@ body {
     transition: none;
   }
 }
+
+/* ============================================================
+   Reduced Motion — force la visibilité immédiate de tout le contenu
+   Ces règles s'appliquent quand la classe .reduced-motion est
+   présente sur <html>, gérée par ReducedMotionProvider.
+   Complète la media query prefers-reduced-motion déjà présente.
+   ============================================================ */
+
+/* Force l'opacité et le transform pour les éléments cachés par une animation */
+.reduced-motion [style*="opacity: 0"],
+.reduced-motion [style*="opacity:0"],
+.reduced-motion [data-motion-initial] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Suppression des durées d'animation et de transition pour tout */
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
