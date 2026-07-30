@@ -11,7 +11,8 @@ interface ExperienceCardProps {
   isActive: boolean;
 }
 
-/* Card holographique pour le journal d'expérience professionnelle */
+/* Card holographique pour le journal d'expérience professionnelle.
+   Utilise le style glass-card pour l'effet vitré avec teinte teal au hover. */
 export function ExperienceCard({ entry, index }: ExperienceCardProps) {
   const { isReducedMotion } = useReducedMotion();
 
@@ -22,12 +23,7 @@ export function ExperienceCard({ entry, index }: ExperienceCardProps) {
 
   return (
     <motion.div
-      className="group relative flex-shrink-0 overflow-hidden rounded-sm border border-[rgba(255,255,255,0.05)] p-6 md:p-8"
-      style={{
-        backgroundColor: "var(--color-bg-elevated)",
-        width: "min(60vw, 640px)",
-        boxShadow: "0 0 20px rgba(0, 240, 255, 0.1)",
-      }}
+      className="glass-card group relative flex-shrink-0 overflow-hidden p-6 md:p-8"
       initial={isReducedMotion ? undefined : { opacity: 0, y: 20 }}
       whileInView={isReducedMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -35,9 +31,6 @@ export function ExperienceCard({ entry, index }: ExperienceCardProps) {
         duration: 0.5,
         delay: index * 0.08,
         ease: [0.22, 1, 0.36, 1],
-      }}
-      whileHover={{
-        boxShadow: "0 0 40px rgba(0, 240, 255, 0.25)",
       }}
     >
       {/* Coins HUD animés */}
@@ -151,14 +144,7 @@ export function ExperienceCard({ entry, index }: ExperienceCardProps) {
           {entry.stack.map((tech, techIndex) => (
             <motion.span
               key={tech}
-              className="font-mono text-xs"
-              style={{
-                backgroundColor: "rgba(0,240,255,0.08)",
-                border: "1px solid rgba(0,240,255,0.15)",
-                color: "var(--color-accent-1)",
-                padding: "2px 8px",
-                borderRadius: "2px",
-              }}
+              className="glass-badge font-mono text-xs"
               initial={isReducedMotion ? undefined : { opacity: 0, scale: 0.9 }}
               whileInView={isReducedMotion ? undefined : { opacity: 1, scale: 1 }}
               viewport={{ once: true }}

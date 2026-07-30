@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { BackgroundSection } from "../components/BackgroundSection";
 import { CheckpointModal } from "../components/CheckpointModal";
 import { RoadmapCheckpointComponent } from "../components/RoadmapCheckpoint";
 import { ROADMAP_DATA } from "../lib/roadmap";
@@ -75,11 +76,10 @@ export function FutureRoadmapSection() {
 
   return (
     <>
-      <section
-        id="roadmap"
+      <BackgroundSection id="roadmap" backgroundImage="/backgrounds/goals.jpg" contentPosition="left">
+      <div
         ref={sectionRef}
         className="relative py-24"
-        style={{ backgroundColor: "var(--color-bg-elevated)" }}
       >
         {/* Titre et sous-titre */}
         <div className="mb-16 px-6 text-center md:px-12">
@@ -218,7 +218,8 @@ export function FutureRoadmapSection() {
             </div>
           </div>
         )}
-      </section>
+      </div>
+      </BackgroundSection>
 
       {/* Modale checkpoint */}
       <CheckpointModal

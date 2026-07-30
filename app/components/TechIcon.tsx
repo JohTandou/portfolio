@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Tooltip } from "./Tooltip";
-import { useAudio } from "../providers/AudioProvider";
 
 /* ============================================================
    TechIcon — Label techno avec tooltip, animation et son hover
@@ -20,8 +19,6 @@ export function TechIcon({
   description = "Compétence maîtrisée — niveau avancé",
   index = 0,
 }: TechIconProps) {
-  const { playSound } = useAudio();
-
   return (
     <motion.div
       initial={{ opacity: 0, filter: "grayscale(1)" }}
@@ -38,7 +35,6 @@ export function TechIcon({
           className="group inline-flex cursor-default items-center gap-1.5 font-body text-sm transition-all duration-200"
           style={{ color: "var(--color-text-mid)" }}
           onMouseEnter={(e) => {
-            playSound("hover");
             const target = e.currentTarget;
             target.style.color = "var(--color-accent-1)";
             target.style.textShadow = "0 0 8px var(--color-accent-1)";

@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  /* Palette cyberpunk */
-  --color-primary: #FCEE0A;
-  --color-accent-1: #00F0FF;
-  --color-accent-2: #FF003C;
-  --color-accent-3: #BD00FF;
+  /* Palette teal + amber */
+  --color-primary: #3ECFB2;
+  --color-accent-1: #E8A838;
+  --color-accent-2: #2AA88F;
+  --color-accent-3: #C47020;
   --color-bg-deep: #0A0E14;
-  --color-bg-elevated: #14191F;
+  --color-bg-elevated: #111820;
   --color-text-high: #E6E6E6;
   --color-text-mid: #8A8F98;
   --color-text-dim: #4A4F58;
@@ -21,12 +21,12 @@
 
 :root {
   /* Variables CSS custom properties pour utilisation hors Tailwind */
-  --color-primary: #FCEE0A;
-  --color-accent-1: #00F0FF;
-  --color-accent-2: #FF003C;
-  --color-accent-3: #BD00FF;
+  --color-primary: #3ECFB2;
+  --color-accent-1: #E8A838;
+  --color-accent-2: #2AA88F;
+  --color-accent-3: #C47020;
   --color-bg-deep: #0A0E14;
-  --color-bg-elevated: #14191F;
+  --color-bg-elevated: #111820;
   --color-text-high: #E6E6E6;
   --color-text-mid: #8A8F98;
   --color-text-dim: #4A4F58;
@@ -51,6 +51,8 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
 }
 
 /* Classes utilitaires typographiques explicites */
@@ -173,6 +175,112 @@ body {
   z-index: 9999;
   opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* === GLASSMORPHISM iOS 26 === */
+
+/* Panel de base — utilitaire pour fonds vitrés */
+.glass-panel {
+  background: rgba(17, 24, 32, 0.5);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Card glass — pour les cartes de contenu */
+.glass-card {
+  background: rgba(17, 24, 32, 0.45);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(62, 207, 178, 0.25);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(62, 207, 178, 0.08);
+  transform: translateY(-1px);
+}
+
+.glass-card:active {
+  transform: scale(0.985);
+  transition-duration: 0.1s;
+}
+
+/* Bouton glass — pour les CTA et actions */
+.glass-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(62, 207, 178, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(62, 207, 178, 0.2);
+  border-radius: 14px;
+  padding: 0.75rem 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+
+.glass-btn:hover {
+  background: rgba(62, 207, 178, 0.2);
+  border-color: rgba(62, 207, 178, 0.4);
+  box-shadow: 0 0 28px rgba(62, 207, 178, 0.12);
+  transform: scale(1.03);
+}
+
+.glass-btn:active {
+  transform: scale(0.96);
+  transition-duration: 0.08s;
+}
+
+/* Badge/tag glass */
+.glass-badge {
+  display: inline-block;
+  background: rgba(62, 207, 178, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(62, 207, 178, 0.15);
+  border-radius: 8px;
+  padding: 0.25rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+}
+
+/* Input glass */
+.glass-input {
+  background: rgba(17, 24, 32, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  color: var(--color-text-high);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.glass-input::placeholder {
+  color: var(--color-text-dim);
+}
+
+.glass-input:focus {
+  border-color: rgba(62, 207, 178, 0.4);
+  box-shadow: 0 0 20px rgba(62, 207, 178, 0.08);
 }
 
 /* Chromatic aberration au hover sur les images */

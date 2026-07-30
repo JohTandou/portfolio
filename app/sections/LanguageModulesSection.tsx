@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { BackgroundSection } from "../components/BackgroundSection";
 import { SectionWrapper } from "../components/SectionWrapper";
 import { AnimatedBar } from "../components/AnimatedBar";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
@@ -42,10 +43,8 @@ export function LanguageModulesSection() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <SectionWrapper
-      id="languages"
-      className="bg-[var(--color-bg-elevated)]"
-    >
+    <BackgroundSection id="languages" backgroundImage="/backgrounds/languages.jpg" contentPosition="right">
+    <SectionWrapper>
       <div ref={ref} className="flex w-full flex-col gap-12">
         {/* Titre */}
         <motion.h2
@@ -69,7 +68,7 @@ export function LanguageModulesSection() {
             return (
               <div
                 key={lang.code}
-                className="relative flex flex-col gap-3 overflow-hidden py-8"
+                className="glass-card p-6 mb-4 relative flex flex-col gap-3 overflow-hidden"
               >
                 {/* Effet boot scan — trait vertical cyan */}
                 {!isReducedMotion && (
@@ -143,5 +142,6 @@ export function LanguageModulesSection() {
         </div>
       </div>
     </SectionWrapper>
+    </BackgroundSection>
   );
 }

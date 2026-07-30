@@ -6,7 +6,7 @@ import { MissionBriefing } from "../components/MissionBriefing";
 import { MISSIONS_DATA } from "../lib/missions";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
 import { useMediaQuery } from "../hooks/useMediaQuery";
-import { useAudio } from "../providers/AudioProvider";
+import { BackgroundSection } from "../components/BackgroundSection";
 
 /* ============================================================
    MissionsArchiveSection — Carrousel 3D horizontal avec snap scroll
@@ -15,7 +15,6 @@ import { useAudio } from "../providers/AudioProvider";
 
 export function MissionsArchiveSection() {
   const { isReducedMotion } = useReducedMotion();
-  const { playSound } = useAudio();
   const isMobile = useMediaQuery("(max-width: 767px)");
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -66,25 +65,20 @@ export function MissionsArchiveSection() {
 
   /* Navigation via flèches HUD */
   const scrollLeft = useCallback(() => {
-    playSound("whoosh");
     const container = containerRef.current;
     if (!container) return;
     container.scrollBy({ left: -(cardWidth + gap), behavior: "smooth" });
-  }, [cardWidth, gap, playSound]);
+  }, [cardWidth, gap]);
 
   const scrollRight = useCallback(() => {
-    playSound("whoosh");
     const container = containerRef.current;
     if (!container) return;
     container.scrollBy({ left: cardWidth + gap, behavior: "smooth" });
-  }, [cardWidth, gap, playSound]);
+  }, [cardWidth, gap]);
 
   return (
-    <section
-      id="missions"
-      className="relative overflow-hidden py-24"
-      style={{ backgroundColor: "var(--color-bg-deep)" }}
-    >
+    <BackgroundSection id="missions" backgroundImage="/backgrounds/achievements.jpg" contentPosition="left">
+      <div className="relative overflow-hidden py-24">
       {/* Titre et sous-titre */}
       <div className="mb-16 px-6 text-center md:px-12">
         <motion.h2
@@ -123,7 +117,7 @@ export function MissionsArchiveSection() {
       >
         {/* Flèche gauche */}
         <button
-          className="absolute left-4 top-1/2 z-20 -translate-y-1/2 font-mono text-2xl transition-all duration-200 hover:scale-110 md:left-8"
+          className="glass-btn absolute left-4 top-1/2 z-20 -translate-y-1/2 font-mono text-2xl md:left-8"
           style={{ color: "var(--color-accent-1)" }}
           onClick={scrollLeft}
           aria-label="Mission précédente"
@@ -136,7 +130,7 @@ export function MissionsArchiveSection() {
 
         {/* Flèche droite */}
         <button
-          className="absolute right-4 top-1/2 z-20 -translate-y-1/2 font-mono text-2xl transition-all duration-200 hover:scale-110 md:right-8"
+          className="glass-btn absolute right-4 top-1/2 z-20 -translate-y-1/2 font-mono text-2xl md:right-8"
           style={{ color: "var(--color-accent-1)" }}
           onClick={scrollRight}
           aria-label="Mission suivante"
@@ -220,6 +214,7 @@ export function MissionsArchiveSection() {
           />
         ))}
       </div>
-    </section>
+      </div>
+    </BackgroundSection>
   );
 }

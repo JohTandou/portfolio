@@ -14,7 +14,7 @@ export function TerminalButton({ children, className = "", ...props }: TerminalB
   return (
     <motion.button
       type="button"
-      className={`relative overflow-hidden border border-[var(--color-accent-1)] bg-transparent px-8 py-3 font-terminal text-lg tracking-widest text-[var(--color-accent-1)] transition-colors hover:bg-[var(--color-accent-1)] hover:text-[var(--color-bg-deep)] hover:shadow-[0_0_20px_rgba(252,238,10,0.4)] disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+      className={`glass-btn relative overflow-hidden px-8 py-3 font-terminal text-lg tracking-widest !text-[var(--color-accent-1)] !border-[var(--color-accent-1)] hover:!bg-[var(--color-accent-1)] hover:!text-[var(--color-bg-deep)] hover:!shadow-[0_0_20px_rgba(252,238,10,0.4)] disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
       whileHover={isReducedMotion ? {} : { scale: 1.02 }}
       whileTap={{ scale: 0.97 }}
       {...props}

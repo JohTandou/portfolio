@@ -2,7 +2,6 @@
 
 /* Container du menu principal cyberpunk */
 import { HeroMenuItem } from "./HeroMenuItem";
-import { HeroAudioToggle } from "./HeroAudioToggle";
 
 interface MenuItem {
   id: string;
@@ -44,9 +43,6 @@ export function HeroMenu({ onNavigate, isTransitioning }: HeroMenuProps) {
             isPrimary={item.isPrimary}
           />
         ))}
-        <div className="border-t border-[rgba(252,238,10,0.15)] px-3 py-2">
-          <HeroAudioToggle />
-        </div>
       </div>
     </nav>
   );

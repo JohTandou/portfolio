@@ -2,38 +2,32 @@
 
 import { HudCorners } from "./HudCorners";
 
-/* Wrapper standardisé pour les sections avec padding, max-width et coins HUD */
+/* Wrapper de contenu avec coins HUD — utilisé à l'intérieur des BackgroundSection.
+   Ne rend pas de <section> (géré par BackgroundSection). */
+
 interface SectionWrapperProps {
   children: React.ReactNode;
-  id: string;
   className?: string;
+  id?: string;
 }
 
-export function SectionWrapper({
-  children,
-  id,
-  className = "",
-}: SectionWrapperProps) {
+export function SectionWrapper({ children, className = "", id }: SectionWrapperProps) {
   return (
-    <section
-      id={id}
-      className={`relative flex min-h-screen flex-col items-center justify-center px-6 py-24 ${className}`}
-    >
+    <div id={id} className={`relative ${className}`}>
       {/* Coins HUD positionnés aux quatre angles */}
-      <div className="pointer-events-none absolute top-6 left-6">
-        <HudCorners size={32} />
+      <div className="pointer-events-none absolute top-4 left-4">
+        <HudCorners size={28} />
       </div>
-      <div className="pointer-events-none absolute top-6 right-6 rotate-90">
-        <HudCorners size={32} />
+      <div className="pointer-events-none absolute top-4 right-4 rotate-90">
+        <HudCorners size={28} />
       </div>
-      <div className="pointer-events-none absolute bottom-6 left-6 -rotate-90">
-        <HudCorners size={32} />
+      <div className="pointer-events-none absolute bottom-4 left-4 -rotate-90">
+        <HudCorners size={28} />
       </div>
-      <div className="pointer-events-none absolute bottom-6 right-6 rotate-180">
-        <HudCorners size={32} />
+      <div className="pointer-events-none absolute bottom-4 right-4 rotate-180">
+        <HudCorners size={28} />
       </div>
-
-      <div className="w-full max-w-5xl">{children}</div>
-    </section>
+      {children}
+    </div>
   );
 }

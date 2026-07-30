@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { BackgroundSection } from "../components/BackgroundSection";
 import { SectionWrapper } from "../components/SectionWrapper";
 
 const INTERESTS = [
@@ -47,7 +48,8 @@ const POLAROIDS = [
 /* Flux d'intérêts — passions, veille et centres d'intérêt */
 export function InterestFeedSection() {
   return (
-    <SectionWrapper id="interests" className="bg-[var(--color-bg-deep)]">
+    <BackgroundSection id="interests" backgroundImage="/backgrounds/interests.jpg" contentPosition="left">
+    <SectionWrapper>
       {/* Polaroids décoratifs en arrière-plan */}
       {POLAROIDS.map((polaroid, index) => (
         <div
@@ -107,11 +109,7 @@ export function InterestFeedSection() {
           {INTERESTS.map((interest, index) => (
             <motion.div
               key={interest.name}
-              className="group flex flex-col gap-4 p-8 transition-all duration-300"
-              style={{
-                backgroundColor: "var(--color-bg-elevated)",
-                border: "1px solid rgba(255, 255, 255, 0.05)",
-              }}
+              className="glass-card p-8 group flex flex-col gap-4 transition-all duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -122,7 +120,6 @@ export function InterestFeedSection() {
               }}
               whileHover={{
                 scale: 1.02,
-                borderColor: "rgba(0, 240, 255, 0.2)",
               }}
             >
               <h3
@@ -152,5 +149,6 @@ export function InterestFeedSection() {
         </div>
       </div>
     </SectionWrapper>
+    </BackgroundSection>
   );
 }

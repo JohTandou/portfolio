@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { SectionWrapper } from "../components/SectionWrapper";
+import { BackgroundSection } from "../components/BackgroundSection";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
 
 const PROTOCOLS = [
@@ -75,10 +76,8 @@ export function HumanProtocolsSection() {
   };
 
   return (
-    <SectionWrapper
-      id="human-protocols"
-      className="bg-[var(--color-bg-elevated)]"
-    >
+    <BackgroundSection id="human-protocols" backgroundImage="/backgrounds/soft-skills.jpg" contentPosition="right">
+      <SectionWrapper>
       <div ref={ref} className="flex w-full flex-col gap-12">
         {/* Titre et sous-titre */}
         <div className="flex flex-col gap-3">
@@ -122,7 +121,7 @@ export function HumanProtocolsSection() {
             <motion.div
               key={protocol.number}
               variants={itemVariants}
-              className="flex flex-col gap-2 py-6"
+              className="glass-card p-5 mb-4 flex flex-col gap-2"
             >
               <div className="flex items-baseline gap-2">
                 <span
@@ -156,18 +155,11 @@ export function HumanProtocolsSection() {
               >
                 {protocol.description}
               </p>
-              {/* Trait horizontal fin */}
-              <div
-                className="mt-2 h-px w-full"
-                style={{
-                  backgroundColor: "var(--color-text-dim)",
-                  opacity: 0.15,
-                }}
-              />
             </motion.div>
           ))}
         </motion.div>
       </div>
-    </SectionWrapper>
+      </SectionWrapper>
+    </BackgroundSection>
   );
 }

@@ -1,0 +1,4 @@
+  warning: could not transcribe video.MOV: Video transcription requires faster-whisper. Run: pip install 'graphifyy[video]'
+  warning: could not transcribe public/assets/videos/hero-video.mov: Video transcription requires faster-whisper. Run: pip install 'graphifyy[video]'
+  warning: could not transcribe public/assets/videos/hero-video.mp4: Video transcription requires faster-whisper. Run: pip install 'graphifyy[video]'
+[]

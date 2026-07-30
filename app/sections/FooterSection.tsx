@@ -11,10 +11,10 @@ export function FooterSection() {
   return (
     <footer
       id="footer"
-      className="relative flex flex-col items-center justify-center bg-[var(--color-bg-elevated)] px-6"
-      style={{ paddingTop: "clamp(80px, 10vh, 120px)", paddingBottom: "clamp(80px, 10vh, 120px)" }}
+      className="relative flex flex-col items-center justify-center px-6"
+      style={{ background: "rgba(10, 14, 20, 0.6)", paddingTop: "clamp(80px, 10vh, 120px)", paddingBottom: "clamp(80px, 10vh, 120px)" }}
     >
-      <div className="flex w-full max-w-5xl flex-col items-center gap-8">
+      <div className="glass-panel p-8 md:p-12 flex w-full max-w-5xl flex-col items-center gap-8">
         {/* Ligne supérieure : nom */}
         <p className="font-display text-4xl font-bold tracking-tighter text-[var(--color-text-dim)] sm:text-5xl md:text-6xl">
           JOH TANDOU
@@ -28,34 +28,28 @@ export function FooterSection() {
         {/* Liens directs */}
         <div className="flex flex-wrap items-center justify-center gap-6">
           <a
-            href="mailto:joh@tandou.dev"
-            className="group relative font-mono text-xs tracking-widest text-[var(--color-text-dim)] hover:text-[var(--color-accent-1)] transition-colors duration-300"
+            href="mailto:johtandou@gmail.com"
+            className="glass-btn group relative font-mono text-xs tracking-widest text-[var(--color-text-dim)] hover:text-[var(--color-accent-1)] transition-colors duration-300"
           >
             EMAIL
             <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-accent-1)] transition-transform duration-300 group-hover:scale-x-100" />
           </a>
           <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
-            className="group relative font-mono text-xs tracking-widest text-[var(--color-text-dim)] hover:text-[var(--color-accent-1)] transition-colors duration-300"
+            href="https://www.linkedin.com/in/johtandou/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-btn group relative font-mono text-xs tracking-widest text-[var(--color-text-dim)] hover:text-[var(--color-accent-1)] transition-colors duration-300"
           >
             LINKEDIN
             <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-accent-1)] transition-transform duration-300 group-hover:scale-x-100" />
           </a>
           <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
-            className="group relative font-mono text-xs tracking-widest text-[var(--color-text-dim)] hover:text-[var(--color-accent-1)] transition-colors duration-300"
+            href="https://github.com/JohTandou"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-btn group relative font-mono text-xs tracking-widest text-[var(--color-text-dim)] hover:text-[var(--color-accent-1)] transition-colors duration-300"
           >
             GITHUB
-            <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-accent-1)] transition-transform duration-300 group-hover:scale-x-100" />
-          </a>
-          <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
-            className="group relative font-mono text-xs tracking-widest text-[var(--color-text-dim)] hover:text-[var(--color-accent-1)] transition-colors duration-300"
-          >
-            MALT
             <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-accent-1)] transition-transform duration-300 group-hover:scale-x-100" />
           </a>
         </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { BackgroundSection } from "../components/BackgroundSection";
 import { contactSchema, ContactFormData } from "../lib/contact";
 import { TerminalInput } from "../components/TerminalInput";
 import { TerminalSpinner } from "../components/TerminalSpinner";
@@ -69,11 +70,9 @@ export function ContactTerminalSection() {
   }
 
   return (
-    <section
-      id="contact"
-      className="relative w-full px-6 py-24 md:px-12 lg:px-20"
-    >
-      <div className="mx-auto max-w-3xl">
+    <BackgroundSection id="contact" backgroundImage="/backgrounds/contact.jpg" contentPosition="right">
+    <div className="relative w-full px-6 py-24 md:px-12 lg:px-20">
+      <div className="glass-panel p-8 mx-auto max-w-3xl">
         <h2 className="mb-12 font-terminal text-3xl tracking-widest text-[var(--color-primary)] md:text-4xl">
           ÉTABLIR_UNE_CONNEXION
         </h2>
@@ -169,6 +168,7 @@ export function ContactTerminalSection() {
           )}
         </form>
       </div>
-    </section>
+    </div>
+    </BackgroundSection>
   );
 }

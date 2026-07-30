@@ -25,7 +25,7 @@ export const TerminalInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, 
         <Tag
           ref={ref as never}
           id={inputId}
-          className="w-full bg-transparent border-b border-[rgba(0,240,255,0.3)] py-2 font-mono text-[var(--color-accent-1)] placeholder:text-[var(--color-text-dim)] focus:border-[var(--color-accent-1)] focus:outline-none focus:shadow-[0_0_10px_rgba(0,240,255,0.3)] transition-colors"
+          className="glass-input w-full text-[var(--color-accent-1)] placeholder:text-[var(--color-text-dim)]"
           placeholder={props.placeholder ? `>_ ${props.placeholder}` : undefined}
           aria-invalid={!!error}
           aria-describedby={errorId}

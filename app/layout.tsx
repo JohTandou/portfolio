@@ -4,7 +4,6 @@ import "./globals.css";
 
 import { ReducedMotionProvider } from "./providers/ReducedMotionProvider";
 import { LenisProvider } from "./providers/LenisProvider";
-import { AudioProvider } from "./providers/AudioProvider";
 import { Navigation } from "./components/Navigation";
 import { ScanlinesOverlay } from "./components/ScanlinesOverlay";
 import { GrainOverlay } from "./components/GrainOverlay";
@@ -50,18 +49,11 @@ export const metadata: Metadata = {
     siteName: "Joh Tandou Portfolio",
     title: "Joh Tandou · Software Engineer Full-Stack",
     description: "Portfolio de Joh Tandou — développeur full-stack spécialisé en expériences interactives, data science et solutions sur mesure. Paris / IDF.",
-    images: [{
-      url: "/og-image.png",
-      width: 1200,
-      height: 630,
-      alt: "Joh Tandou — Software Engineer Full-Stack"
-    }]
   },
   twitter: {
     card: "summary_large_image",
     title: "Joh Tandou · Software Engineer Full-Stack",
     description: "Portfolio de Joh Tandou — développeur full-stack spécialisé en expériences interactives, data science et solutions sur mesure. Paris / IDF.",
-    images: ["/og-image.png"],
     creator: "@johtnd"
   },
   robots: {
@@ -93,6 +85,7 @@ export default function RootLayout({
           href="/assets/videos/hero-video.mp4"
           type="video/mp4"
         />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link
           rel="stylesheet"
           href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap"
@@ -143,7 +136,6 @@ export default function RootLayout({
         {/* Providers globaux imbriqués */}
         <ReducedMotionProvider>
           <LenisProvider>
-            <AudioProvider>
               {/* Overlay de scanlines en plein écran */}
               <ScanlinesOverlay />
 
@@ -159,7 +151,6 @@ export default function RootLayout({
 
               {/* Easter egg Konami — glitch + console CTF */}
               <KonamiEasterEgg />
-            </AudioProvider>
           </LenisProvider>
         </ReducedMotionProvider>
         <Analytics />

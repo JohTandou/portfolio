@@ -123,7 +123,7 @@ export function BootSequence() {
       {/* Bordure fine cyan */}
       <div className="absolute inset-4 border border-[var(--color-accent-1)] opacity-30 sm:inset-8" />
 
-      <div className="relative z-10 w-full max-w-2xl px-8">
+      <div className="glass-panel p-8 relative z-10 w-full max-w-2xl">
         {BOOT_LINES.map((line, lineIdx) => {
           const isDisplayed = lineIdx < displayedLines.length;
           const displayText = displayedLines[lineIdx] ?? "";

@@ -35,15 +35,9 @@ export function MissionBriefing({ mission, isFocused }: MissionBriefingProps) {
 
   return (
     <div
-      className="relative flex flex-col gap-4 overflow-hidden rounded-sm border p-6 md:p-8"
+      className="glass-card p-6 md:p-8 relative flex flex-col gap-4 overflow-hidden rounded-sm"
       style={{
-        backgroundColor: "var(--color-bg-elevated)",
-        borderColor: isFocused
-          ? "rgba(0, 240, 255, 0.25)"
-          : "rgba(255,255,255,0.05)",
-        boxShadow: isFocused
-          ? "0 0 40px rgba(0, 240, 255, 0.2)"
-          : "0 0 20px rgba(0, 240, 255, 0.05)",
+        boxShadow: isFocused ? "0 0 40px rgba(0, 240, 255, 0.2)" : undefined,
         transition: "box-shadow 0.4s ease, border-color 0.4s ease",
       }}
     >

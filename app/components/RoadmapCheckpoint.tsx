@@ -16,8 +16,7 @@ export function RoadmapCheckpointComponent({
 }: RoadmapCheckpointProps) {
   return (
     <button
-      className="group flex flex-col items-center gap-3 text-left md:items-start"
-      style={{ background: "none", border: "none", padding: 0 }}
+      className="glass-card p-4 group flex flex-col items-center gap-3 text-left md:items-start"
       onClick={onClick}
       role="button"
       tabIndex={0}

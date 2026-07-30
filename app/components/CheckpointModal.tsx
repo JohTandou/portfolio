@@ -58,11 +58,7 @@ export function CheckpointModal({
           {/* Carte modale */}
           <motion.div
             ref={dialogRef}
-            className="relative w-full max-w-[480px] overflow-hidden rounded-sm border p-8"
-            style={{
-              backgroundColor: "var(--color-bg-elevated)",
-              borderColor: "rgba(0, 240, 255, 0.2)",
-            }}
+            className="glass-panel p-6 relative w-full max-w-[480px] overflow-hidden"
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { SectionWrapper } from "../components/SectionWrapper";
 import { TechIcon } from "../components/TechIcon";
+import { BackgroundSection } from "../components/BackgroundSection";
 
 const CATEGORIES = [
   {
@@ -40,8 +41,9 @@ export function TechArsenalSection() {
   let globalIndex = 0;
 
   return (
-    <SectionWrapper id="tech-arsenal" className="bg-[var(--color-bg-deep)]">
-      <div className="flex w-full flex-col gap-12">
+    <BackgroundSection id="tech-arsenal" backgroundImage="/backgrounds/technical-skills.jpg" contentPosition="left">
+      <SectionWrapper>
+        <div className="flex w-full flex-col gap-12">
         {/* Titre et sous-titre */}
         <div className="flex flex-col gap-3">
           <motion.h2
@@ -76,7 +78,7 @@ export function TechArsenalSection() {
         {/* Grille de catégories */}
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {CATEGORIES.map((category) => (
-            <div key={category.name} className="flex flex-col gap-3">
+            <div key={category.name} className="glass-card p-4 flex flex-col gap-3">
               {/* Label de catégorie */}
               <div className="flex flex-col gap-2">
                 <span
@@ -105,7 +107,8 @@ export function TechArsenalSection() {
             </div>
           ))}
         </div>
-      </div>
-    </SectionWrapper>
+        </div>
+      </SectionWrapper>
+    </BackgroundSection>
   );
 }

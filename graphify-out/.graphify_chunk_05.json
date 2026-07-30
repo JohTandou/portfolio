@@ -1,0 +1,250 @@
+{
+  "nodes": [
+    {
+      "id": "hero-screenshot-initial",
+      "label": "Portfolio Hero Section Screenshot",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "brand-logo-joh-tandou",
+      "label": "Brand Logo: JOH TANDOU",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "main-navigation",
+      "label": "Main Navigation Bar",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "nav-item-identite",
+      "label": "Nav Item: IDENTITÉ",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "nav-item-experience",
+      "label": "Nav Item: EXPÉRIENCE",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "nav-item-tech",
+      "label": "Nav Item: TECH",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "nav-item-missions",
+      "label": "Nav Item: MISSIONS",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "nav-item-contact",
+      "label": "Nav Item: CONTACT",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "nav-item-cv",
+      "label": "Nav Item: CV",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "accessibility-controls",
+      "label": "Accessibility Controls",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "btn-reduce-effects",
+      "label": "Button: REDUCE EFFECTS",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "btn-mute",
+      "label": "Button: MUTE",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "hero-visual-arcade",
+      "label": "Hero Visual: Retro Arcade Machine",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "dark-theme-bg",
+      "label": "Dark Theme Background",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "grid-overlay-pattern",
+      "label": "Grid Overlay Pattern",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "glowing-screen-element",
+      "label": "Glowing Cyan Screen Element",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "color-accent-yellow",
+      "label": "Color Accent: Yellow/Gold",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "color-accent-cyan",
+      "label": "Color Accent: Cyan/Teal",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "color-accent-pink",
+      "label": "Color Accent: Pink/Magenta",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "retro-tech-aesthetic",
+      "label": "Retro Tech / Cyberpunk Aesthetic",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    },
+    {
+      "id": "french-ui-language",
+      "label": "French UI Language",
+      "file_type": "image",
+      "source_file": "hero-screenshot-initial.png"
+    }
+  ],
+  "edges": [
+    {
+      "source": "hero-screenshot-initial",
+      "target": "brand-logo-joh-tandou",
+      "relation": "contains"
+    },
+    {
+      "source": "hero-screenshot-initial",
+      "target": "main-navigation",
+      "relation": "contains"
+    },
+    {
+      "source": "main-navigation",
+      "target": "brand-logo-joh-tandou",
+      "relation": "displays"
+    },
+    {
+      "source": "main-navigation",
+      "target": "nav-item-identite",
+      "relation": "contains"
+    },
+    {
+      "source": "main-navigation",
+      "target": "nav-item-experience",
+      "relation": "contains"
+    },
+    {
+      "source": "main-navigation",
+      "target": "nav-item-tech",
+      "relation": "contains"
+    },
+    {
+      "source": "main-navigation",
+      "target": "nav-item-missions",
+      "relation": "contains"
+    },
+    {
+      "source": "main-navigation",
+      "target": "nav-item-contact",
+      "relation": "contains"
+    },
+    {
+      "source": "main-navigation",
+      "target": "nav-item-cv",
+      "relation": "contains"
+    },
+    {
+      "source": "main-navigation",
+      "target": "accessibility-controls",
+      "relation": "contains"
+    },
+    {
+      "source": "accessibility-controls",
+      "target": "btn-reduce-effects",
+      "relation": "contains"
+    },
+    {
+      "source": "accessibility-controls",
+      "target": "btn-mute",
+      "relation": "contains"
+    },
+    {
+      "source": "hero-screenshot-initial",
+      "target": "hero-visual-arcade",
+      "relation": "contains"
+    },
+    {
+      "source": "hero-screenshot-initial",
+      "target": "dark-theme-bg",
+      "relation": "uses"
+    },
+    {
+      "source": "hero-screenshot-initial",
+      "target": "grid-overlay-pattern",
+      "relation": "uses"
+    },
+    {
+      "source": "hero-visual-arcade",
+      "target": "glowing-screen-element",
+      "relation": "contains"
+    },
+    {
+      "source": "brand-logo-joh-tandou",
+      "target": "color-accent-yellow",
+      "relation": "uses"
+    },
+    {
+      "source": "glowing-screen-element",
+      "target": "color-accent-cyan",
+      "relation": "uses"
+    },
+    {
+      "source": "hero-visual-arcade",
+      "target": "color-accent-pink",
+      "relation": "uses"
+    },
+    {
+      "source": "hero-screenshot-initial",
+      "target": "retro-tech-aesthetic",
+      "relation": "embodies"
+    },
+    {
+      "source": "nav-item-identite",
+      "target": "french-ui-language",
+      "relation": "uses"
+    },
+    {
+      "source": "nav-item-experience",
+      "target": "french-ui-language",
+      "relation": "uses"
+    },
+    {
+      "source": "nav-item-missions",
+      "target": "french-ui-language",
+      "relation": "uses"
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
