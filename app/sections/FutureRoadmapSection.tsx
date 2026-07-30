@@ -8,21 +8,19 @@ import { RoadmapCheckpointComponent } from "../components/RoadmapCheckpoint";
 import { ROADMAP_DATA } from "../lib/roadmap";
 import { RoadmapCheckpoint } from "../types";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
-import { useMediaQuery } from "../hooks/useMediaQuery";
 
 /* Feuille de route future — timeline horizontale néon avec path drawing */
 export function FutureRoadmapSection() {
   const { isReducedMotion } = useReducedMotion();
-  const isMobile = useMediaQuery("(max-width: 767px)");
   const sectionRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const [selectedCheckpoint, setSelectedCheckpoint] =
     useState<RoadmapCheckpoint | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  /* GSAP ScrollTrigger pour le path drawing sur desktop */
+  /* GSAP ScrollTrigger pour le path drawing */
   useEffect(() => {
-    if (isMobile || isReducedMotion || typeof window === "undefined") return;
+    if (isReducedMotion || typeof window === "undefined") return;
 
     let ctxCleanup: (() => void) | undefined;
 
@@ -62,7 +60,7 @@ export function FutureRoadmapSection() {
     return () => {
       if (ctxCleanup) ctxCleanup();
     };
-  }, [isMobile, isReducedMotion]);
+  }, [isReducedMotion]);
 
   const handleCheckpointClick = (checkpoint: RoadmapCheckpoint) => {
     setSelectedCheckpoint(checkpoint);
@@ -79,7 +77,7 @@ export function FutureRoadmapSection() {
       <BackgroundSection id="roadmap" backgroundImage="/backgrounds/goals.jpg" contentPosition="left" wideContent>
       <div
         ref={sectionRef}
-        className="relative py-24"
+        className="relative"
       >
         {/* Titre et sous-titre */}
         <div className="mb-16 px-6 text-center md:px-12">
@@ -112,108 +110,55 @@ export function FutureRoadmapSection() {
           </motion.p>
         </div>
 
-        {/* Desktop : Timeline horizontale avec SVG décoratif */}
-        {!isMobile && (
-          <div className="relative px-12">
-            {/* SVG décoratif en arrière-plan */}
-            <svg
-              className="pointer-events-none absolute top-1/2 left-0 h-2 w-full -translate-y-1/2"
-              viewBox="0 0 1200 2"
-              preserveAspectRatio="none"
-              style={{ overflow: "visible" }}
-            >
-              <path
-                ref={pathRef}
-                d="M0 1 L1200 1"
-                fill="none"
-                stroke="var(--color-accent-1)"
-                strokeWidth="2"
-                vectorEffect="non-scaling-stroke"
-                style={{
-                  strokeDasharray: "1200",
-                  strokeDashoffset: "1200",
-                }}
-              />
-            </svg>
-
-            {/* Grille responsive des checkpoints */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-16">
-              {ROADMAP_DATA.map((checkpoint, index) => (
-                <motion.div
-                  key={checkpoint.id}
-                  className="flex flex-col items-center gap-3"
-                  initial={isReducedMotion ? undefined : { opacity: 0, scale: 0 }}
-                  whileInView={
-                    isReducedMotion ? undefined : { opacity: 1, scale: 1 }
-                  }
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.15,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  <RoadmapCheckpointComponent
-                    checkpoint={checkpoint}
-                    isActive={checkpoint.status === "active"}
-                    onClick={() => handleCheckpointClick(checkpoint)}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Mobile : Timeline verticale simplifiée */}
-        {isMobile && (
-          <div className="relative px-6">
-            {/* Ligne verticale */}
-            <div
-              className="absolute top-0 bottom-0 left-10 w-px"
+        {/* Timeline horizontale avec SVG décoratif */}
+        <div className="relative px-4 md:px-12">
+          {/* SVG décoratif en arrière-plan (desktop uniquement) */}
+          <svg
+            className="pointer-events-none absolute top-1/2 left-0 h-2 w-full -translate-y-1/2 hidden md:block"
+            viewBox="0 0 1200 2"
+            preserveAspectRatio="none"
+            style={{ overflow: "visible" }}
+          >
+            <path
+              ref={pathRef}
+              d="M0 1 L1200 1"
+              fill="none"
+              stroke="var(--color-accent-1)"
+              strokeWidth="2"
+              vectorEffect="non-scaling-stroke"
               style={{
-                backgroundColor: "var(--color-accent-1)",
-                opacity: 0.3,
+                strokeDasharray: "1200",
+                strokeDashoffset: "1200",
               }}
             />
+          </svg>
 
-            <div className="flex flex-col gap-12">
-              {ROADMAP_DATA.map((checkpoint, index) => (
-                <motion.div
-                  key={checkpoint.id}
-                  className="relative flex items-start gap-6 pl-16"
-                  initial={isReducedMotion ? undefined : { opacity: 0, x: -20 }}
-                  whileInView={
-                    isReducedMotion ? undefined : { opacity: 1, x: 0 }
-                  }
-                  viewport={{ once: true, margin: "-30px" }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.1,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  {/* Cercle sur la ligne */}
-                  <div
-                    className="absolute top-1 left-10 h-3 w-3 -translate-x-1/2 rounded-full border-2"
-                    style={{
-                      borderColor: "var(--color-accent-1)",
-                      backgroundColor:
-                        checkpoint.status === "active"
-                          ? "var(--color-accent-1)"
-                          : "transparent",
-                    }}
-                  />
-
-                  <RoadmapCheckpointComponent
-                    checkpoint={checkpoint}
-                    isActive={checkpoint.status === "active"}
-                    onClick={() => handleCheckpointClick(checkpoint)}
-                  />
-                </motion.div>
-              ))}
-            </div>
+          {/* Grille responsive des checkpoints */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-8 md:py-16">
+            {ROADMAP_DATA.map((checkpoint, index) => (
+              <motion.div
+                key={checkpoint.id}
+                className="flex flex-col items-center gap-3"
+                initial={isReducedMotion ? undefined : { opacity: 0, scale: 0 }}
+                whileInView={
+                  isReducedMotion ? undefined : { opacity: 1, scale: 1 }
+                }
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.15,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <RoadmapCheckpointComponent
+                  checkpoint={checkpoint}
+                  isActive={checkpoint.status === "active"}
+                  onClick={() => handleCheckpointClick(checkpoint)}
+                />
+              </motion.div>
+            ))}
           </div>
-        )}
+        </div>
       </div>
       </BackgroundSection>
 
