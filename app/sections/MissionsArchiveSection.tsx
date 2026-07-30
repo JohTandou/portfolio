@@ -115,9 +115,9 @@ export function MissionsArchiveSection() {
         className="relative"
         style={{ perspective: isReducedMotion ? "none" : "1200px" }}
       >
-        {/* Flèche gauche */}
+        {/* Flèche gauche — desktop uniquement (absolue) */}
         <button
-          className="glass-btn absolute left-4 top-1/2 z-20 -translate-y-1/2 font-mono text-2xl md:left-8"
+          className="glass-btn absolute left-4 top-1/2 z-20 -translate-y-1/2 font-mono text-2xl hidden md:block md:left-8"
           style={{ color: "var(--color-accent-1)" }}
           onClick={scrollLeft}
           aria-label="Mission précédente"
@@ -128,9 +128,9 @@ export function MissionsArchiveSection() {
           </span>
         </button>
 
-        {/* Flèche droite */}
+        {/* Flèche droite — desktop uniquement (absolue) */}
         <button
-          className="glass-btn absolute right-4 top-1/2 z-20 -translate-y-1/2 font-mono text-2xl md:right-8"
+          className="glass-btn absolute right-4 top-1/2 z-20 -translate-y-1/2 font-mono text-2xl hidden md:block md:right-8"
           style={{ color: "var(--color-accent-1)" }}
           onClick={scrollRight}
           aria-label="Mission suivante"
@@ -185,6 +185,32 @@ export function MissionsArchiveSection() {
             );
           })}
         </div>
+      </div>
+
+      {/* Flèches de navigation — mobile uniquement (inline) */}
+      <div className="flex md:hidden items-center justify-center gap-4 mt-6">
+        <button
+          className="glass-btn font-mono text-2xl px-4 py-2"
+          style={{ color: "var(--color-accent-1)" }}
+          onClick={scrollLeft}
+          aria-label="Mission précédente"
+          type="button"
+        >
+          <span className="hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.6)]">
+            &lt;
+          </span>
+        </button>
+        <button
+          className="glass-btn font-mono text-2xl px-4 py-2"
+          style={{ color: "var(--color-accent-1)" }}
+          onClick={scrollRight}
+          aria-label="Mission suivante"
+          type="button"
+        >
+          <span className="hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.6)]">
+            &gt;
+          </span>
+        </button>
       </div>
 
       {/* Indicateurs de pagination */}
