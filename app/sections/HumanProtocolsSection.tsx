@@ -82,9 +82,9 @@ export function HumanProtocolsSection() {
         {/* Titre et sous-titre */}
         <div className="flex flex-col gap-3">
           <motion.h2
-            className="font-display font-bold tracking-tight"
+            className="font-display font-bold tracking-tighter"
             style={{
-              fontSize: "clamp(3rem, 6vw, 5rem)",
+              fontSize: "clamp(2.5rem, 5vw, 4rem)",
               color: "var(--color-text-high)",
             }}
             initial={{ opacity: 0, y: 30 }}
@@ -92,7 +92,7 @@ export function HumanProtocolsSection() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            PROTOCOLES HUMAINS
+            PROTOCOLES&shy;HUMAINS
           </motion.h2>
           <motion.p
             className="font-mono text-sm"

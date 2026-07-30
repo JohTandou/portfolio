@@ -112,12 +112,12 @@ export function FutureRoadmapSection() {
           </motion.p>
         </div>
 
-        {/* Desktop : Timeline horizontale avec SVG */}
+        {/* Desktop : Timeline horizontale avec SVG décoratif */}
         {!isMobile && (
           <div className="relative px-12">
-            {/* SVG avec path horizontal */}
+            {/* SVG décoratif en arrière-plan */}
             <svg
-              className="absolute top-1/2 left-0 h-2 w-full -translate-y-1/2"
+              className="pointer-events-none absolute top-1/2 left-0 h-2 w-full -translate-y-1/2"
               viewBox="0 0 1200 2"
               preserveAspectRatio="none"
               style={{ overflow: "visible" }}
@@ -136,34 +136,30 @@ export function FutureRoadmapSection() {
               />
             </svg>
 
-            {/* Checkpoints positionnés le long du path */}
-            <div className="relative flex items-center justify-between py-16">
-              {ROADMAP_DATA.map((checkpoint, index) => {
-                const positions = ["12.5%", "37.5%", "62.5%", "87.5%"];
-                return (
-                  <motion.div
-                    key={checkpoint.id}
-                    className="absolute flex flex-col items-center gap-3"
-                    style={{ left: positions[index], transform: "translateX(-50%)" }}
-                    initial={isReducedMotion ? undefined : { opacity: 0, scale: 0 }}
-                    whileInView={
-                      isReducedMotion ? undefined : { opacity: 1, scale: 1 }
-                    }
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{
-                      duration: 0.5,
-                      delay: index * 0.15,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                  >
-                    <RoadmapCheckpointComponent
-                      checkpoint={checkpoint}
-                      isActive={checkpoint.status === "active"}
-                      onClick={() => handleCheckpointClick(checkpoint)}
-                    />
-                  </motion.div>
-                );
-              })}
+            {/* Grille responsive des checkpoints */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-16">
+              {ROADMAP_DATA.map((checkpoint, index) => (
+                <motion.div
+                  key={checkpoint.id}
+                  className="max-w-[280px] mx-auto flex flex-col items-center gap-3"
+                  initial={isReducedMotion ? undefined : { opacity: 0, scale: 0 }}
+                  whileInView={
+                    isReducedMotion ? undefined : { opacity: 1, scale: 1 }
+                  }
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.15,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <RoadmapCheckpointComponent
+                    checkpoint={checkpoint}
+                    isActive={checkpoint.status === "active"}
+                    onClick={() => handleCheckpointClick(checkpoint)}
+                  />
+                </motion.div>
+              ))}
             </div>
           </div>
         )}
