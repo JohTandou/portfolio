@@ -23,7 +23,7 @@ export function BackgroundSection({
   return (
     <section
       id={id}
-      className="relative min-h-screen w-full snap-start snap-always overflow-hidden"
+      className="relative min-h-screen w-full overflow-hidden"
     >
       {/* Fond — image plein écran avec overlay directionnel */}
       <div className="absolute inset-0 z-0">
@@ -54,7 +54,7 @@ export function BackgroundSection({
         } px-6 py-24 md:px-12 lg:px-20`}
       >
         <div className="w-full max-w-2xl">
-          <div className="max-h-[80vh] overflow-y-auto scrollbar-hide overscroll-contain">
+          <div>
             {children}
           </div>
         </div>
