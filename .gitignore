@@ -85,5 +85,15 @@ pnpm-debug.log*
 /public/assets/videos/*.mov
 
 # ----------------------------------------
+# Documents internes privés
+# Ces fichiers contiennent la stratégie,
+# les conventions agent et la proposition
+# de valeur — ils ne doivent pas être
+# versionnés publiquement.
+# ----------------------------------------
+/AGENTS.md
+/PROPOSITION_VALEUR.md
+
+# ----------------------------------------
 # Fin du fichier
 # ----------------------------------------
