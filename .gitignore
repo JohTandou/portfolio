@@ -1,6 +1,89 @@
-.env.local
-.env*.local
-node_modules
-.next
-out
+# ============================================================
+# .gitignore — Portfolio Joh Tandou
+# ============================================================
+
+# ----------------------------------------
+# Dépendances
+# ----------------------------------------
+node_modules/
+
+# ----------------------------------------
+# Builds Next.js
+# ----------------------------------------
+.next/
+out/
+
+# ----------------------------------------
+# Caches TypeScript
+# ----------------------------------------
+*.tsbuildinfo
+
+# ----------------------------------------
+# Couverture de tests
+# ----------------------------------------
+coverage/
+*.lcov
+
+# ----------------------------------------
+# Artefacts Playwright / MCP
+# ----------------------------------------
+.playwright-mcp/
+playwright-report/
+test-results/
+
+# ----------------------------------------
+# Fichiers temporaires & Graphify
+# ----------------------------------------
+tmp/
+graphify-out/
+
+# ----------------------------------------
+# Métadonnées macOS
+# ----------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ----------------------------------------
+# Logs
+# ----------------------------------------
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ----------------------------------------
+# Variables d'environnement réelles
+# (exception explicite pour le fichier exemple)
+# ----------------------------------------
+.env*
+!.env.example
+
+# ----------------------------------------
+# Vercel
+# ----------------------------------------
+.vercel/
+
+# ----------------------------------------
+# État local des agents / swarm
+# ----------------------------------------
+.agent-memory.json
+.swarm-queue.json
+.agent-memory-local.json
+
+# ----------------------------------------
+# Captures d'écran et médias bruts à la racine
+# (patterns ancrés pour ne pas ignorer les assets valides sous public/)
+# ----------------------------------------
+/*.png
+/*.docx
+/*.MOV
+
+# Vidéos brutes dans le dossier des assets vidéo
+/public/assets/videos/*.mov
+
+# ----------------------------------------
+# Fin du fichier
+# ----------------------------------------
