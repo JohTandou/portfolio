@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
       });
     } else {
       // eslint-disable-next-line no-console
-      console.log("[DEV] Simulation d'envoi d'email :", { nom, email, entreprise, sujet, message });
+      console.log("[DEV] Simulation d'envoi d'email — RESEND_API_KEY absente");
     }
 
     return NextResponse.json(
