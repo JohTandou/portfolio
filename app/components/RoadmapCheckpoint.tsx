@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpRight } from "lucide-react";
 import { RoadmapCheckpoint } from "../types";
 
 interface RoadmapCheckpointProps {
@@ -16,7 +17,7 @@ export function RoadmapCheckpointComponent({
 }: RoadmapCheckpointProps) {
   return (
     <button
-      className="glass-card p-4 group flex flex-col items-center gap-3 text-left md:items-start"
+      className="glass-card p-4 group relative flex flex-col items-center gap-3 text-left md:items-start"
       onClick={onClick}
       role="button"
       tabIndex={0}
@@ -67,6 +68,56 @@ export function RoadmapCheckpointComponent({
       >
         {checkpoint.description}
       </p>
+
+      {/* Indicateur visuel cliquable — icône d'expansion en HUD */}
+      <span
+        aria-hidden="true"
+        className="absolute top-3 right-3 flex items-center justify-center motion-safe:transition-all motion-safe:duration-300 motion-reduce:transition-none"
+        style={{
+          opacity: "var(--indicator-opacity, 0.25)",
+          transform:
+            "scale(var(--indicator-scale, 1)) translate(var(--indicator-x, 0), var(--indicator-y, 0))",
+        }}
+      >
+        <ArrowUpRight
+          size={14}
+          strokeWidth={2.5}
+          style={{ color: "var(--color-accent-1)" }}
+        />
+      </span>
+
+      {/* Styles hover/focus/active injectés via une couche CSS embarquée */}
+      <style jsx>{`
+        button.group:hover {
+          --indicator-opacity: 1;
+          --indicator-scale: 1.15;
+          --indicator-x: 1px;
+          --indicator-y: -1px;
+        }
+        button.group:focus-visible {
+          --indicator-opacity: 1;
+          --indicator-scale: 1.15;
+          --indicator-x: 1px;
+          --indicator-y: -1px;
+        }
+        button.group:active {
+          --indicator-scale: 0.9;
+          --indicator-x: 0;
+          --indicator-y: 0;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          button.group:hover,
+          button.group:focus-visible {
+            --indicator-opacity: 1;
+            --indicator-scale: 1;
+            --indicator-x: 0;
+            --indicator-y: 0;
+          }
+          button.group:active {
+            --indicator-scale: 0.95;
+          }
+        }
+      `}</style>
     </button>
   );
 }

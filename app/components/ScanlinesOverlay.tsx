@@ -10,7 +10,7 @@ export function ScanlinesOverlay() {
         style={{
           backgroundImage:
             "repeating-linear-gradient(to bottom, transparent, transparent 4px, rgba(0,0,0,0.15) 4px, rgba(0,0,0,0.15) 5px)",
-          opacity: 0.05,
+          opacity: 0.08,
         }}
         aria-hidden="true"
       />

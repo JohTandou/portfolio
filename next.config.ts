@@ -1,8 +1,23 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async headers() {
+    images: {
+      formats: ["image/avif", "image/webp"],
+      deviceSizes: [640, 750, 828, 1080, 1200, 1440, 1920, 2048, 2560, 3840],
+    },
+    async headers() {
     return [
+      {
+        /* Route Geneva : noindex, nofollow via header HTTP pour garantir
+           que les crawlers ne l'indexent pas, même sans JS côté client. */
+        source: "/1/:path*",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow",
+          },
+        ],
+      },
       {
         source: "/:path*",
         headers: [

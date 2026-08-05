@@ -4,29 +4,37 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { MissionBriefing } from "../components/MissionBriefing";
 import { MISSIONS_DATA } from "../lib/missions";
+import { DESKTOP_CARD_WIDTH } from "../lib/constants";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { BackgroundSection } from "../components/BackgroundSection";
+import { getCopy } from "../lib/copy";
+import { PortfolioVariant } from "../types";
 
 /* ============================================================
    MissionsArchiveSection — Carrousel 3D horizontal avec snap scroll
    Direction esthétique : archives tactiques, immersion cinématique
    ============================================================ */
 
-export function MissionsArchiveSection() {
+interface MissionsArchiveSectionProps {
+  variant?: PortfolioVariant;
+}
+
+export function MissionsArchiveSection({ variant = "public" }: MissionsArchiveSectionProps) {
+  const copy = getCopy(variant);
   const { isReducedMotion } = useReducedMotion();
   const isMobile = useMediaQuery("(max-width: 767px)");
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const [cardWidth, setCardWidth] = useState(500);
+  const [cardWidth, setCardWidth] = useState(DESKTOP_CARD_WIDTH);
   const gap = 24;
 
   /* Mise à jour de la largeur de carte selon la taille d'écran */
   useEffect(() => {
     if (typeof window === "undefined") return;
     const updateWidth = () => {
-      setCardWidth(window.innerWidth < 768 ? window.innerWidth * 0.85 : 500);
+      setCardWidth(window.innerWidth < 768 ? window.innerWidth * 0.85 : DESKTOP_CARD_WIDTH);
     };
     updateWidth();
     window.addEventListener("resize", updateWidth);
@@ -106,7 +114,7 @@ export function MissionsArchiveSection() {
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          Projets réalisés, études de cas et démonstrations.
+          {copy.missionsSubtitle}
         </motion.p>
       </div>
 
@@ -121,8 +129,8 @@ export function MissionsArchiveSection() {
           className="scrollbar-hide flex items-center gap-6 overflow-x-auto scroll-smooth"
           style={{
             scrollSnapType: "x mandatory",
-            paddingLeft: isMobile ? "7.5vw" : "calc(50vw - 250px)",
-            paddingRight: isMobile ? "7.5vw" : "calc(50vw - 250px)",
+            paddingLeft: isMobile ? "7.5vw" : `calc(50vw - ${DESKTOP_CARD_WIDTH / 2}px)`,
+            paddingRight: isMobile ? "7.5vw" : `calc(50vw - ${DESKTOP_CARD_WIDTH / 2}px)`,
             WebkitOverflowScrolling: "touch",
           }}
           onKeyDown={handleKeyDown}
@@ -145,7 +153,7 @@ export function MissionsArchiveSection() {
                 key={mission.id}
                 className="flex-shrink-0"
                 style={{
-                  width: isMobile ? "85vw" : "500px",
+                  width: isMobile ? "85vw" : `${DESKTOP_CARD_WIDTH}px`,
                   scrollSnapAlign: "center",
                   transform: `rotateY(${rotateY}deg) scale(${isFocused ? 1 : 0.85})`,
                   opacity: isFocused ? 1 : 0.5,

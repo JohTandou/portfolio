@@ -8,7 +8,7 @@ const BOOT_LINES = [
   "> LOADING_KERNEL_MODULES...[OK]",
   "> MOUNTING_FILESYSTEMS...[OK]",
   "> INITIALIZING_GRAPHICS_SUBSYSTEM...[OK]",
-  "> WELCOME, USER.",
+  "> WELCOME, OPERATOR.",
 ];
 
 /* Durée totale cible ~1.5s répartie sur les lignes */

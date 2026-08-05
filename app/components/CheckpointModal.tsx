@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RoadmapCheckpoint } from "../types";
-import { HudCorners } from "./HudCorners";
 import { useLockBodyScroll } from "../hooks/useLockBodyScroll";
 
 interface CheckpointModalProps {
@@ -65,20 +64,6 @@ export function CheckpointModal({
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Coins HUD animés */}
-            <div className="pointer-events-none absolute top-4 left-4">
-              <HudCorners size={28} color="var(--color-accent-1)" animate />
-            </div>
-            <div className="pointer-events-none absolute top-4 right-4 rotate-90">
-              <HudCorners size={28} color="var(--color-accent-1)" animate />
-            </div>
-            <div className="pointer-events-none absolute bottom-4 left-4 -rotate-90">
-              <HudCorners size={28} color="var(--color-accent-1)" animate />
-            </div>
-            <div className="pointer-events-none absolute bottom-4 right-4 rotate-180">
-              <HudCorners size={28} color="var(--color-accent-1)" animate />
-            </div>
-
             {/* Header */}
             <div className="flex flex-col gap-2">
               <span

@@ -19,20 +19,20 @@ const ContactTerminalSection = dynamic(
   { ssr: false }
 );
 
-/* Page d'accueil principale — assemblage de toutes les sections */
+/* Page d'accueil principale — assemblage de toutes les sections, variante publique */
 export default function HomePage() {
   return (
     <>
       <BootSequence />
-      <HeroSection />
-      <IdentitySection />
-      <ExperienceLogSection />
-      <TechArsenalSection />
-      <HumanProtocolsSection />
-      <MissionsArchiveSection />
-      <LanguageModulesSection />
-      <InterestFeedSection />
-      <FutureRoadmapSection />
+      <HeroSection variant="public" />
+      <IdentitySection variant="public" />
+      <ExperienceLogSection variant="public" />
+      <TechArsenalSection variant="public" />
+      <HumanProtocolsSection variant="public" />
+      <MissionsArchiveSection variant="public" />
+      <LanguageModulesSection variant="public" />
+      <InterestFeedSection variant="public" />
+      <FutureRoadmapSection variant="public" />
       <ContactTerminalSection />
       <FooterSection />
     </>

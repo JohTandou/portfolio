@@ -4,40 +4,31 @@ import { motion } from "framer-motion";
 import { SectionWrapper } from "../components/SectionWrapper";
 import { TechIcon } from "../components/TechIcon";
 import { BackgroundSection } from "../components/BackgroundSection";
+import { getCopy } from "../lib/copy";
+import { PortfolioVariant } from "../types";
 
 const CATEGORIES = [
   {
-    name: "LANGAGES",
-    items: ["JavaScript", "TypeScript", "Java", "Python", "HTML", "CSS"],
+    name: "PROFESSIONNEL",
+    items: ["Java", "TypeScript", "Angular", "React", "Next.js", "FastAPI", "SQL", "Python"],
   },
   {
-    name: "FRAMEWORKS / RUNTIMES",
-    items: ["React", "Angular", "Next.js", "Spring", "JEE", "FastAPI", "Bootstrap"],
-  },
-  {
-    name: "LIBS & TOOLING",
-    items: ["Lombok", "MyBatis", "Maven", "Postman", "Git", "VS Code", "IntelliJ"],
-  },
-  {
-    name: "DATA",
-    items: ["SQL", "Firestore", "Supabase", "SQL Developer", "phpMyAdmin"],
-  },
-  {
-    name: "CLOUD & DEPLOY",
-    items: ["GCP", "Cloud Run", "Firebase", "Vercel", "Render", "Stripe"],
-  },
-  {
-    name: "METHODS",
-    items: ["Agile", "Scrum", "Kanban", "Jira", "Planning Poker"],
+    name: "PRODUITS LIVRÉS",
+    items: ["Next.js", "FastAPI", "Supabase", "Firebase", "Swing", "Flutter", "Xamarin"],
   },
   {
     name: "AI & AUTOMATION",
-    items: ["Claude Code", "OpenCode", "OpenClaw", "Docker Agent"],
+    items: ["Claude Code", "OpenCode", "Codex", "OpenClaw"],
   },
 ];
 
+interface TechArsenalSectionProps {
+  variant?: PortfolioVariant;
+}
+
 /* Arsenal technologique — stack, outils et compétences techniques */
-export function TechArsenalSection() {
+export function TechArsenalSection({ variant = "public" }: TechArsenalSectionProps) {
+  const copy = getCopy(variant);
   let globalIndex = 0;
 
   return (
@@ -71,14 +62,17 @@ export function TechArsenalSection() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            Stack, outils et compétences techniques
+            {copy.techArsenalSubtitle}
           </motion.p>
         </div>
 
-        {/* Grille de catégories — 4 colonnes max pour éviter le débordement */}
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
+        {/* Cartes de catégories — 3 colonnes */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6 md:gap-x-8 md:gap-y-10">
           {CATEGORIES.map((category) => (
-            <div key={category.name} className="glass-card overflow-hidden p-4 flex flex-col gap-3">
+            <div
+              key={category.name}
+              className="glass-card overflow-hidden p-4 flex flex-col gap-3"
+            >
               {/* Label de catégorie */}
               <div className="flex flex-col gap-2">
                 <span
@@ -101,7 +95,13 @@ export function TechArsenalSection() {
                 {category.items.map((item) => {
                   const currentIndex = globalIndex;
                   globalIndex += 1;
-                  return <TechIcon key={item} label={item} index={currentIndex} />;
+                  return (
+                    <TechIcon
+                      key={item}
+                      label={item}
+                      index={currentIndex}
+                    />
+                  );
                 })}
               </div>
             </div>

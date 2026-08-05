@@ -1,0 +1,31 @@
+/* ===================================================================
+ * glass-compat.v1.css — surcharge backdrop-filter pour Chromium
+ * ===================================================================
+ * Problème : Tailwind v4 / Lightning CSS retire `backdrop-filter` standard
+ * du CSS compilé et ne conserve que le préfixe WebKit.
+ * Safari fonctionne ; Chromium non.
+ * 
+ * Ce fichier statique (hors pipeline Tailwind) restaure la propriété
+ * standard APRÈS le préfixe WebKit, garantissant que les navigateurs
+ * Blink/V8 (Chrome, Edge, Brave, Opera) appliquent les effets glass.
+ * =================================================================== */
+
+.glass-panel {
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  backdrop-filter: blur(32px) saturate(200%);
+}
+
+.glass-card {
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  backdrop-filter: blur(24px) saturate(200%);
+}
+
+.glass-btn, .glass-input {
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+}
+
+.glass-badge {
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(12px) saturate(180%);
+}

@@ -5,19 +5,10 @@ export const ROADMAP_DATA: RoadmapCheckpoint[] = [
     id: "now",
     label: "NOW",
     title: "Consultant @ Talan. Side projects en orbite.",
-    description: "CDI chez Talan + side projects en parallèle",
+    description: "CDI chez Talan + développement de projets personnels",
     manifesto:
-      "En ce moment, je consolide mon expertise full-stack au sein de Talan tout en développant des side projects ambitieux. L'objectif est de capitaliser sur l'expérience terrain tout en explorant de nouvelles stacks et marchés.",
+      "En ce moment, je consolide mon expertise full-stack au sein de Talan tout en développant des side projects ambitieux. Mon objectif est d'approfondir mes compétences en architectures distribuées et en IA appliquée au produit.",
     status: "active",
-  },
-  {
-    id: "next",
-    label: "NEXT MISSION",
-    title: "Rejoindre un grand groupe non-ESN en Île-de-France.",
-    description: "CDI dans un grand groupe non-ESN en Île-de-France",
-    manifesto:
-      "La prochaine étape consiste à intégrer un grand groupe en tant que développeur interne, hors structure ESN. L'enjeu : plonger dans une culture produit forte, participer à la roadmap technique de bout en bout, et accéder à des problématiques d'échelle et de stabilité système.",
-    status: "upcoming",
   },
   {
     id: "mid",
@@ -31,10 +22,10 @@ export const ROADMAP_DATA: RoadmapCheckpoint[] = [
   {
     id: "long",
     label: "LONG HORIZON",
-    title: "Nouvelle base : Suisse. Nouveau terrain de jeu, mêmes ambitions amplifiées.",
-    description: "Relocation en Suisse (CH)",
+    title: "Nouveau chapitre : relever des défis à l'échelle d'un grand groupe.",
+    description: "Évolution vers des responsabilités élargies",
     manifesto:
-      "Sur le long terme, je vise une relocation en Suisse pour accéder à un écosystème tech mature, des défis techniques à haute exigence, et une qualité de vie propice à l'épanouissement personnel et professionnel.",
+      "Sur le long terme, je vise des responsabilités techniques élargies au sein d'un grand groupe, en capitalisant sur mon expérience multi-sectorielle pour concevoir et piloter des systèmes à fort impact.",
     status: "future",
   },
 ];

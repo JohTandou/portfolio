@@ -1,7 +1,6 @@
 "use client";
 
 import { MissionEntry } from "../types";
-import { HudCorners } from "./HudCorners";
 
 interface MissionBriefingProps {
   mission: MissionEntry;
@@ -36,29 +35,7 @@ export function MissionBriefing({ mission, isFocused }: MissionBriefingProps) {
   return (
     <div
       className="glass-card p-6 md:p-8 relative flex flex-col gap-4 overflow-hidden rounded-sm"
-      style={{
-        boxShadow: isFocused ? "0 0 40px rgba(0, 240, 255, 0.2)" : undefined,
-        transition: "box-shadow 0.4s ease, border-color 0.4s ease",
-      }}
     >
-      {/* Coins HUD */}
-      {isFocused && (
-        <>
-          <div className="pointer-events-none absolute top-3 left-3">
-            <HudCorners size={24} color="var(--color-accent-1)" animate />
-          </div>
-          <div className="pointer-events-none absolute top-3 right-3 rotate-90">
-            <HudCorners size={24} color="var(--color-accent-1)" animate />
-          </div>
-          <div className="pointer-events-none absolute bottom-3 left-3 -rotate-90">
-            <HudCorners size={24} color="var(--color-accent-1)" animate />
-          </div>
-          <div className="pointer-events-none absolute bottom-3 right-3 rotate-180">
-            <HudCorners size={24} color="var(--color-accent-1)" animate />
-          </div>
-        </>
-      )}
-
       {/* Scanlines internes */}
       <div
         className="pointer-events-none absolute inset-0 rounded-sm"
@@ -143,7 +120,7 @@ export function MissionBriefing({ mission, isFocused }: MissionBriefingProps) {
         className="relative my-1 font-mono text-xs"
         style={{ color: "var(--color-text-dim)" }}
       >
-        ──── OBJECTIVES COMPLETED ────
+        ──── OBJECTIFS COMPLÉTÉS ────
       </div>
       <ul className="relative flex flex-col gap-1.5">
         {mission.objectives.map((obj, i) => (

@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { BackgroundSection } from "../components/BackgroundSection";
 import { SectionWrapper } from "../components/SectionWrapper";
+import { getCopy } from "../lib/copy";
+import { PortfolioVariant } from "../types";
 
 const INTERESTS = [
   {
@@ -45,8 +47,13 @@ const POLAROIDS = [
   },
 ];
 
+interface InterestFeedSectionProps {
+  variant?: PortfolioVariant;
+}
+
 /* Flux d'intérêts — passions, veille et centres d'intérêt */
-export function InterestFeedSection() {
+export function InterestFeedSection({ variant = "public" }: InterestFeedSectionProps) {
+  const copy = getCopy(variant);
   return (
     <BackgroundSection id="interests" backgroundImage="/backgrounds/interests.jpg" contentPosition="left">
     <SectionWrapper>
@@ -100,51 +107,52 @@ export function InterestFeedSection() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            Passions, veille et centres d'intérêt
+            {copy.interestFeedSubtitle}
           </motion.p>
         </div>
 
         {/* Grille de fiches */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
           {INTERESTS.map((interest, index) => (
-            <motion.div
+            <div
               key={interest.name}
-              className="glass-card p-8 group flex flex-col gap-4 transition-all duration-300"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.15,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              whileHover={{
-                scale: 1.02,
-              }}
+              className="glass-card p-8 group"
             >
-              <h3
-                className="font-display text-xl font-bold uppercase"
-                style={{ color: "var(--color-text-high)" }}
-              >
-                {interest.name}
-              </h3>
-              <p
-                className="font-body text-sm leading-relaxed transition-all duration-300 group-hover:text-[var(--color-accent-1)]"
-                style={{
-                  color: "var(--color-text-mid)",
-                  lineHeight: 1.6,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.textShadow =
-                    "0 0 8px rgba(0, 240, 255, 0.4)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.textShadow = "none";
+              <motion.div
+                className="flex flex-col gap-4"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.15,
+                  ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                {interest.baseline}
-              </p>
-            </motion.div>
+                <h3
+                  className="font-display text-xl font-bold uppercase"
+                  style={{ color: "var(--color-text-high)" }}
+                >
+                  {interest.name}
+                </h3>
+                <p
+                  className="font-body text-sm leading-relaxed transition-all duration-300 group-hover:text-[var(--color-accent-1)]"
+                  style={{
+                    color: "var(--color-text-mid)",
+                    lineHeight: 1.6,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.textShadow =
+                      "0 0 8px rgba(0, 240, 255, 0.4)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.textShadow = "none";
+                  }}
+                >
+                  {interest.baseline}
+                </p>
+              </motion.div>
+            </div>
           ))}
         </div>
       </div>

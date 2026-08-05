@@ -97,7 +97,7 @@ export function KonamiEasterEgg() {
                 className="mt-2 font-mono text-xs"
                 style={{ color: "var(--color-text-mid)" }}
               >
-                {`> This console is a placeholder for a future CTF mini-game.`}
+                {`> MODULE_CTF // COMPILATION EN COURS // RESTEZ À L'ÉCOUTE...`}
               </div>
               <div
                 className="mt-4 font-mono text-xs"

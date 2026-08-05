@@ -31,25 +31,9 @@ export function ReducedMotionProvider({
   const [isReducedMotion, setIsReducedMotion] = useState(false);
 
   useEffect(() => {
-    /* Lecture de la préférence système et du localStorage au montage */
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const stored = localStorage.getItem("reduced-motion");
-
-    if (stored !== null) {
-      setIsReducedMotion(stored === "true");
-    } else {
-      setIsReducedMotion(mediaQuery.matches);
-    }
-
-    /* Écoute des changements de préférence système */
-    const handleChange = (event: MediaQueryListEvent) => {
-      if (localStorage.getItem("reduced-motion") === null) {
-        setIsReducedMotion(event.matches);
-      }
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    /* Clear stale localStorage from removed toggle button */
+    localStorage.removeItem("reduced-motion");
+    setIsReducedMotion(false);
   }, []);
 
   /* Synchronisation de la classe CSS .reduced-motion sur <html> */
@@ -62,11 +46,7 @@ export function ReducedMotionProvider({
   }, [isReducedMotion]);
 
   const toggleReducedMotion = useCallback(() => {
-    setIsReducedMotion((prev) => {
-      const next = !prev;
-      localStorage.setItem("reduced-motion", String(next));
-      return next;
-    });
+    /* No-op — toggle button has been removed, effects always active */
   }, []);
 
   return (

@@ -5,18 +5,52 @@ import { motion } from "framer-motion";
 import { BackgroundSection } from "../components/BackgroundSection";
 import { CheckpointModal } from "../components/CheckpointModal";
 import { RoadmapCheckpointComponent } from "../components/RoadmapCheckpoint";
-import { ROADMAP_DATA } from "../lib/roadmap";
 import { RoadmapCheckpoint } from "../types";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
+import { getCopy } from "../lib/copy";
+import { PortfolioVariant } from "../types";
+
+interface FutureRoadmapSectionProps {
+  variant?: PortfolioVariant;
+}
 
 /* Feuille de route future — timeline horizontale néon avec path drawing */
-export function FutureRoadmapSection() {
+export function FutureRoadmapSection({ variant = "public" }: FutureRoadmapSectionProps) {
+  const copy = getCopy(variant);
   const { isReducedMotion } = useReducedMotion();
   const sectionRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const [selectedCheckpoint, setSelectedCheckpoint] =
     useState<RoadmapCheckpoint | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  /* Données de roadmap variantées */
+  const roadmapData: RoadmapCheckpoint[] = [
+    {
+      id: "now",
+      label: "NOW",
+      title: copy.roadmap.now.title,
+      description: copy.roadmap.now.description,
+      manifesto: copy.roadmap.now.manifesto,
+      status: "active",
+    },
+    {
+      id: "mid",
+      label: "MID-TERM",
+      title: copy.roadmap.mid.title,
+      description: copy.roadmap.mid.description,
+      manifesto: copy.roadmap.mid.manifesto,
+      status: "future",
+    },
+    {
+      id: "long",
+      label: "LONG HORIZON",
+      title: copy.roadmap.long.title,
+      description: copy.roadmap.long.description,
+      manifesto: copy.roadmap.long.manifesto,
+      status: "future",
+    },
+  ];
 
   /* GSAP ScrollTrigger pour le path drawing */
   useEffect(() => {
@@ -74,7 +108,7 @@ export function FutureRoadmapSection() {
 
   return (
     <>
-      <BackgroundSection id="roadmap" backgroundImage="/backgrounds/goals.jpg" contentPosition="left" wideContent>
+      <BackgroundSection id="roadmap" backgroundImage="/backgrounds/goals.jpg" contentPosition="right" wideContent>
       <div
         ref={sectionRef}
         className="relative"
@@ -106,7 +140,7 @@ export function FutureRoadmapSection() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            Objectifs professionnels et aspirations futures.
+            {copy.roadmapSubtitle}
           </motion.p>
         </div>
 
@@ -114,7 +148,7 @@ export function FutureRoadmapSection() {
         <div className="relative px-4 md:px-12">
           {/* SVG décoratif en arrière-plan (desktop uniquement) */}
           <svg
-            className="pointer-events-none absolute top-1/2 left-0 h-2 w-full -translate-y-1/2 hidden md:block"
+            className="pointer-events-none absolute top-1/2 left-0 h-2 w-full -translate-y-1/2 hidden md:block z-0"
             viewBox="0 0 1200 2"
             preserveAspectRatio="none"
             style={{ overflow: "visible" }}
@@ -134,11 +168,11 @@ export function FutureRoadmapSection() {
           </svg>
 
           {/* Grille responsive des checkpoints */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-8 md:py-16">
-            {ROADMAP_DATA.map((checkpoint, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-8 md:py-16">
+            {roadmapData.map((checkpoint, index) => (
               <motion.div
                 key={checkpoint.id}
-                className="flex flex-col items-center gap-3"
+                className="flex flex-col items-center gap-3 relative z-10"
                 initial={isReducedMotion ? undefined : { opacity: 0, scale: 0 }}
                 whileInView={
                   isReducedMotion ? undefined : { opacity: 1, scale: 1 }

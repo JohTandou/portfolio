@@ -1,5 +1,9 @@
 /* Constantes globales de l'application */
 
+/** Largeur de carte partagée pour les carrousels desktop (Missions + Experience).
+ *  Mobile reste à 85vw, géré dans chaque section via useMediaQuery. */
+export const DESKTOP_CARD_WIDTH = 500;
+
 export const SECTION_IDS = [
   "boot",
   "hero",

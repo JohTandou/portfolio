@@ -5,42 +5,49 @@ import { motion, useInView } from "framer-motion";
 import { SectionWrapper } from "../components/SectionWrapper";
 import { BackgroundSection } from "../components/BackgroundSection";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
+import { getCopy } from "../lib/copy";
+import { PortfolioVariant } from "../types";
 
 const PROTOCOLS = [
   {
     number: "01",
-    name: "ADAPTABILITY",
+    name: "ADAPTATION",
     description:
-      "Passé en 3 ans de Xamarin VTC à Swing SNCF puis Angular R&D : 4 stacks majeures, 4 contextes métier.",
+      "Xamarin pour les chauffeurs VTC, React/FastAPI pour des managers, Angular en R&D puis Java/Swing à la SNCF : j'entre vite dans un nouveau métier, ses contraintes et ses outils.",
   },
   {
     number: "02",
-    name: "COMMUNICATION",
+    name: "SENS DU TERRAIN",
     description:
-      "Support direct de 20 utilisateurs finaux Hardis, recettes et go-live en autonomie chez SNCF.",
+      "Je ne livre pas à distance : support de 20 utilisateurs chez Hardis, recettes et mise en production à la SNCF. Une solution n'a de valeur que si elle fonctionne dans la vraie journée de ses utilisateurs.",
   },
   {
     number: "03",
-    name: "RIGUEUR",
+    name: "FIABILITÉ",
     description:
-      "Couverture de tests JUnit +7% sur Hardis, scripts SQL et validateurs renforcés sur SNCF.",
+      "Tests JUnit et Pytest, validateurs, scripts SQL, tests de robustesse : je sécurise les cas concrets avant qu'ils ne deviennent des incidents utilisateurs.",
   },
   {
     number: "04",
-    name: "AUTONOMIE PRODUIT",
+    name: "ESPRIT D'ÉQUIPE",
     description:
-      "TopSeeker : conception → paiement Stripe → monitoring, full ownership d'un produit en prod.",
+      "Daily scrums, collaboration avec les équipes métier et relais Talan à l'Ekiden : j'avance avec le collectif, j'assume ma part et je passe le relais proprement. Habitué aux environnements hybrides et aux collaborations distribuées.",
   },
   {
     number: "05",
-    name: "CURIOSITÉ TECH",
+    name: "CURIOSITÉ APPLIQUÉE",
     description:
-      "Veille active IA appliquée : intégration Gemini 3 Flash, prompts multi-étapes anti-hallucination, agents Claude.",
+      "De Devoxx à Swarm, puis à ce portfolio : je transforme une veille sur les agents de code en expérimentations concrètes pour mieux cartographier, planifier, tester et fiabiliser, sans déléguer le jugement.",
   },
 ];
 
+interface HumanProtocolsSectionProps {
+  variant?: PortfolioVariant;
+}
+
 /* Protocoles humains — soft skills, méthodologies et valeurs */
-export function HumanProtocolsSection() {
+export function HumanProtocolsSection({ variant = "public" }: HumanProtocolsSectionProps) {
+  const copy = getCopy(variant);
   const { isReducedMotion } = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -106,7 +113,7 @@ export function HumanProtocolsSection() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            Soft skills et méthodologies de travail
+            {copy.humanProtocolsSubtitle}
           </motion.p>
         </div>
 
@@ -118,44 +125,48 @@ export function HumanProtocolsSection() {
           animate={isInView && !isReducedMotion ? "visible" : "hidden"}
         >
           {PROTOCOLS.map((protocol) => (
-            <motion.div
+            <div
               key={protocol.number}
-              variants={itemVariants}
-              className="glass-card p-5 mb-4 flex flex-col gap-2"
+              className="glass-card p-5 mb-4"
             >
-              <div className="flex items-baseline gap-2">
-                <span
-                  className="mr-1 inline-block font-mono text-xs"
-                  style={{
-                    color: "var(--color-accent-1)",
-                    animation:
-                      cursorActive && !isReducedMotion
-                        ? "blink 1s infinite"
-                        : "none",
-                  }}
-                >
-                  ▸
-                </span>
-                <span
-                  className="font-mono text-xs"
-                  style={{ color: "var(--color-text-dim)" }}
-                >
-                  {protocol.number}
-                </span>
-                <span
-                  className="font-display text-xl font-bold md:text-2xl"
-                  style={{ color: "var(--color-text-high)" }}
-                >
-                  {protocol.name}
-                </span>
-              </div>
-              <p
-                className="pl-5 font-body text-sm leading-relaxed md:text-base"
-                style={{ color: "var(--color-text-mid)" }}
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-col gap-2"
               >
-                {protocol.description}
-              </p>
-            </motion.div>
+                <div className="flex items-baseline gap-2">
+                  <span
+                    className="mr-1 inline-block font-mono text-xs"
+                    style={{
+                      color: "var(--color-accent-1)",
+                      animation:
+                        cursorActive && !isReducedMotion
+                          ? "blink 1s infinite"
+                          : "none",
+                    }}
+                  >
+                    ▸
+                  </span>
+                  <span
+                    className="font-mono text-xs"
+                    style={{ color: "var(--color-text-dim)" }}
+                  >
+                    {protocol.number}
+                  </span>
+                  <span
+                    className="font-display text-xl font-bold md:text-2xl"
+                    style={{ color: "var(--color-text-high)" }}
+                  >
+                    {protocol.name}
+                  </span>
+                </div>
+                <p
+                  className="pl-5 font-body text-sm leading-relaxed md:text-base"
+                  style={{ color: "var(--color-text-mid)" }}
+                >
+                  {protocol.description}
+                </p>
+              </motion.div>
+            </div>
           ))}
         </motion.div>
       </div>

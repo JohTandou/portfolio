@@ -41,8 +41,15 @@
 
 /* Styles de base — scroll-behavior géré par Lenis, pas par CSS
    pour éviter les conflits avec le scrub vidéo */
-html {
+/* ── Scroll container racine : compense la hauteur de la navigation fixe (80px)
+   pour les appels scrollIntoView natifs et le scroll-padding des ancres.
+   Lenis gère déjà ce décalage via offset:-80, mais le CTA du Hero
+   utilise scrollIntoView directement sur l'élément cible.
+   ── Placé sur :root pour garantir la priorité cascade dans @layer theme. */
+:root, html {
   scroll-behavior: auto;
+  scroll-padding-top: 80px;
+  background-color: var(--color-bg-deep);
 }
 
 body {
@@ -145,6 +152,13 @@ body {
   }
 }
 
+/* Keyframes dédiée pour l'anneau tournant de l'avatar IdentitySection */
+@keyframes avatar-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Réduction de mouvement */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -155,6 +169,8 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  /* Fin reduced-motion global */
 }
 
 /* Masquer la scrollbar pour le carrousel horizontal */
@@ -172,6 +188,9 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 9999;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: strict;
   opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
@@ -185,10 +204,26 @@ body {
   -webkit-backdrop-filter: blur(32px) saturate(200%);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 20px;
+  contain: layout style;
   box-shadow: 
     0 4px 32px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(62, 207, 178, 0.2);
+  box-shadow: 
+    0 8px 40px rgba(0, 0, 0, 0.45),
+    0 0 20px rgba(62, 207, 178, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.glass-panel:active {
+  transform: scale(0.985);
+  transition-duration: 0.1s;
 }
 
 /* Card glass — pour les cartes de contenu ultra premium */
@@ -198,6 +233,7 @@ body {
   -webkit-backdrop-filter: blur(24px) saturate(200%);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
+  contain: layout style;
   box-shadow: 
     0 4px 24px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
@@ -229,6 +265,7 @@ body {
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(62, 207, 178, 0.2);
   border-radius: 12px;
+  contain: layout style;
   padding: 0.75rem 1.75rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -260,6 +297,7 @@ body {
   -webkit-backdrop-filter: blur(12px) saturate(180%);
   border: 1px solid rgba(62, 207, 178, 0.12);
   border-radius: 8px;
+  contain: layout style;
   padding: 0.25rem 0.75rem;
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -276,6 +314,7 @@ body {
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 12px;
+  contain: layout style;
   padding: 0.75rem 1rem;
   color: var(--color-text-high);
   font-family: var(--font-mono);
@@ -351,6 +390,16 @@ body {
   *:focus-visible {
     transition: none;
   }
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 /* ============================================================

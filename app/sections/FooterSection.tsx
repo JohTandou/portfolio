@@ -4,8 +4,6 @@
 export function FooterSection() {
   const handleEasterEgg = () => {
     /* Stub pour le Konami code du Sprint 4 */
-    // eslint-disable-next-line no-console
-    console.log("EASTER_EGG_DETECTED");
   };
 
   return (

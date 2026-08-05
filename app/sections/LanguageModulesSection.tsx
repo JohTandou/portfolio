@@ -4,40 +4,42 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { BackgroundSection } from "../components/BackgroundSection";
 import { SectionWrapper } from "../components/SectionWrapper";
-import { AnimatedBar } from "../components/AnimatedBar";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
+import { getCopy } from "../lib/copy";
+import { PortfolioVariant } from "../types";
 
 const LANGUAGES = [
   {
     code: "FR",
     name: "FRANÇAIS — NATIVE",
-    fluency: 100,
     details: ["Origin : France", "Status : INSTALLED · v1.0 · CORE"],
   },
   {
     code: "EN",
     name: "ANGLAIS — C1",
-    fluency: 85,
     details: [
-      "Certif #1 : TOEIC 840/990",
-      "Certif #2 : ILSC Montréal · C1 Advanced",
-      "Field test : 3 mois immersion · Canada · 2023",
+      "TOEIC 840/990",
+      "Certificat : C1 Advanced English Certificate — ILSC Education Group · Montréal, Canada",
       "Status : INSTALLED · v2.4 · ADVANCED",
     ],
   },
   {
     code: "ES",
     name: "ESPAGNOL — B1",
-    fluency: 45,
     details: [
-      "Use case : Travel · Casual conversation",
+      "Niveau : intermédiaire (B1)",
       "Status : INSTALLED · v1.0 · INTERMEDIATE",
     ],
   },
 ];
 
+interface LanguageModulesSectionProps {
+  variant?: PortfolioVariant;
+}
+
 /* Modules linguistiques — langues parlées et niveaux */
-export function LanguageModulesSection() {
+export function LanguageModulesSection({ variant = "public" }: LanguageModulesSectionProps) {
+  const copy = getCopy(variant);
   const { isReducedMotion } = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -46,20 +48,36 @@ export function LanguageModulesSection() {
     <BackgroundSection id="languages" backgroundImage="/backgrounds/languages.jpg" contentPosition="right">
     <SectionWrapper>
       <div ref={ref} className="flex w-full flex-col gap-12">
-        {/* Titre */}
-        <motion.h2
-          className="font-display font-bold tracking-tighter whitespace-nowrap"
-          style={{
-            fontSize: "clamp(2rem, 4.5vw, 4rem)",
-            color: "var(--color-text-high)",
-          }}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          MODULES LINGUISTIQUES
-        </motion.h2>
+        {/* Titre et sous-titre */}
+        <div className="flex flex-col gap-3">
+          <motion.h2
+            className="font-display font-bold tracking-tighter whitespace-nowrap"
+            style={{
+              fontSize: "clamp(2rem, 4.5vw, 4rem)",
+              color: "var(--color-text-high)",
+            }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            MODULES LINGUISTIQUES
+          </motion.h2>
+          <motion.p
+            className="font-mono text-sm"
+            style={{ color: "var(--color-text-mid)" }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{
+              duration: 0.5,
+              delay: 0.1,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            {copy.languageModulesSubtitle}
+          </motion.p>
+        </div>
 
         {/* Liste des modules */}
         <div className="flex flex-col">
@@ -110,22 +128,8 @@ export function LanguageModulesSection() {
                   {lang.name}
                 </span>
 
-                {/* Barre de fluency */}
-                <div className="mt-2">
-                  <AnimatedBar
-                    target={lang.fluency}
-                    delay={delay}
-                  />
-                </div>
-
-                {/* Pourcentage et détails */}
+                {/* Détails — sans jauges ni pourcentages */}
                 <div className="flex flex-col gap-1">
-                  <span
-                    className="font-mono text-xs"
-                    style={{ color: "var(--color-text-mid)" }}
-                  >
-                    {lang.fluency}% FLUENCY
-                  </span>
                   {lang.details.map((detail) => (
                     <span
                       key={detail}
