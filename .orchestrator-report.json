@@ -1,0 +1,35 @@
+{
+  "steps": [
+    {
+      "name": "mock-setup",
+      "status": "skip",
+      "detail": "No mock setup found"
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "name": "unit-tests",
+      "status": "pass",
+      "detail": "53 tests (53 passed, 0 failed)"
+    },
+    {
+      "name": "backend-start",
+      "status": "skip",
+      "detail": "No backend directory detected"
+    },
+    {
+      "name": "backend-unit-tests",
+      "status": "skip",
+      "detail": "No backend directory detected"
+    },
+    {
+      "name": "e2e",
+      "status": "skip",
+      "detail": "Dev server timeout after 60s (http://localhost:3000)"
+    }
+  ],
+  "overall": "pass"
+}

@@ -73,7 +73,7 @@ describe('missions lib', () => {
     expect(ghLink).toBeUndefined();
   });
 
-  it('SCRIPTURA #003 : in-progress, app détude IA, lien SAAS_URL scriptura.vercel.app', () => {
+  it('SCRIPTURA #003 : in-progress, app détude IA, lien SAAS_URL scriptura-bible.vercel.app', () => {
     const entry = MISSIONS_DATA.find((m) => m.missionId === '#003');
     expect(entry).toBeDefined();
     expect(entry!.codename).toBe('SCRIPTURA');
@@ -82,7 +82,7 @@ describe('missions lib', () => {
     // Lien SAAS_URL
     const saasLink = entry!.access.find((a) => a.type === 'demo');
     expect(saasLink).toBeDefined();
-    expect(saasLink!.url).toBe('https://scriptura.vercel.app');
+    expect(saasLink!.url).toBe('https://scriptura-bible.vercel.app');
     // Pas de lien GitHub
     const ghLink = entry!.access.find((a) => a.type === 'github');
     expect(ghLink).toBeUndefined();

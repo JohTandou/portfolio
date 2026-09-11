@@ -56,7 +56,7 @@ export const MISSIONS_DATA: MissionEntry[] = [
     ],
     arsenal: ["Flutter", "Supabase", "FastAPI", "Render", "Vercel"],
     access: [
-      { label: "SAAS_URL", url: "https://scriptura.vercel.app", type: "demo" },
+      { label: "SAAS_URL", url: "https://scriptura-bible.vercel.app", type: "demo" },
     ],
   },
   {
