@@ -84,6 +84,16 @@ export function MissionsArchiveSection({ variant = "public" }: MissionsArchiveSe
     container.scrollBy({ left: cardWidth + gap, behavior: "smooth" });
   }, [cardWidth, gap]);
 
+  /* Recentrage fluide sur une carte précise (dots + clic direct sur une carte) */
+  const goToIndex = useCallback(
+    (index: number) => {
+      const container = containerRef.current;
+      if (!container) return;
+      container.scrollTo({ left: index * (cardWidth + gap), behavior: "smooth" });
+    },
+    [cardWidth, gap]
+  );
+
   return (
     <BackgroundSection id="missions" backgroundImage="/backgrounds/achievements.jpg" contentPosition="left" wideContent>
       <div className="relative overflow-visible">
@@ -152,6 +162,12 @@ export function MissionsArchiveSection({ variant = "public" }: MissionsArchiveSe
               <div
                 key={mission.id}
                 className="flex-shrink-0"
+                onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                  // Un clic sur un lien interne (MissionBriefing) doit ouvrir
+                  // le lien, pas recentrer le carrousel.
+                  if ((e.target as HTMLElement).closest("a, button")) return;
+                  goToIndex(index);
+                }}
                 style={{
                   width: isMobile ? "85vw" : `${DESKTOP_CARD_WIDTH}px`,
                   scrollSnapAlign: "center",
@@ -160,6 +176,7 @@ export function MissionsArchiveSection({ variant = "public" }: MissionsArchiveSe
                   transition:
                     "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease",
                   zIndex: isFocused ? 10 : 5,
+                  cursor: isFocused ? "default" : "pointer",
                 }}
               >
                 <MissionBriefing mission={mission} isFocused={isFocused} />
@@ -169,8 +186,8 @@ export function MissionsArchiveSection({ variant = "public" }: MissionsArchiveSe
         </div>
       </div>
 
-      {/* Flèches de navigation — mobile uniquement (inline) */}
-      <div className="flex md:hidden items-center justify-center gap-4 mt-6">
+      {/* Flèches de navigation — visibles sur tous les écrans, au-dessus des dots */}
+      <div className="flex items-center justify-center gap-4 mt-8">
         <button
           className="glass-btn font-mono text-2xl px-4 py-2"
           style={{ color: "var(--color-accent-1)" }}
@@ -209,14 +226,7 @@ export function MissionsArchiveSection({ variant = "public" }: MissionsArchiveSe
               opacity: index === activeIndex ? 1 : 0.4,
               transform: index === activeIndex ? "scale(1.3)" : "scale(1)",
             }}
-            onClick={() => {
-              const container = containerRef.current;
-              if (!container) return;
-              container.scrollTo({
-                left: index * (cardWidth + gap),
-                behavior: "smooth",
-              });
-            }}
+            onClick={() => goToIndex(index)}
             aria-label={`Aller à la mission ${index + 1}`}
             type="button"
           />

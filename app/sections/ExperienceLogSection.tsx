@@ -67,6 +67,13 @@ export function ExperienceLogSection({ variant = "public" }: ExperienceLogSectio
     container.scrollBy({ left: cardWidth + gap, behavior: "smooth" });
   };
 
+  /* Recentrage fluide sur une carte précise (dots + clic direct sur une carte) */
+  const goToIndex = (index: number) => {
+    const container = containerRef.current;
+    if (!container) return;
+    container.scrollTo({ left: index * (cardWidth + gap), behavior: "smooth" });
+  };
+
   return (
     <BackgroundSection
       id="experience"
@@ -122,9 +129,17 @@ export function ExperienceLogSection({ variant = "public" }: ExperienceLogSectio
               <div
                 key={entry.id}
                 className="flex-shrink-0"
+                onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                  // Clic sur une carte = recentrage, sauf si l'utilisateur
+                  // interagit avec un lien/bouton interne (on laisse alors
+                  // le comportement natif s'exécuter).
+                  if ((e.target as HTMLElement).closest("a, button")) return;
+                  goToIndex(index);
+                }}
                 style={{
                   width: `min(${DESKTOP_CARD_WIDTH}px, 85vw)`,
                   scrollSnapAlign: "center",
+                  cursor: index === activeIndex ? "default" : "pointer",
                 }}
               >
                 <ExperienceCard
@@ -136,8 +151,8 @@ export function ExperienceLogSection({ variant = "public" }: ExperienceLogSectio
             ))}
           </div>
 
-          {/* Flèches de navigation mobile */}
-          <div className="flex md:hidden items-center justify-center gap-4 mt-6">
+          {/* Flèches de navigation — visibles sur tous les écrans, au-dessus des dots */}
+          <div className="flex items-center justify-center gap-4 mt-8">
             <button
               className="glass-btn font-mono text-2xl px-4 py-2"
               style={{ color: "var(--color-accent-1)" }}
@@ -172,14 +187,7 @@ export function ExperienceLogSection({ variant = "public" }: ExperienceLogSectio
                   opacity: index === activeIndex ? 1 : 0.4,
                   transform: index === activeIndex ? "scale(1.3)" : "scale(1)",
                 }}
-                onClick={() => {
-                  const container = containerRef.current;
-                  if (!container) return;
-                  container.scrollTo({
-                    left: index * (cardWidth + gap),
-                    behavior: "smooth",
-                  });
-                }}
+                onClick={() => goToIndex(index)}
                 aria-label={`Aller à l'expérience ${index + 1}`}
                 type="button"
               />
