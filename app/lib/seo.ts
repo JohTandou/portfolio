@@ -10,6 +10,14 @@
 /** Domaine canonique du portfolio */
 export const SEO_DOMAIN = "https://jtandou.dev" as const;
 
+/** Identifiant unique du nœud Person dans le graphe JSON-LD.
+ *  Dérivé de SEO_DOMAIN pour ne jamais dupliquer l'URL en dur. */
+export const SEO_PERSON_ID = `${SEO_DOMAIN}/#person` as const;
+
+/** Identifiant unique du nœud WebSite dans le graphe JSON-LD.
+ *  Permet aux autres nœuds (ex: author) de référencer ce site par `@id`. */
+export const SEO_WEBSITE_ID = `${SEO_DOMAIN}/#website` as const;
+
 /** Adresse email de contact */
 export const SEO_EMAIL = "johtandou@gmail.com" as const;
 
@@ -62,6 +70,9 @@ export const OG_IMAGE = {
  *  pas d'hypothèse sur l'adresse, les diplômes ou les compétences. */
 export interface PersonStructuredData {
   "@type": "Person";
+  /** Identifiant unique du nœud Person dans le graphe,
+   *  permettant à d'autres nœuds (ex: WebSite.author) de le référencer. */
+  "@id": string;
   name: string;
   jobTitle: string;
   url: string;
@@ -73,9 +84,13 @@ export interface PersonStructuredData {
 }
 
 /** @see https://schema.org/WebSite
- *  Données factuelles décrivant le site portfolio lui-même. */
+ *  Données factuelles décrivant le site portfolio lui-même.
+ *  `author` est une référence par `@id` vers le nœud Person du graphe,
+ *  ce qui évite de dupliquer les données de la personne. */
 export interface WebSiteStructuredData {
   "@type": "WebSite";
+  /** Identifiant unique du nœud WebSite dans le graphe */
+  "@id": string;
   /** Nom du site tel qu'affiché dans les SERP */
   name: string;
   /** URL canonique */
@@ -84,10 +99,9 @@ export interface WebSiteStructuredData {
   description: string;
   /** Langue principale du contenu */
   inLanguage: string;
-  /** Auteur du site (Personne) */
+  /** Auteur du site — référence vers le nœud Person par `@id` */
   author: {
-    "@type": "Person";
-    name: string;
+    "@id": string;
   };
 }
 
@@ -108,6 +122,7 @@ export function buildPersonStructuredData(
 ): PersonStructuredData {
   return {
     "@type": "Person",
+    "@id": SEO_PERSON_ID,
     name: SEO_NAME,
     jobTitle: SEO_JOB_TITLE,
     url: SEO_DOMAIN,
@@ -125,13 +140,13 @@ export function buildWebSiteStructuredData(
 ): WebSiteStructuredData {
   return {
     "@type": "WebSite",
+    "@id": SEO_WEBSITE_ID,
     name: "Joh Tandou Portfolio",
     url: SEO_DOMAIN,
     description,
     inLanguage: "fr",
     author: {
-      "@type": "Person",
-      name: SEO_NAME,
+      "@id": SEO_PERSON_ID,
     },
   };
 }

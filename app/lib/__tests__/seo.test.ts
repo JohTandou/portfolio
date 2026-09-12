@@ -1,6 +1,8 @@
 import { describe, it, expect } from "vitest";
 import {
   SEO_DOMAIN,
+  SEO_PERSON_ID,
+  SEO_WEBSITE_ID,
   SEO_EMAIL,
   SEO_NAME,
   SEO_JOB_TITLE,
@@ -107,6 +109,12 @@ describe("buildPersonStructuredData", () => {
     expect(person["@type"]).toBe("Person");
   });
 
+  it('should have @id "https://jtandou.dev/#person"', () => {
+    const person = buildPersonStructuredData();
+    expect(person["@id"]).toBe("https://jtandou.dev/#person");
+    expect(person["@id"]).toBe(SEO_PERSON_ID);
+  });
+
   it("should use SEO_NAME and SEO_JOB_TITLE", () => {
     const person = buildPersonStructuredData();
     expect(person.name).toBe(SEO_NAME);
@@ -172,6 +180,12 @@ describe("buildWebSiteStructuredData", () => {
     expect(site["@type"]).toBe("WebSite");
   });
 
+  it('should have @id "https://jtandou.dev/#website"', () => {
+    const site = buildWebSiteStructuredData("Test");
+    expect(site["@id"]).toBe("https://jtandou.dev/#website");
+    expect(site["@id"]).toBe(SEO_WEBSITE_ID);
+  });
+
   it('should have name "Joh Tandou Portfolio"', () => {
     const site = buildWebSiteStructuredData("Test");
     expect(site.name).toBe("Joh Tandou Portfolio");
@@ -193,10 +207,11 @@ describe("buildWebSiteStructuredData", () => {
     expect(site.inLanguage).toBe("fr");
   });
 
-  it("should have author as Person with SEO_NAME", () => {
+  it("should have author as a reference to the Person @id", () => {
     const site = buildWebSiteStructuredData("Test");
-    expect(site.author["@type"]).toBe("Person");
-    expect(site.author.name).toBe(SEO_NAME);
+    expect(site.author["@id"]).toBe(SEO_PERSON_ID);
+    expect(site.author).not.toHaveProperty("@type");
+    expect(site.author).not.toHaveProperty("name");
   });
 });
 
@@ -225,6 +240,15 @@ describe("buildSeoGraph", () => {
   it("should have second item as WebSite", () => {
     const graph = buildSeoGraph(description);
     expect(graph["@graph"][1]["@type"]).toBe("WebSite");
+  });
+
+  it("should reference the Person @id from WebSite.author (entity consistency)", () => {
+    const graph = buildSeoGraph(description);
+    const person = graph["@graph"][0];
+    const website = graph["@graph"][1];
+    expect(website.author["@id"]).toBe(person["@id"]);
+    expect(person["@id"]).toBe("https://jtandou.dev/#person");
+    expect(website["@id"]).toBe("https://jtandou.dev/#website");
   });
 
   it("should serialise to valid JSON", () => {

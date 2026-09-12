@@ -430,14 +430,26 @@ describe("JSON-LD structure validation", () => {
     expect(person).not.toHaveProperty("knowsAbout");
   });
 
-  it("JSON-LD WebSite must have inLanguage fr and author Person", async () => {
+  it("JSON-LD WebSite must have inLanguage fr and author referencing Person @id", async () => {
     const { buildSeoGraph } = await import("../lib/seo");
     const graph = buildSeoGraph("Portfolio de Joh Tandou.");
 
     const website = graph["@graph"][1];
     expect(website.inLanguage).toBe("fr");
-    expect(website.author["@type"]).toBe("Person");
-    expect(website.author.name).toBe("Joh Tandou");
+    expect(website.author["@id"]).toBe("https://jtandou.dev/#person");
+    expect(website.author).not.toHaveProperty("@type");
+    expect(website.author).not.toHaveProperty("name");
+  });
+
+  it("JSON-LD must expose @id for Person and WebSite with entity consistency", async () => {
+    const { buildSeoGraph } = await import("../lib/seo");
+    const graph = buildSeoGraph("Portfolio de Joh Tandou.");
+
+    const person = graph["@graph"][0];
+    const website = graph["@graph"][1];
+    expect(person["@id"]).toBe("https://jtandou.dev/#person");
+    expect(website["@id"]).toBe("https://jtandou.dev/#website");
+    expect(website.author["@id"]).toBe(person["@id"]);
   });
 });
 
