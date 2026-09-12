@@ -42,6 +42,16 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
+/*
+ * Nettoie une valeur destinée à un en-tête email (from / subject).
+ * Pourquoi : un \r ou \n injecté par un visiteur permettrait de forger
+ * des en-têtes supplémentaires (header injection) — on les neutralise
+ * systématiquement avant toute concaténation.
+ */
+function sanitizeHeaderValue(value: string): string {
+  return value.replace(/[\r\n]+/g, " ").trim();
+}
+
 export async function OPTIONS() {
   return NextResponse.json({}, { headers: corsHeaders });
 }
@@ -76,13 +86,33 @@ export async function POST(req: NextRequest) {
 
     if (process.env.RESEND_API_KEY) {
       const resend = new Resend(process.env.RESEND_API_KEY);
-      await resend.emails.send({
-        from: "Portfolio Joh Tandou <onboarding@resend.dev>",
-        to: "johtandou@gmail.com",
-        subject: `[Portfolio] ${sujet} — de ${nom}`,
-        text: `Nom: ${nom}\nEmail: ${email}\nEntreprise: ${entreprise || "Non spécifiée"}\n\nMessage:\n${message}`,
+
+      /* Nettoyage anti-injection avant concaténation dans from / subject */
+      const safeNom = sanitizeHeaderValue(nom) || "Visiteur";
+      const safeEntreprise = sanitizeHeaderValue(entreprise ?? "");
+      const safeSujet = sanitizeHeaderValue(sujet);
+      const safeSenderLabel = safeEntreprise || safeNom;
+      const recipient = process.env.CONTACT_TO_EMAIL || "johtandou@gmail.com";
+
+      /* Resend renvoie { data, error } sans lever d'exception : on doit
+         inspecter `error` explicitement, sinon on afficherait un faux succès. */
+      const { error } = await resend.emails.send({
+        from: `${safeNom} <onboarding@resend.dev>`,
+        to: recipient,
+        subject: `[${safeSenderLabel}] ${safeSujet}`,
+        text: message,
         replyTo: email,
       });
+
+      if (error) {
+        /* Log technique sans PII : jamais le nom, l'email ni le message visiteur */
+        // eslint-disable-next-line no-console
+        console.error("[contact] Échec de l'envoi Resend", error.name, error.message);
+        return NextResponse.json(
+          { success: false, message: "Erreur lors de l'envoi" },
+          { status: 500, headers: corsHeaders }
+        );
+      }
     } else {
       // eslint-disable-next-line no-console
       console.log("[DEV] Simulation d'envoi d'email — RESEND_API_KEY absente");

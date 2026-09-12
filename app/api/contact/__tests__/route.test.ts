@@ -48,6 +48,8 @@ beforeEach(async () => {
   vi.resetModules();
   vi.unmock("resend");
   delete process.env.RESEND_API_KEY;
+  /* Garantit le destinataire de repli dans les tests */
+  delete process.env.CONTACT_TO_EMAIL;
 });
 
 /* ------------------------------------------------------------------ */
@@ -160,12 +162,14 @@ describe("POST /api/contact — rate limiting", () => {
 /* 4. Envoi via Resend quand la clé est définie                       */
 /* ------------------------------------------------------------------ */
 describe("POST /api/contact — envoi Resend (mocké)", () => {
-  it("appelle Resend et retourne 200 quand RESEND_API_KEY est définie", async () => {
+  it("construit l'email selon la spec et retourne 200", async () => {
     /* Définir la clé AVANT l'import du module */
     process.env.RESEND_API_KEY = "re_test_abcdef";
 
-    /* Mock du module 'resend' : simule un envoi réussi */
-    const mockSend = vi.fn().mockResolvedValue({ id: "email-id-123" });
+    /* Mock du module 'resend' : simulateur de succès réaliste ({ data, error }) */
+    const mockSend = vi
+      .fn()
+      .mockResolvedValue({ data: { id: "email-id-123" }, error: null });
     vi.doMock("resend", () => ({
       Resend: vi.fn().mockImplementation(() => ({
         emails: { send: mockSend },
@@ -188,15 +192,139 @@ describe("POST /api/contact — envoi Resend (mocké)", () => {
     expect(res.status).toBe(200);
     expect(body.success).toBe(true);
 
-    /* Vérifier l'appel à Resend */
+    /* Vérifier l'appel à Resend selon la spec */
     expect(mockSend).toHaveBeenCalledOnce();
     const callArgs = mockSend.mock.calls[0][0] as Record<string, unknown>;
     expect(callArgs.to).toBe("johtandou@gmail.com");
-    expect(callArgs.subject).toContain("Test Resend");
-    expect(callArgs.subject).toContain("Jean Dupont");
+    expect(callArgs.from).toContain("Jean Dupont");
+    expect(callArgs.from).toContain("onboarding@resend.dev");
     expect(callArgs.replyTo).toBe("jean@example.com");
+    expect(callArgs.subject).toMatch(/^\[ACME\]/);
+    expect(callArgs.subject).toContain("Test Resend");
+    expect(callArgs.text).toBe(
+      "Ceci est un message de test pour vérifier l'envoi via Resend."
+    );
 
     /* Nettoyer la clé */
+    delete process.env.RESEND_API_KEY;
+  });
+
+  it("replie le sujet sur le nom quand l'entreprise est absente", async () => {
+    process.env.RESEND_API_KEY = "re_test_abcdef";
+
+    const mockSend = vi
+      .fn()
+      .mockResolvedValue({ data: { id: "email-id-456" }, error: null });
+    vi.doMock("resend", () => ({
+      Resend: vi.fn().mockImplementation(() => ({
+        emails: { send: mockSend },
+      })),
+    }));
+
+    const { POST } = await import("../route");
+
+    const req = createMockRequest({
+      nom: "Jean Dupont",
+      email: "jean@example.com",
+      sujet: "Sans entreprise",
+      message: "Ce message de test ne précise volontairement aucune entreprise.",
+    });
+
+    const res = await POST(req as any);
+
+    expect(res.status).toBe(200);
+    const callArgs = mockSend.mock.calls[0][0] as Record<string, unknown>;
+    expect(callArgs.subject).toMatch(/^\[Jean Dupont\]/);
+
+    delete process.env.RESEND_API_KEY;
+  });
+
+  it("neutralise les injections d'en-têtes (\\n, \\r) dans from et subject", async () => {
+    process.env.RESEND_API_KEY = "re_test_abcdef";
+
+    const mockSend = vi
+      .fn()
+      .mockResolvedValue({ data: { id: "email-id-789" }, error: null });
+    vi.doMock("resend", () => ({
+      Resend: vi.fn().mockImplementation(() => ({
+        emails: { send: mockSend },
+      })),
+    }));
+
+    const { POST } = await import("../route");
+
+    const req = createMockRequest({
+      nom: "Jean\r\nDupont",
+      email: "jean@example.com",
+      entreprise: "ACME\nCorp",
+      sujet: "Sujet\r\ninjecté",
+      message: "Message suffisamment long pour passer la validation du schéma.",
+    });
+
+    const res = await POST(req as any);
+
+    expect(res.status).toBe(200);
+    const callArgs = mockSend.mock.calls[0][0] as Record<string, unknown>;
+    const from = callArgs.from as string;
+    const subject = callArgs.subject as string;
+
+    expect(from).not.toMatch(/[\r\n]/);
+    expect(subject).not.toMatch(/[\r\n]/);
+
+    delete process.env.RESEND_API_KEY;
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* 4bis. Échec de l'API Resend (error renvoyé, pas d'exception)        */
+/* ------------------------------------------------------------------ */
+describe("POST /api/contact — échec Resend", () => {
+  it("retourne 500 sans PII quand Resend renvoie une erreur", async () => {
+    process.env.RESEND_API_KEY = "re_test_abcdef";
+
+    /* Resend peut échouer via `error` sans lever d'exception */
+    const mockSend = vi.fn().mockResolvedValue({
+      data: null,
+      error: { name: "validation_error", message: "Invalid `from` field" },
+    });
+    vi.doMock("resend", () => ({
+      Resend: vi.fn().mockImplementation(() => ({
+        emails: { send: mockSend },
+      })),
+    }));
+
+    const consoleErrorSpy = vi
+      .spyOn(console, "error")
+      .mockImplementation(() => {});
+
+    const { POST } = await import("../route");
+
+    const req = createMockRequest({
+      nom: "Jean Dupont",
+      email: "jean.dupont@example.com",
+      entreprise: "ACME Corp",
+      sujet: "Opportunité professionnelle",
+      message: "Bonjour, voici un message suffisamment long pour être valide.",
+    });
+
+    const res = await POST(req as any);
+    const body = await res.json();
+
+    expect(res.status).toBe(500);
+    expect(body.success).toBe(false);
+    expect(body.message).toBe("Erreur lors de l'envoi");
+
+    /* Aucune PII dans les logs d'erreur */
+    const allLogs = consoleErrorSpy.mock.calls.flat().join(" ");
+    expect(allLogs).not.toContain("Jean Dupont");
+    expect(allLogs).not.toContain("jean.dupont@example.com");
+    expect(allLogs).not.toContain("ACME Corp");
+    expect(allLogs).not.toContain(
+      "Bonjour, voici un message suffisamment long pour être valide."
+    );
+    expect(allLogs).toContain("Échec de l'envoi Resend");
+
+    consoleErrorSpy.mockRestore();
     delete process.env.RESEND_API_KEY;
   });
 });
