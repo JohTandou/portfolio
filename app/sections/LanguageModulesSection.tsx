@@ -5,8 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { BackgroundSection } from "../components/BackgroundSection";
 import { SectionWrapper } from "../components/SectionWrapper";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
-import { getCopy } from "../lib/copy";
-import { PortfolioVariant } from "../types";
+import { COPY } from "../lib/copy";
 
 const LANGUAGES = [
   {
@@ -33,13 +32,8 @@ const LANGUAGES = [
   },
 ];
 
-interface LanguageModulesSectionProps {
-  variant?: PortfolioVariant;
-}
-
 /* Modules linguistiques — langues parlées et niveaux */
-export function LanguageModulesSection({ variant = "public" }: LanguageModulesSectionProps) {
-  const copy = getCopy(variant);
+export function LanguageModulesSection() {
   const { isReducedMotion } = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -75,7 +69,7 @@ export function LanguageModulesSection({ variant = "public" }: LanguageModulesSe
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            {copy.languageModulesSubtitle}
+            {COPY.languageModulesSubtitle}
           </motion.p>
         </div>
 

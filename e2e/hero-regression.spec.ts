@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 /* ── Régression Hero — Le H1 ne doit pas être recouvert par la navigation fixe ─
-   Vérifie que sur / et /1, en desktop et mobile, le H1 "JOH TANDOU"
+   Vérifie que sur /, en desktop et mobile, le H1 "JOH TANDOU"
    est entièrement visible au scroll=0 (aucune portion masquée derrière
    la barre de navigation fixe de 80px). */
 
@@ -88,48 +88,22 @@ test.describe("Régression Hero — H1 non recouvert par la navigation", () => {
     });
   });
 
-  /* ──── Desktop /1 ──────────────────────────────────────────────── */
+  /* ──── Redirection permanente /1 → / ──────────────────────────── */
 
-  test.describe("Desktop 1440×900 — page /1 (geneva)", () => {
-    test.beforeEach(async ({ page }) => {
-      await page.setViewportSize({ width: 1440, height: 900 });
-      await page.goto("/1", { waitUntil: "domcontentloaded" });
-      await waitForHeroReady(page);
+  test("l'ancienne route /1 redirige en 308 vers / et affiche le hero", async ({
+    page,
+  }) => {
+    const bareResponse = await page.request.get("/1", { maxRedirects: 0 });
+    expect(bareResponse.status()).toBe(308);
+
+    const nestedResponse = await page.request.get("/1/inconnu", {
+      maxRedirects: 0,
     });
+    expect(nestedResponse.status()).toBe(308);
 
-    test("le H1 est visible et au-dessus du fold navigation sur /1 desktop", async ({
-      page,
-    }) => {
-      const h1 = page.locator("#hero h1");
-      await expect(h1).toBeVisible();
-      await expect(h1).toHaveText("JOH TANDOU");
-
-      const box = await h1.boundingBox();
-      expect(box).toBeTruthy();
-      expect(box!.y).toBeGreaterThanOrEqual(NAV_HEIGHT);
-    });
-  });
-
-  /* ──── Mobile /1 ───────────────────────────────────────────────── */
-
-  test.describe("Mobile 390×844 — page /1 (geneva)", () => {
-    test.beforeEach(async ({ page }) => {
-      await page.setViewportSize({ width: 390, height: 844 });
-      await page.goto("/1", { waitUntil: "domcontentloaded" });
-      await waitForHeroReady(page);
-    });
-
-    test("le H1 est visible et au-dessus du fold navigation sur /1 mobile", async ({
-      page,
-    }) => {
-      const h1 = page.locator("#hero h1");
-      await expect(h1).toBeVisible();
-      await expect(h1).toHaveText("JOH TANDOU");
-
-      const box = await h1.boundingBox();
-      expect(box).toBeTruthy();
-      expect(box!.y).toBeGreaterThanOrEqual(NAV_HEIGHT);
-    });
+    await page.goto("/1", { waitUntil: "domcontentloaded" });
+    expect(new URL(page.url()).pathname).toBe("/");
+    await expect(page.locator("#hero h1")).toHaveText("JOH TANDOU");
   });
 
   /* ──── Scroll-padding CSS ──────────────────────────────────────── */

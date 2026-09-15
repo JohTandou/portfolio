@@ -5,19 +5,26 @@ const nextConfig: NextConfig = {
       formats: ["image/avif", "image/webp"],
       deviceSizes: [640, 750, 828, 1080, 1200, 1440, 1920, 2048, 2560, 3840],
     },
-    async headers() {
+    async redirects() {
     return [
       {
-        /* Route Geneva : noindex, nofollow via header HTTP pour garantir
-           que les crawlers ne l'indexent pas, même sans JS côté client. */
-        source: "/1/:path*",
-        headers: [
-          {
-            key: "X-Robots-Tag",
-            value: "noindex, nofollow",
-          },
-        ],
+        /* Ancienne variante supprimée définitivement : redirection
+           permanente vers la racine. Deux entrées car le wildcard
+           ne matche pas la route nue. permanent: true → 308,
+           cohérent avec le 308 du middleware host-based. */
+        source: "/1",
+        destination: "/",
+        permanent: true,
       },
+      {
+        source: "/1/:path*",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
+    async headers() {
+    return [
       {
         source: "/:path*",
         headers: [

@@ -5,28 +5,6 @@ export interface SectionProps {
   className?: string;
 }
 
-/* Types de variantes du portfolio */
-
-/** Variante active du portfolio — détermine les textes et le contenu affiché */
-export type PortfolioVariant = "public" | "geneva";
-
-/**
- * Textes conditionnels par variante, sans duplication.
- * La clé `public` définit la base exhaustive obligatoire.
- * Les autres variantes ne déclarent que leurs surcharges — les champs absents héritent de `public`.
- *
- * @example
- * const heroTexts: VariantTexts<"title" | "subtitle"> = {
- *   public:  { title: "Joh Tandou", subtitle: "Développeur Full-Stack" },
- *   geneva:  { title: "Joh Tandou — Genève" },
- * };
- */
-export type VariantTexts<T extends string> = {
-  public: Record<T, string>;
-} & {
-  [V in Exclude<PortfolioVariant, "public">]: Partial<Record<T, string>>;
-};
-
 /* Types pour les sections du Sprint 3 */
 
 export type JobStatus = "active" | "completed" | "internship";

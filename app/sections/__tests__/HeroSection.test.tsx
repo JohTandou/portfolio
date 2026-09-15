@@ -26,27 +26,25 @@ describe('HeroSection', () => {
     document.body.innerHTML = '';
   });
 
-  /* ── Variante publique (défaut) ───────────────────────────────── */
+  /* ── Rendu par défaut ─────────────────────────────────────────── */
 
-  it("n'affiche PAS de badge sur la variante publique (heroBadge null)", () => {
+  it("n'affiche aucun badge dans le hero", () => {
     const container = document.createElement('div');
     const root = createRoot(container);
     act(() => {
-      root.render(<HeroSection variant="public" />);
+      root.render(<HeroSection />);
     });
 
-    // La variante publique n'a pas de badge — le seul .glass-badge
-    // avec la classe !inline-flex vient du conteneur badge qui est
-    // conditionné à copy.heroBadge (null sur public).
-    const badges = container.querySelectorAll('.glass-badge.\\!inline-flex');
-    expect(badges.length).toBe(0);
+    // Le hero ne rend aucun badge vitré : le bloc .glass-badge est absent.
+    const badge = container.querySelector('.glass-badge');
+    expect(badge).toBeNull();
   });
 
   it("affiche le nom complet en H1 comme titre principal", () => {
     const container = document.createElement('div');
     const root = createRoot(container);
     act(() => {
-      root.render(<HeroSection variant="public" />);
+      root.render(<HeroSection />);
     });
 
     const h1 = container.querySelector('h1');
@@ -59,7 +57,7 @@ describe('HeroSection', () => {
     const container = document.createElement('div');
     const root = createRoot(container);
     act(() => {
-      root.render(<HeroSection variant="public" />);
+      root.render(<HeroSection />);
     });
 
     const h2 = container.querySelector('h2');
@@ -71,7 +69,7 @@ describe('HeroSection', () => {
     const container = document.createElement('div');
     const root = createRoot(container);
     act(() => {
-      root.render(<HeroSection variant="public" />);
+      root.render(<HeroSection />);
     });
 
     const paragraphs = container.querySelectorAll('p');
@@ -88,7 +86,7 @@ describe('HeroSection', () => {
     const container = document.createElement('div');
     const root = createRoot(container);
     act(() => {
-      root.render(<HeroSection variant="public" />);
+      root.render(<HeroSection />);
     });
 
     const paragraphs = container.querySelectorAll('p');
@@ -107,7 +105,7 @@ describe('HeroSection', () => {
     const container = document.createElement('div');
     const root = createRoot(container);
     act(() => {
-      root.render(<HeroSection variant="public" />);
+      root.render(<HeroSection />);
     });
 
     const paragraphs = container.querySelectorAll('p');
@@ -128,7 +126,7 @@ describe('HeroSection', () => {
     const container = document.createElement('div');
     const root = createRoot(container);
     act(() => {
-      root.render(<HeroSection variant="public" />);
+      root.render(<HeroSection />);
     });
 
     const glassCards = container.querySelectorAll('.glass-card');
@@ -143,7 +141,7 @@ describe('HeroSection', () => {
     const container = document.createElement('div');
     const root = createRoot(container);
     act(() => {
-      root.render(<HeroSection variant="public" />);
+      root.render(<HeroSection />);
     });
 
     const button = container.querySelector('button');
@@ -165,7 +163,7 @@ describe('HeroSection', () => {
     const container = document.createElement('div');
     const root = createRoot(container);
     act(() => {
-      root.render(<HeroSection variant="public" />);
+      root.render(<HeroSection />);
     });
 
     const button = container.querySelector('button');
@@ -182,56 +180,24 @@ describe('HeroSection', () => {
 
   /* ── Régression : garde navigation fixe ────────────────────────── */
 
-  it("injecte un spacer de garde navigation (h-8) quand le badge est absent (public)", () => {
+  it("injecte un spacer de garde navigation (h-8) pour compenser la nav fixe", () => {
     const container = document.createElement('div');
     const root = createRoot(container);
     act(() => {
-      root.render(<HeroSection variant="public" />);
+      root.render(<HeroSection />);
     });
 
     // Le spacer doit être présent avec le data-testid dédié
     const spacer = container.querySelector('[data-testid="hero-nav-spacer"]');
     expect(spacer).toBeTruthy();
     expect(spacer?.className).toContain('h-8');
-
-    // Aucun badge glass-badge avec !inline-flex ne doit être présent
-    const badges = container.querySelectorAll('.glass-badge.\\!inline-flex');
-    expect(badges.length).toBe(0);
   });
 
-  it("injecte le spacer de garde navigation quand le badge est absent sur la variante geneva", () => {
+  it("le spacer est présent et le contenu H1 est bien rendu après la garde", () => {
     const container = document.createElement('div');
     const root = createRoot(container);
     act(() => {
-      root.render(<HeroSection variant="geneva" />);
-    });
-
-    const spacer = container.querySelector('[data-testid="hero-nav-spacer"]');
-    expect(spacer).toBeTruthy();
-    expect(spacer?.className).toContain('h-8');
-  });
-
-  it("le spacer de garde et le badge sont mutuellement exclusifs (public)", () => {
-    // Sur variante publique, heroBadge est null → spacer présent, badge absent
-    const container = document.createElement('div');
-    const root = createRoot(container);
-    act(() => {
-      root.render(<HeroSection variant="public" />);
-    });
-
-    const spacer = container.querySelector('[data-testid="hero-nav-spacer"]');
-    const badge = container.querySelector('.glass-badge.\\!inline-flex');
-
-    // Exactement un des deux doit être présent (spacer, car heroBadge=null)
-    expect(spacer).toBeTruthy();
-    expect(badge).toBeNull();
-  });
-
-  it("le spacer est présent et le contenu H1 est bien rendu après la garde (public)", () => {
-    const container = document.createElement('div');
-    const root = createRoot(container);
-    act(() => {
-      root.render(<HeroSection variant="public" />);
+      root.render(<HeroSection />);
     });
 
     // Le spacer précède le H1 dans le DOM

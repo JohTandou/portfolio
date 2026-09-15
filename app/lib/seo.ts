@@ -115,8 +115,8 @@ export interface SeoGraph {
 
 /** Construit l'objet Person (schema.org) avec toutes les données factuelles.
  *  Aucune surcharge possible par défaut — les données sont verrouillées.
- *  Le paramètre `overrides` permet aux variantes (ex: /1 Geneva)
- *  d'ajuster des champs sans dupliquer les constantes. */
+ *  Le paramètre `overrides` permet d'ajuster des champs sans dupliquer
+ *  les constantes. */
 export function buildPersonStructuredData(
   overrides?: Partial<PersonStructuredData>
 ): PersonStructuredData {

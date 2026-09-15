@@ -1,15 +1,4 @@
-/* Système de copy varianté pour le portfolio.
-   Toute chaîne visible par l'utilisateur qui diffère entre / (public) et /1 (geneva)
-   est centralisée ici. Les sections importent getCopy(variant) et utilisent les clés. */
-
-import { PortfolioVariant } from "../types";
-
-export interface GenevaInfoTexts {
-  mobilite: string;
-  relocalisation: string;
-  statut: string;
-  disponibilite: string;
-}
+/* Textes du portfolio — source unique. La page / est l'unique route. */
 
 export interface RoadmapTexts {
   subtitle: string;
@@ -32,7 +21,6 @@ export interface RoadmapTexts {
 
 export interface PortfolioCopy {
   /* Hero */
-  heroBadge: string | null;
   heroTitle: string;
   heroSubtitle: string;
   heroTagline: string;
@@ -64,15 +52,11 @@ export interface PortfolioCopy {
   /* Roadmap */
   roadmapSubtitle: string;
 
-  /* Geneva-specific (null on public) */
-  genevaInfo: GenevaInfoTexts | null;
-
   /* Per-checkpoint roadmap data */
   roadmap: RoadmapTexts;
 }
 
-const BASE_COPY: Omit<PortfolioCopy, "genevaInfo"> = {
-  heroBadge: null,
+export const COPY: PortfolioCopy = {
   heroTitle: "Software Engineer — Java & Web",
   heroSubtitle:
     "2+ ans d’expérience sur des applications métier, des interfaces web et des produits mis en production.",
@@ -121,39 +105,3 @@ const BASE_COPY: Omit<PortfolioCopy, "genevaInfo"> = {
     },
   },
 };
-
-const GENEVA_COPY: PortfolioCopy = {
-  ...BASE_COPY,
-  heroBadge: null,
-  heroTitle: "Software Engineer — Java & Web",
-  heroSubtitle: BASE_COPY.heroSubtitle,
-  heroTagline: BASE_COPY.heroTagline,
-  heroStack: BASE_COPY.heroStack,
-
-  roadmap: {
-    ...BASE_COPY.roadmap,
-    now: {
-      title: "Consultant @ Talan. Side projects en orbite. Genève / remote.",
-      description: "CDI chez Talan + disponibilité Genève et remote",
-      manifesto:
-        "En ce moment, je consolide mon expertise full-stack au sein de Talan tout en développant des side projects ambitieux. Je suis ouvert aux opportunités à Genève ou en remote, avec une présence possible sur site selon les besoins.",
-    },
-    long: {
-      title: "Nouvelle base : Suisse. Nouveau terrain de jeu, mêmes ambitions amplifiées.",
-      description: "Relocalisation en Suisse (CH)",
-      manifesto:
-        "Sur le long terme, je vise une installation durable à Genève pour intégrer un écosystème tech mature, construire une équipe autour d'une vision commune, et relever des défis techniques à haute exigence dans un cadre de vie propice à l'épanouissement.",
-    },
-  },
-
-  genevaInfo: {
-    mobilite: "Mobilité : Genève / Grand Genève",
-    relocalisation: "Relocalisation côté français après signature",
-    statut: "Statut : ressortissant français, éligible au permis G UE/AELE",
-    disponibilite: "Disponibilité : selon préavis contractuel",
-  },
-};
-
-export function getCopy(variant: PortfolioVariant): PortfolioCopy {
-  return variant === "geneva" ? GENEVA_COPY : { ...BASE_COPY, genevaInfo: null };
-}

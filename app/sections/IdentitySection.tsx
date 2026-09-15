@@ -4,17 +4,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { BackgroundSection } from "../components/BackgroundSection";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
-import { getCopy } from "../lib/copy";
-import { PortfolioVariant } from "../types";
-
-interface IdentitySectionProps {
-  variant?: PortfolioVariant;
-}
+import { COPY } from "../lib/copy";
 
 /* Section identité — présentation personnelle avec fond vitré */
-export function IdentitySection({ variant = "public" }: IdentitySectionProps) {
+export function IdentitySection() {
   const { isReducedMotion } = useReducedMotion();
-  const copy = getCopy(variant);
 
   return (
     <BackgroundSection
@@ -146,7 +140,7 @@ export function IdentitySection({ variant = "public" }: IdentitySectionProps) {
                   className="font-body text-base"
                   style={{ color: "var(--color-text-mid)" }}
                 >
-                  {copy.identityLocation}
+                  {COPY.identityLocation}
                 </span>
               </div>
               <div className="flex flex-col gap-1">
@@ -157,7 +151,7 @@ export function IdentitySection({ variant = "public" }: IdentitySectionProps) {
                   className="font-body text-base"
                   style={{ color: "var(--color-text-mid)" }}
                 >
-                  {copy.identityStatut}
+                  {COPY.identityStatut}
                 </span>
               </div>
               <div className="flex flex-col gap-1">
@@ -194,7 +188,7 @@ export function IdentitySection({ variant = "public" }: IdentitySectionProps) {
               className="font-body text-base sm:text-lg leading-[1.7] mt-6 sm:mt-8"
               style={{ color: "var(--color-text-mid)" }}
             >
-              {copy.identityBio}
+              {COPY.identityBio}
             </p>
 
             {/* Séparateur horizontal fin */}

@@ -78,14 +78,14 @@ describe("Middleware — redirection 308 pour l'hôte obsolète", () => {
   it("doit conserver le pathname dans la redirection", () => {
     const req = createMockRequest({
       host: "jtandou-portfolio.vercel.app",
-      pathname: "/1",
+      pathname: "/about",
       search: "",
     });
 
     middleware(req);
 
     expect(mockRedirect).toHaveBeenCalledWith(
-      "https://jtandou.dev/1",
+      "https://jtandou.dev/about",
       308,
     );
   });
@@ -105,17 +105,17 @@ describe("Middleware — redirection 308 pour l'hôte obsolète", () => {
     );
   });
 
-  it("doit conserver path ET query pour /1", () => {
+  it("doit conserver path ET query pour /about", () => {
     const req = createMockRequest({
       host: "jtandou-portfolio.vercel.app",
-      pathname: "/1",
+      pathname: "/about",
       search: "?source=email",
     });
 
     middleware(req);
 
     expect(mockRedirect).toHaveBeenCalledWith(
-      "https://jtandou.dev/1?source=email",
+      "https://jtandou.dev/about?source=email",
       308,
     );
   });
