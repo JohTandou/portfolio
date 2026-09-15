@@ -5,8 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { SectionWrapper } from "../components/SectionWrapper";
 import { BackgroundSection } from "../components/BackgroundSection";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
-import { getCopy } from "../lib/copy";
-import { PortfolioVariant } from "../types";
+import { COPY } from "../lib/copy";
 
 const PROTOCOLS = [
   {
@@ -41,13 +40,8 @@ const PROTOCOLS = [
   },
 ];
 
-interface HumanProtocolsSectionProps {
-  variant?: PortfolioVariant;
-}
-
 /* Protocoles humains — soft skills, méthodologies et valeurs */
-export function HumanProtocolsSection({ variant = "public" }: HumanProtocolsSectionProps) {
-  const copy = getCopy(variant);
+export function HumanProtocolsSection() {
   const { isReducedMotion } = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -113,7 +107,7 @@ export function HumanProtocolsSection({ variant = "public" }: HumanProtocolsSect
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            {copy.humanProtocolsSubtitle}
+            {COPY.humanProtocolsSubtitle}
           </motion.p>
         </div>
 

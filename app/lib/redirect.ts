@@ -56,10 +56,10 @@ export function shouldRedirect(host: string | null): boolean {
  * Construit l'URL canonique de destination pour une redirection.
  * Préserve le pathname et la query string.
  *
- * @param pathname - Le pathname de l'URL d'origine (ex: "/1", "/about")
+ * @param pathname - Le pathname de l'URL d'origine (ex: "/about")
  * @param search  - La query string d'origine (ex: "?utm_source=twitter"),
  *                   incluant le "?" initial si présent.
- * @returns L'URL canonique complète (ex: "https://jtandou.dev/1?ref=old")
+ * @returns L'URL canonique complète (ex: "https://jtandou.dev/about?ref=old")
  */
 export function buildCanonicalUrl(pathname: string, search: string): string {
   // Normalisation : s'assurer que pathname commence par "/"

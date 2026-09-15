@@ -106,73 +106,6 @@ describe("Root layout metadata (/)", () => {
 });
 
 /* ------------------------------------------------------------------ */
-/* 2. Métadonnées du layout Geneva (/1)                               */
-/* ------------------------------------------------------------------ */
-describe("Geneva layout metadata (/1)", () => {
-  it("should have Geneva-specific title", async () => {
-    const { metadata } = await import("../1/layout");
-    expect(metadata.title).toBe(
-      "Joh Tandou — Software Engineer | Genève & Grand Genève"
-    );
-  });
-
-  it("should have Geneva-specific description", async () => {
-    const { metadata } = await import("../1/layout");
-    expect(metadata.description).toBe(
-      "Software Engineer Java & Web, actuellement en poste et mobile vers le Grand Genève après signature et préavis contractuel."
-    );
-  });
-
-  it("should set robots to noindex, nofollow", async () => {
-    const { metadata } = await import("../1/layout");
-    expect(metadata.robots).toEqual({
-      index: false,
-      follow: false,
-      googleBot: { index: false, follow: false },
-    });
-  });
-
-  it("should have correct canonical for /1", async () => {
-    const { metadata } = await import("../1/layout");
-    expect(metadata.alternates?.canonical).toBe(
-      "https://jtandou.dev/1"
-    );
-  });
-
-  it("should have correct OpenGraph for /1", async () => {
-    const { metadata } = await import("../1/layout");
-    expect(metadata.openGraph?.url).toBe("https://jtandou.dev/1");
-    expect(metadata.openGraph?.title).toMatch(/Genève/);
-  });
-
-  it("should have correct Twitter card for /1", async () => {
-    const { metadata } = await import("../1/layout");
-    expect(metadata.twitter?.card).toBe("summary_large_image");
-    expect(metadata.twitter?.creator).toBe("@johtnd");
-  });
-
-  it("should define OG images on /1 layout", async () => {
-    const { metadata } = await import("../1/layout");
-    expect(metadata.openGraph?.images).toBeDefined();
-    const images = metadata.openGraph!.images;
-    expect(Array.isArray(images)).toBe(true);
-    const first = images![0] as Record<string, unknown>;
-    expect(first.url).toBe("/backgrounds/hero.jpg");
-    expect(first.width).toBe(1200);
-    expect(first.height).toBe(630);
-  });
-
-  it("should define Twitter images on /1 layout", async () => {
-    const { metadata } = await import("../1/layout");
-    expect(metadata.twitter?.images).toBeDefined();
-    const images = metadata.twitter!.images;
-    expect(Array.isArray(images)).toBe(true);
-    const first = images![0] as Record<string, unknown>;
-    expect(first.url).toBe("/backgrounds/hero.jpg");
-  });
-});
-
-/* ------------------------------------------------------------------ */
 /* 3. Sitemap — pas de /1                                             */
 /* ------------------------------------------------------------------ */
 describe("Sitemap", () => {
@@ -198,20 +131,17 @@ describe("Sitemap", () => {
 });
 
 /* ------------------------------------------------------------------ */
-/* 4. Robots.txt — disallow /1, allow /                               */
+/* 4. Robots.txt — allow / uniquement, aucune règle disallow          */
 /* ------------------------------------------------------------------ */
 describe("Robots.txt", () => {
-  it("should disallow /1", async () => {
+  it("should NOT disallow /1", async () => {
     const { default: robots } = await import("../robots");
     const result = robots();
     const rules = Array.isArray(result.rules) ? result.rules : [result.rules];
     const disallowRule = rules.find(
       (r: { disallow?: string }) => r.disallow === "/1"
     );
-    expect(disallowRule).toBeDefined();
-    if (disallowRule) {
-      expect(disallowRule.userAgent).toBe("*");
-    }
+    expect(disallowRule).toBeUndefined();
   });
 
   it("should allow /", async () => {
@@ -271,47 +201,44 @@ describe("Navigation — no /1 link", () => {
 });
 
 /* ------------------------------------------------------------------ */
-/* 6. next.config.ts — X-Robots-Tag pour /1                           */
+/* 6. next.config.ts — Redirection permanente /1 → /                  */
 /* ------------------------------------------------------------------ */
-describe("next.config.ts — X-Robots-Tag for /1", () => {
-  it("should define X-Robots-Tag: noindex, nofollow for /1/:path*", async () => {
+describe("next.config.ts — Redirection permanente /1 → /", () => {
+  it("should redirect /1 to / permanently", async () => {
     const { default: nextConfig } = await import("../../next.config");
-    /* nextConfig est un objet ; headers() est async, on l'appelle */
-    const result = await nextConfig.headers();
-    /* Cherche l'entrée pour /1/:path* */
-    const genevaEntry = result.find(
-      (entry: { source: string }) => entry.source === "/1/:path*"
+    const result = await nextConfig.redirects();
+    const redirectEntry = result.find(
+      (entry: { source: string }) => entry.source === "/1"
     );
-    expect(genevaEntry).toBeDefined();
-    const robotsHeader = genevaEntry.headers.find(
-      (h: { key: string }) => h.key === "X-Robots-Tag"
-    );
-    expect(robotsHeader).toBeDefined();
-    expect(robotsHeader.value).toBe("noindex, nofollow");
+    expect(redirectEntry).toBeDefined();
+    expect(redirectEntry).toMatchObject({
+      source: "/1",
+      destination: "/",
+      permanent: true,
+    });
   });
 
-  it("should place /1 header entry BEFORE the wildcard entry", async () => {
+  it("should redirect /1/:path* to / permanently", async () => {
     const { default: nextConfig } = await import("../../next.config");
-    const result = await nextConfig.headers();
-    const gIndex = result.findIndex(
+    const result = await nextConfig.redirects();
+    const redirectEntry = result.find(
       (entry: { source: string }) => entry.source === "/1/:path*"
     );
-    const wildcardIndex = result.findIndex(
-      (entry: { source: string }) => entry.source === "/:path*"
-    );
-    expect(gIndex).toBeLessThan(wildcardIndex);
-    expect(gIndex).toBeGreaterThanOrEqual(0);
+    expect(redirectEntry).toBeDefined();
+    expect(redirectEntry).toMatchObject({
+      source: "/1/:path*",
+      destination: "/",
+      permanent: true,
+    });
   });
-});
 
-/* ------------------------------------------------------------------ */
-/* 7. Layout Geneva — réutilise le même rendu que /                   */
-/* ------------------------------------------------------------------ */
-describe("Geneva page (/1)", () => {
-  it("should export a default React component", async () => {
-    const { default: GenevaPage } = await import("../1/page");
-    expect(GenevaPage).toBeDefined();
-    expect(typeof GenevaPage).toBe("function");
+  it("should NOT define a header entry for /1/:path*", async () => {
+    const { default: nextConfig } = await import("../../next.config");
+    const result = await nextConfig.headers();
+    const legacyEntry = result.find(
+      (entry: { source: string }) => entry.source === "/1/:path*"
+    );
+    expect(legacyEntry).toBeUndefined();
   });
 });
 

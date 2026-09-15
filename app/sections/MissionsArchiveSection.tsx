@@ -8,20 +8,14 @@ import { DESKTOP_CARD_WIDTH } from "../lib/constants";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { BackgroundSection } from "../components/BackgroundSection";
-import { getCopy } from "../lib/copy";
-import { PortfolioVariant } from "../types";
+import { COPY } from "../lib/copy";
 
 /* ============================================================
    MissionsArchiveSection — Carrousel 3D horizontal avec snap scroll
    Direction esthétique : archives tactiques, immersion cinématique
    ============================================================ */
 
-interface MissionsArchiveSectionProps {
-  variant?: PortfolioVariant;
-}
-
-export function MissionsArchiveSection({ variant = "public" }: MissionsArchiveSectionProps) {
-  const copy = getCopy(variant);
+export function MissionsArchiveSection() {
   const { isReducedMotion } = useReducedMotion();
   const isMobile = useMediaQuery("(max-width: 767px)");
   const containerRef = useRef<HTMLDivElement>(null);
@@ -124,7 +118,7 @@ export function MissionsArchiveSection({ variant = "public" }: MissionsArchiveSe
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          {copy.missionsSubtitle}
+          {COPY.missionsSubtitle}
         </motion.p>
       </div>
 

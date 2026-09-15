@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import { SectionWrapper } from "../components/SectionWrapper";
 import { TechIcon } from "../components/TechIcon";
 import { BackgroundSection } from "../components/BackgroundSection";
-import { getCopy } from "../lib/copy";
-import { PortfolioVariant } from "../types";
+import { COPY } from "../lib/copy";
 
 const CATEGORIES = [
   {
@@ -22,13 +21,8 @@ const CATEGORIES = [
   },
 ];
 
-interface TechArsenalSectionProps {
-  variant?: PortfolioVariant;
-}
-
 /* Arsenal technologique — stack, outils et compétences techniques */
-export function TechArsenalSection({ variant = "public" }: TechArsenalSectionProps) {
-  const copy = getCopy(variant);
+export function TechArsenalSection() {
   let globalIndex = 0;
 
   return (
@@ -62,7 +56,7 @@ export function TechArsenalSection({ variant = "public" }: TechArsenalSectionPro
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            {copy.techArsenalSubtitle}
+            {COPY.techArsenalSubtitle}
           </motion.p>
         </div>
 

@@ -126,12 +126,12 @@ describe("buildCanonicalUrl — construction d'URL canonique", () => {
   });
 
   it("doit préserver le pathname", () => {
-    expect(buildCanonicalUrl("/1", "")).toBe("https://jtandou.dev/1");
+    expect(buildCanonicalUrl("/about", "")).toBe("https://jtandou.dev/about");
   });
 
   it("doit préserver la query string", () => {
-    expect(buildCanonicalUrl("/1", "?utm_source=twitter&ref=old")).toBe(
-      "https://jtandou.dev/1?utm_source=twitter&ref=old",
+    expect(buildCanonicalUrl("/about", "?utm_source=twitter&ref=old")).toBe(
+      "https://jtandou.dev/about?utm_source=twitter&ref=old",
     );
   });
 

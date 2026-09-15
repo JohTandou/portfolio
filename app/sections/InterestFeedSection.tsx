@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 import { BackgroundSection } from "../components/BackgroundSection";
 import { SectionWrapper } from "../components/SectionWrapper";
-import { getCopy } from "../lib/copy";
-import { PortfolioVariant } from "../types";
+import { COPY } from "../lib/copy";
 
 const INTERESTS = [
   {
@@ -47,13 +46,8 @@ const POLAROIDS = [
   },
 ];
 
-interface InterestFeedSectionProps {
-  variant?: PortfolioVariant;
-}
-
 /* Flux d'intérêts — passions, veille et centres d'intérêt */
-export function InterestFeedSection({ variant = "public" }: InterestFeedSectionProps) {
-  const copy = getCopy(variant);
+export function InterestFeedSection() {
   return (
     <BackgroundSection id="interests" backgroundImage="/backgrounds/interests.jpg" contentPosition="left">
     <SectionWrapper>
@@ -107,7 +101,7 @@ export function InterestFeedSection({ variant = "public" }: InterestFeedSectionP
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            {copy.interestFeedSubtitle}
+            {COPY.interestFeedSubtitle}
           </motion.p>
         </div>
 

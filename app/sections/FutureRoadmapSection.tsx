@@ -7,16 +7,10 @@ import { CheckpointModal } from "../components/CheckpointModal";
 import { RoadmapCheckpointComponent } from "../components/RoadmapCheckpoint";
 import { RoadmapCheckpoint } from "../types";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
-import { getCopy } from "../lib/copy";
-import { PortfolioVariant } from "../types";
-
-interface FutureRoadmapSectionProps {
-  variant?: PortfolioVariant;
-}
+import { COPY } from "../lib/copy";
 
 /* Feuille de route future — timeline horizontale néon avec path drawing */
-export function FutureRoadmapSection({ variant = "public" }: FutureRoadmapSectionProps) {
-  const copy = getCopy(variant);
+export function FutureRoadmapSection() {
   const { isReducedMotion } = useReducedMotion();
   const sectionRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
@@ -24,30 +18,30 @@ export function FutureRoadmapSection({ variant = "public" }: FutureRoadmapSectio
     useState<RoadmapCheckpoint | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  /* Données de roadmap variantées */
+  /* Données de roadmap */
   const roadmapData: RoadmapCheckpoint[] = [
     {
       id: "now",
       label: "NOW",
-      title: copy.roadmap.now.title,
-      description: copy.roadmap.now.description,
-      manifesto: copy.roadmap.now.manifesto,
+      title: COPY.roadmap.now.title,
+      description: COPY.roadmap.now.description,
+      manifesto: COPY.roadmap.now.manifesto,
       status: "active",
     },
     {
       id: "mid",
       label: "MID-TERM",
-      title: copy.roadmap.mid.title,
-      description: copy.roadmap.mid.description,
-      manifesto: copy.roadmap.mid.manifesto,
+      title: COPY.roadmap.mid.title,
+      description: COPY.roadmap.mid.description,
+      manifesto: COPY.roadmap.mid.manifesto,
       status: "future",
     },
     {
       id: "long",
       label: "LONG HORIZON",
-      title: copy.roadmap.long.title,
-      description: copy.roadmap.long.description,
-      manifesto: copy.roadmap.long.manifesto,
+      title: COPY.roadmap.long.title,
+      description: COPY.roadmap.long.description,
+      manifesto: COPY.roadmap.long.manifesto,
       status: "future",
     },
   ];
@@ -140,7 +134,7 @@ export function FutureRoadmapSection({ variant = "public" }: FutureRoadmapSectio
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            {copy.roadmapSubtitle}
+            {COPY.roadmapSubtitle}
           </motion.p>
         </div>
 

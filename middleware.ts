@@ -9,9 +9,9 @@
    - Tous les autres hosts (localhost, jtandou.dev, previews
      Vercel) → passe à travers sans modification.
 
-   Ne casse JAMAIS les headers noindex de /1 car la redirection
-   envoie le navigateur vers le domaine canonique où les headers
-   définis dans next.config.ts sont appliqués normalement.
+   Ne casse JAMAIS les headers HTTP définis dans next.config.ts :
+   la redirection envoie le navigateur vers le domaine canonique
+   où ces headers sont appliqués normalement.
 
    Le matcher exclut les assets statiques pour ne pas ralentir
    le chargement des ressources.

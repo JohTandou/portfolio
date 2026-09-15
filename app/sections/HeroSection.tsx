@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import { BackgroundSection } from "../components/BackgroundSection";
-import { getCopy } from "../lib/copy";
-import { PortfolioVariant } from "../types";
+import { COPY } from "../lib/copy";
 
 /* ============================================================
    Direction esthétique : Éditorial/Minimal avec accents teal
@@ -40,13 +39,7 @@ const itemVariants = {
   },
 };
 
-interface HeroSectionProps {
-  variant?: PortfolioVariant;
-}
-
-export function HeroSection({ variant = "public" }: HeroSectionProps) {
-  const copy = getCopy(variant);
-
+export function HeroSection() {
   const scrollToContact = () => {
     const el = document.getElementById("contact");
     if (el) {
@@ -62,29 +55,9 @@ export function HeroSection({ variant = "public" }: HeroSectionProps) {
       backgroundPosition="top center"
       desktopAspectRatio="16 / 9"
     >
-        {/* Badge — affiché uniquement si heroBadge est non-null */}
-        {copy.heroBadge ? (
-          <div className="pt-12">
-            <span
-              className="glass-badge !inline-flex items-center gap-2 whitespace-nowrap"
-              style={{
-                color: "var(--color-accent-1)",
-                borderColor: "rgba(232, 168, 56, 0.25)",
-                background: "rgba(232, 168, 56, 0.08)",
-              }}
-            >
-              <span className="relative flex h-2 w-2 overflow-hidden">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style={{ backgroundColor: "var(--color-accent-1)" }} />
-                <span className="relative inline-flex h-2 w-2 rounded-full" style={{ backgroundColor: "var(--color-accent-1)" }} />
-              </span>
-              {copy.heroBadge}
-            </span>
-          </div>
-        ) : (
-          /* Spacer — compense la hauteur de la navigation fixe (80px).
-             Le BackgroundSection ajoute py-12 (48px) → h-8 (32px) = 80px de garde. */
-          <div className="h-8" data-testid="hero-nav-spacer" />
-        )}
+        {/* Spacer — compense la hauteur de la navigation fixe (80px).
+            Le BackgroundSection ajoute py-12 (48px) → h-8 (32px) = 80px de garde. */}
+        <div className="h-8" data-testid="hero-nav-spacer" />
 
         <motion.div
           variants={containerVariants}
@@ -107,7 +80,7 @@ export function HeroSection({ variant = "public" }: HeroSectionProps) {
             className="font-body text-[var(--color-accent-1)] font-medium"
             style={{ fontSize: "clamp(1.25rem, 2.5vw, 2rem)" }}
           >
-            {copy.heroTitle}
+            {COPY.heroTitle}
           </motion.h2>
 
           {/* Sous-titre */}
@@ -116,7 +89,7 @@ export function HeroSection({ variant = "public" }: HeroSectionProps) {
             className="font-body text-[var(--color-text-mid)] text-balance leading-relaxed"
             style={{ fontSize: "clamp(1rem, 1.5vw, 1.125rem)", maxWidth: "28rem" }}
           >
-            {copy.heroSubtitle}
+            {COPY.heroSubtitle}
           </motion.p>
 
           {/* Stack technique */}
@@ -125,7 +98,7 @@ export function HeroSection({ variant = "public" }: HeroSectionProps) {
             className="font-mono text-[var(--color-accent-1)] text-balance leading-relaxed"
             style={{ fontSize: "clamp(0.875rem, 1.25vw, 1rem)", maxWidth: "28rem" }}
           >
-            {copy.heroStack}
+            {COPY.heroStack}
           </motion.p>
 
           {/* Accroche */}
@@ -134,7 +107,7 @@ export function HeroSection({ variant = "public" }: HeroSectionProps) {
             className="font-body text-[var(--color-text-mid)] text-balance leading-relaxed"
             style={{ fontSize: "clamp(1rem, 1.5vw, 1.125rem)", maxWidth: "28rem" }}
           >
-            {copy.heroTagline}
+            {COPY.heroTagline}
           </motion.p>
 
           {/* Preuves sociales */}

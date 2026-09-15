@@ -10,16 +10,10 @@ import { DESKTOP_CARD_WIDTH } from "../lib/constants";
 import { useReducedMotion } from "../providers/ReducedMotionProvider";
 import { useAnimationFallback } from "../hooks/useAnimationFallback";
 import { useMediaQuery } from "../hooks/useMediaQuery";
-import { getCopy } from "../lib/copy";
-import { PortfolioVariant } from "../types";
-
-interface ExperienceLogSectionProps {
-  variant?: PortfolioVariant;
-}
+import { COPY } from "../lib/copy";
 
 /* Journal d'expérience — carrousel horizontal avec snap scroll. */
-export function ExperienceLogSection({ variant = "public" }: ExperienceLogSectionProps) {
-  const copy = getCopy(variant);
+export function ExperienceLogSection() {
   const { isReducedMotion } = useReducedMotion();
   const fallbackRef = useAnimationFallback(3000);
   const isMobile = useMediaQuery("(max-width: 767px)");
@@ -110,7 +104,7 @@ export function ExperienceLogSection({ variant = "public" }: ExperienceLogSectio
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              {copy.experienceSubtitle}
+              {COPY.experienceSubtitle}
             </motion.p>
           </div>
 
