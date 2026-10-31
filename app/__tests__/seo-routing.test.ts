@@ -24,7 +24,7 @@ describe("Root layout metadata (/)", () => {
   it("should have the correct public title", async () => {
     const { metadata } = await import("../layout");
     const title = metadata.title as { default: string; template: string };
-    expect(title.default).toBe("Joh Tandou — Software Engineer Java & Web");
+    expect(title.default).toBe("Joh Tandou — Software Engineer Java & Full-Stack");
   });
 
   it("should NOT contain Genève/Suisse references in description", async () => {

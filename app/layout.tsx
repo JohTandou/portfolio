@@ -34,7 +34,7 @@ const vt323 = VT323({
 
 export const metadata: Metadata = {
   title: {
-    default: "Joh Tandou — Software Engineer Java & Web",
+    default: "Joh Tandou — Software Engineer Java & Full-Stack",
     template: "%s · Joh Tandou"
   },
   description: "Portfolio de Joh Tandou — développeur full-stack créant des expériences interactives et des solutions logicielles sur mesure. Expertise Java, React, TypeScript, IA & LLM.",
@@ -47,26 +47,26 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://jtandou.dev",
     siteName: "Joh Tandou Portfolio",
-    title: "Joh Tandou — Software Engineer Java & Web",
+    title: "Joh Tandou — Software Engineer Java & Full-Stack",
     description: "Portfolio de Joh Tandou — développeur full-stack créant des expériences interactives et des solutions logicielles sur mesure. Expertise Java, React, TypeScript, IA & LLM.",
     images: [
       {
         url: "/backgrounds/hero.jpg",
         width: 1200,
         height: 630,
-        alt: "Joh Tandou — Software Engineer Java & Web",
+        alt: "Joh Tandou — Software Engineer Java & Full-Stack",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Joh Tandou — Software Engineer Java & Web",
+    title: "Joh Tandou — Software Engineer Java & Full-Stack",
     description: "Portfolio de Joh Tandou — développeur full-stack créant des expériences interactives et des solutions logicielles sur mesure. Expertise Java, React, TypeScript, IA & LLM.",
     creator: "@johtnd",
     images: [
       {
         url: "/backgrounds/hero.jpg",
-        alt: "Joh Tandou — Software Engineer Java & Web",
+        alt: "Joh Tandou — Software Engineer Java & Full-Stack",
       },
     ],
   },

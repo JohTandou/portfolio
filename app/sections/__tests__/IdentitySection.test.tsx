@@ -166,6 +166,8 @@ describe('IdentitySection', () => {
     // La carte principale doit contenir les badges de stats RPG
     expect(mainCard?.textContent).toContain('Localisation');
     expect(mainCard?.textContent).toContain('Full-Stack');
+    // Années d'XP (badge « Années d'XP » → 03)
+    expect(mainCard?.textContent).toContain('03');
   });
 
   it('should not render any mini-stat cards inside the main identity card', () => {
@@ -208,7 +210,7 @@ describe('IdentitySection', () => {
     expect(container.textContent).toContain('Diplôme d\'Ingénieur');
     expect(container.textContent).toContain('2021 → 2023');
     expect(container.textContent).toContain('Université Paris Cité');
-    expect(container.textContent).toContain('Licence MIAGE');
+    expect(container.textContent).toContain('Licence Informatique et Applications');
     expect(container.textContent).toContain('2018 → 2021');
   });
 });

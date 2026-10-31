@@ -68,7 +68,8 @@ describe('experience lib', () => {
     expect(impacts).toContain('6 écrans');
     expect(impacts).toContain('Notifications push');
     expect(impacts).toContain('Géolocalisation');
-    expect(entry!.stack).toContain('SQL Server');
+    expect(entry!.stack).toContain('Firebase Cloud Messaging');
+    expect(entry!.stack).not.toContain('SQL Server');
   });
 
   it('TALAN SNCF: remains unchanged with 10+ écrans, validateurs, export Excel', () => {

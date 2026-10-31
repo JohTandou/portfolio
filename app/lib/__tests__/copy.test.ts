@@ -18,7 +18,7 @@ describe('copy system', () => {
   it('les champs de base (hero, identity, roadmap) sont bien renseignés', () => {
     expect(COPY.heroTitle).toBeTruthy();
     expect(COPY.heroSubtitle).toBe(
-      "2+ ans d’expérience sur des applications métier, des interfaces web et des produits mis en production."
+      "3 ans d’expérience (dont 2 ans 7 mois en CDI) sur des applications métier, des interfaces web et des produits mis en production."
     );
     expect(COPY.heroTagline).toBeTruthy();
     expect(COPY.heroStack).toBe(

@@ -100,5 +100,7 @@ describe('LanguageModulesSection', () => {
     expect(container.textContent).toContain('CORE');
     expect(container.textContent).toContain('ADVANCED');
     expect(container.textContent).toContain('INTERMEDIATE');
+    // Année des certifications EN (TOEIC / C1 Advanced English)
+    expect(container.textContent).toContain('2023');
   });
 });

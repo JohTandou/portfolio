@@ -17,8 +17,8 @@ const LANGUAGES = [
     code: "EN",
     name: "ANGLAIS — C1",
     details: [
-      "TOEIC 840/990",
-      "Certificat : C1 Advanced English Certificate — ILSC Education Group · Montréal, Canada",
+      "TOEIC 840/990 — 2023",
+      "Certificat : C1 Advanced English Certificate — ILSC Education Group · Montréal, Canada — 2023",
       "Status : INSTALLED · v2.4 · ADVANCED",
     ],
   },

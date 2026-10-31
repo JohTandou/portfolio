@@ -173,7 +173,7 @@ export function IdentitySection() {
                   className="font-body text-base"
                   style={{ color: "var(--color-text-mid)" }}
                 >
-                  02
+                  03
                 </span>
               </div>
             </div>
@@ -232,7 +232,7 @@ export function IdentitySection() {
                     className="font-mono text-xs"
                     style={{ color: "var(--color-text-dim)" }}
                   >
-                    Licence MIAGE
+                    Licence Informatique et Applications
                   </span>
                   <span
                     className="font-mono text-xs"

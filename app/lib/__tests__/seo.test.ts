@@ -37,8 +37,8 @@ describe("SEO identity constants", () => {
     expect(SEO_NAME).toBe("Joh Tandou");
   });
 
-  it('should have SEO_JOB_TITLE as "Software Engineer — Java & Web"', () => {
-    expect(SEO_JOB_TITLE).toBe("Software Engineer — Java & Web");
+  it('should have SEO_JOB_TITLE as "Software Engineer — Java & Full-Stack"', () => {
+    expect(SEO_JOB_TITLE).toBe("Software Engineer — Java & Full-Stack");
   });
 });
 

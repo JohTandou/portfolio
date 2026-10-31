@@ -9,7 +9,7 @@ import { COPY } from "../lib/copy";
 const CATEGORIES = [
   {
     name: "PROFESSIONNEL",
-    items: ["Java", "TypeScript", "Angular", "React", "Next.js", "FastAPI", "SQL", "Python"],
+    items: ["Java", "Swing", "Angular", "TypeScript", "React", "Next.js", "Python", "FastAPI", "Oracle SQL", "JUnit", "Maven", "Pytest", "Git"],
   },
   {
     name: "PRODUITS LIVRÉS",

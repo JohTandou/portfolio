@@ -25,7 +25,7 @@ export const SEO_EMAIL = "johtandou@gmail.com" as const;
 export const SEO_NAME = "Joh Tandou" as const;
 
 /** Intitulé exact du poste — utilisé dans JSON-LD, OG et meta */
-export const SEO_JOB_TITLE = "Software Engineer — Java & Web" as const;
+export const SEO_JOB_TITLE = "Software Engineer — Java & Full-Stack" as const;
 
 // ─── Réseaux sociaux (sameAs schema.org) ─────────────────────────────
 
@@ -60,7 +60,7 @@ export const OG_IMAGE = {
   /** Hauteur en pixels (standard OG) */
   height: 630,
   /** Texte alternatif pour l'image */
-  alt: "Joh Tandou — Software Engineer Java & Web",
+  alt: "Joh Tandou — Software Engineer Java & Full-Stack",
 } as const;
 
 // ─── Structured Data Types (schema.org) ──────────────────────────────

@@ -62,7 +62,7 @@ describe('HeroSection', () => {
 
     const h2 = container.querySelector('h2');
     expect(h2).toBeTruthy();
-    expect(h2?.textContent).toBe('Software Engineer — Java & Web');
+    expect(h2?.textContent).toBe('Software Engineer — Java & Full-Stack');
   });
 
   it("affiche le sous-titre exact tel que défini dans la copie centralisée", () => {
@@ -74,11 +74,11 @@ describe('HeroSection', () => {
 
     const paragraphs = container.querySelectorAll('p');
     const subtitle = Array.from(paragraphs).find(
-      (p) => p.textContent?.includes("2+ ans d’expérience")
+      (p) => p.textContent?.includes("3 ans d’expérience")
     );
     expect(subtitle).toBeTruthy();
     expect(subtitle?.textContent).toBe(
-      "2+ ans d’expérience sur des applications métier, des interfaces web et des produits mis en production."
+      "3 ans d’expérience (dont 2 ans 7 mois en CDI) sur des applications métier, des interfaces web et des produits mis en production."
     );
   });
 

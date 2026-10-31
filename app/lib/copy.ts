@@ -57,9 +57,9 @@ export interface PortfolioCopy {
 }
 
 export const COPY: PortfolioCopy = {
-  heroTitle: "Software Engineer — Java & Web",
+  heroTitle: "Software Engineer — Java & Full-Stack",
   heroSubtitle:
-    "2+ ans d’expérience sur des applications métier, des interfaces web et des produits mis en production.",
+    "3 ans d’expérience (dont 2 ans 7 mois en CDI) sur des applications métier, des interfaces web et des produits mis en production.",
   heroTagline:
     "Du desktop Java/Swing au SaaS full-stack : je construis des applications qui résistent au réel.",
   heroStack: "Java/Swing · Angular · React/Next.js · Python/FastAPI · SQL",

@@ -53,6 +53,10 @@ describe('TechArsenalSection', () => {
     expect(container.textContent).toContain('TypeScript');
     expect(container.textContent).toContain('React');
     expect(container.textContent).toContain('Angular');
+    expect(container.textContent).toContain('Oracle SQL');
+    expect(container.textContent).toContain('Pytest');
+    expect(container.textContent).toContain('Maven');
+    expect(container.textContent).toContain('Git');
 
     // Groupe PRODUITS LIVRÉS
     expect(container.textContent).toContain('Supabase');
